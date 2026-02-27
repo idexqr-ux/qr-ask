@@ -2,7 +2,21 @@ async function loadCSV(path) {
   const res = await fetch(path, { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
   const text = await res.text();
-  return parseCSV(text);
+
+// Fix: some exports wrap EACH WHOLE ROW in quotes, making it a 1-column CSV.
+// If a line starts/ends with a quote and does NOT contain '","', strip the outer quotes.
+const fixedText = text
+  .split(/\r?\n/)
+  .map(line => {
+    const s = line.trim();
+    if (s.startsWith('"') && s.endsWith('"') && s.includes(",") && !s.includes('","')) {
+      return s.slice(1, -1);
+    }
+    return line;
+  })
+  .join("\n");
+
+return parseCSV(fixedText);
 }
 
 function parseCSV(text) {

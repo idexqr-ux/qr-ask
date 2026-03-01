@@ -284,6 +284,12 @@ details summary { cursor: pointer; margin-top: 10px; font-weight: 600; }
     background-color: #B8C6C1;   /* keep celadon */
     color: #2F2F2F;
   }
+  /* Force the main Ask button styling (final override) */
+.ask-input button {
+  background-color: #B8C6C1 !important;
+  color: #2F2F2F !important;
+  border: none !important;
+}
 }
 
 

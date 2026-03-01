@@ -72,6 +72,20 @@ h1 {
 }
 .ask-details { text-align: center; }
 
+.ask-input button {
+  background-color: #B8C6C1;   /* your celadon */
+  color: #2F2F2F;              /* soft charcoal */
+  border: none;
+  padding: 12px 22px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ask-input button:hover {
+  opacity: 0.9;
+}
 .ask-summary:hover,
 .ask-summary:focus {
   border-color: #b8c2ca;

@@ -94,10 +94,10 @@ h1 {
 
 .ask-input button {
   min-height: 44px;
-  background-color: #F2F4F3;  /* very soft grey-green tint */
+  background-color: #B8C6C1;  /* celadon */
   color: #2F2F2F;
   border: none;
-  padding: 12px 26px 12px 20px;  /* top right bottom left */
+  padding: 12px 26px 12px 20px;
   font-size: 17px;
   font-weight: 600;
   border-radius: 6px;
@@ -111,12 +111,14 @@ h1 {
   align-items: center;
   margin-top:12px;
 }
+
 .ask-input input {
   flex: 1;
   padding: 12px 14px;
-  font-size: 1.08rem;     /* slightly larger */
+  font-size: 1.08rem;
   border-radius: 8px;
   border: 1px solid var(--border);
+  background-color: #F2F4F3;  /* tint goes here */
 }
 
 .ask-input input::placeholder {
@@ -281,15 +283,8 @@ details summary { cursor: pointer; margin-top: 10px; font-weight: 600; }
 
   .ask-input button {
     width: 85%;
-    background-color: #B8C6C1;   /* keep celadon */
-    color: #2F2F2F;
+    align-self: center;   /* keeps it centred */
   }
-  /* Force the main Ask button styling (final override) */
-.ask-input button {
-  background-color: #B8C6C1 !important;
-  color: #2F2F2F !important;
-  border: none !important;
-}
 }
 
 

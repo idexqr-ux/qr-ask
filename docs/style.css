@@ -373,14 +373,11 @@ details summary { cursor: pointer; margin-top: 10px; font-weight: 600; }
 }
 /* Desktop tweaks */
 @media (max-width: 380px){
-  .silks{ width: 46px; height: 46px; }
-}
-
-  .ask-input button {
+  .silks{ width: 72px; height: auto; }  /* still readable, not tiny */
+  .ask-input button{
     width: 85%;
-    align-self: center;   /* keeps it centred */
+    align-self: center;
   }
 }
-
 
 

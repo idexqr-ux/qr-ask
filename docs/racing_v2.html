@@ -1,1 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Race</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="wrap">
+  <p style="padding:10px;background:#fff;border:1px solid #ccc;">TEST: racing.html is loading</p>  
+ <a class="back" href="./index.html">← Back to Race Card</a>
+ <h1 id="raceTitle">Race</h1>
+    <p id="probe" class="hint">JS probe: waiting…</p>
+<p class="hint">Tap a runner to explore their details and Ask deeper questions.</p>
+<div id="runners"></div>
+ <p class="hint">Not sure what a code means? Legends explains form codes, weights, and abbreviations.</p>   
+<p><a class="back" href="./legends.html">Racing Legends & Codes</a></p>
+  </div>
+<script>
+document.getElementById("probe").textContent = "JS probe: running ✅";
+document.getElementById("raceTitle").textContent = "Race (script running ✅)";
+function qs(name) {
+  return new URLSearchParams(location.search).get(name);
+}
+
+function parseCSV(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim().length);
+  if (!lines.length) return [];
+
+  const headers = lines[0].split(",");
+  return lines.slice(1).map(line => {
+    const cols = line.split(",");
+    const obj = {};
+    headers.forEach((h, i) => obj[h.trim()] = (cols[i] || "").trim());
+    return obj;
+  });
+}
+
+async function loadCSV(url) {
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error("CSV fetch failed");
+  const text = await res.text();
+  return parseCSV(text);
+}
+
+function format12h(raw) {
+  if (!raw) return "";
+  const [h, m] = raw.split(":").map(Number);
+  const suffix = h >= 12 ? "pm" : "am";
+  const hour12 = h % 12 || 12;
+  return hour12 + ":" + String(m).padStart(2,"0") + suffix;
+}
+
+(async function() {
+  const raceNo = qs("race_no") || "1";
+
+  const url = "https://idexqr-ux.github.io/ask-pilot-/gatecard.csv?x=" + Date.now();
+  const data = await loadCSV(url);
+
+  const raceRows = data.filter(r => r.race_no === raceNo);
+  const runnersEl = document.getElementById("runners");
+  const titleEl = document.getElementById("raceTitle");
+
+  if (!raceRows.length) {
+    titleEl.textContent = "Race not found";
+    return;
+  }
+
+  const raceHeader = raceRows.find(r => !r.horse_no);
+  const runners = raceRows.filter(r => r.horse_no);
+
+  const meeting = raceHeader?.meeting_name || runners[0]?.meeting_name || "Meeting";
+  const raceName = raceHeader?.race_name || runners[0]?.race_name || "Race";
+  const time = format12h(raceHeader?.race_time || runners[0]?.race_time || "");
+
+  titleEl.textContent =
+    meeting + " — Race " + raceNo +
+    (time ? " (" + time + ")" : "") +
+    ": " + raceName;
+
+  runnersEl.innerHTML = "";
+
+  runners.forEach(r => {
+    const card = document.createElement("a");
+    card.className = "card";
+    card.href = "./runner.html?race_no=" + r.race_no + "&horse_no=" + r.horse_no;
+
+    const rowTop = document.createElement("div");
+    rowTop.className = "row-top";
+
+    if (r.silks_img) {
+      const img = document.createElement("img");
+      img.className = "silks";
+      img.src = "./" + r.silks_img;
+      img.alt = "Racing colours";
+      rowTop.appendChild(img);
+    }
+
+    const title = document.createElement("div");
+    title.className = "title";
+    title.textContent = r.horse_no + ". " + r.horse_name;
+    rowTop.appendChild(title);
+
+    const t = document.createElement("div");
+    t.className = "sub";
+    t.innerHTML = "<strong>T:</strong> " + r.trainer_name;
+
+    const j = document.createElement("div");
+    j.className = "sub";
+    j.innerHTML = "<strong>J:</strong> " + r.jockey_name;
+
+    const w = document.createElement("div");
+    w.className = "muted-line";
+    w.textContent = r.weight_stone + "st " + r.weight_pounds + "lb";
+
+    card.appendChild(rowTop);
+    card.appendChild(t);
+    card.appendChild(j);
+    card.appendChild(w);
+
+    runnersEl.appendChild(card);
+  });
+})();
+</script>
+ 
+</body>
+</html>
 

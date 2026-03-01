@@ -92,6 +92,11 @@ h1 {
 .ask-input button:hover {
   opacity: 0.9;
 }
+
+  <div id="askAnswer" class="ask-answer">
+    Choose a question above, or type your own.
+  </div>
+</div> <!-- this closes #notes -->
 .ask-summary:hover,
 .ask-summary:focus {
   border-color: #b8c2ca;

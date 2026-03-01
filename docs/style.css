@@ -250,19 +250,13 @@ details summary { cursor: pointer; margin-top: 10px; font-weight: 600; }
   padding: 18px 0 28px;
   color: var(--muted);
 }
-
-/* Respect motion sensitivity */
-@media (min-width: 768px) {
- .ask-summary {
-  padding: 14px 36px;
-  min-width: 200px;
-}
-
+/* Desktop tweaks */
 @media (min-width: 768px) {
   .ask-summary {
     min-width: 220px;
     padding: 14px 44px;
   }
 }
+
 
 

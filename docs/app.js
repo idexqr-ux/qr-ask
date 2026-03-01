@@ -43,30 +43,7 @@ function parseCSV(text) {
       if (c === "\r" && next === "\n") i++;
       continue;
     }
-
-    cell += c;
-  }
-
-  if (cell.length || row.length) { row.push(cell); rows.push(row); }
-
-  const rawHeaders = (rows.shift() || []);
-  const headers = rawHeaders.map(h => String(h).replace(/^\uFEFF/, "").trim());
-  return rows
-    .filter(r => r.length && r.some(x => String(x).trim() !== ""))
-    .map(r => Object.fromEntries(headers.map((h, idx) => [h, String(r[idx] ?? "").trim()])));
-}
-
-    cell += c;
-  }
-
-  if (cell.length || row.length) { row.push(cell); rows.push(row); }
-
-  const headers = (rows.shift() || []).map(h => h.trim());
-  return rows
-    .filter(r => r.length && r.some(x => String(x).trim() !== ""))
-    .map(r => Object.fromEntries(headers.map((h, idx) => [h, (r[idx] ?? "").trim()])));
-}
-
+       
 function qs(name) {
   return new URLSearchParams(location.search).get(name);
 }

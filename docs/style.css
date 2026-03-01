@@ -246,17 +246,23 @@ h1 {
 }
 .row-top{
   display: flex;
-  gap: 10px;
   align-items: center;
+  justify-content: space-between;   /* pushes image to the right */
+  gap: 12px;
+}
+
+.row-top .title{
+  flex: 1;                          /* lets the horse name take space */
 }
 
 .silks{
-  width: 38px;
-  height: 38px;
+  width: 52px;                      /* bigger, readable */
+  height: 52px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid var(--border);
   background: #fff;
+  padding: 4px;                     /* gives the silks breathing room */
   flex: 0 0 auto;
 }
 a.card {

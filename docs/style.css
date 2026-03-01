@@ -187,10 +187,9 @@ h1 {
 
   .card {
   background-color: #F7F9F8;
-}
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 0;
+  padding: 14px;
   margin: 10px 0;
 }
 

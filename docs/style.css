@@ -241,8 +241,12 @@ h1 {
 h2 { margin: 0 0 8px; font-size: 1.25rem; }
 h3 { margin: 14px 0 6px; font-size: 1.02rem; }
 
-.back { margin-top: 10px; }
-.back a { color: var(--muted); text-decoration: none; }
+.back {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--muted);
+  text-decoration: none;
+}
 
 details summary { cursor: pointer; margin-top: 10px; font-weight: 600; }
 

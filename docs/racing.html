@@ -98,7 +98,8 @@ document.getElementById("raceTitle").textContent =
   document.getElementById("runners").innerHTML = runners.map(r =>
     `<a class="card" href="./runner.html?race_no=${encodeURIComponent(r.race_no)}&horse_no=${encodeURIComponent(r.horse_no)}">
       <div class="title">${r.horse_no}. ${r.horse_name}</div>
-      <div class="sub">${r.trainer_name} • ${r.jockey_name} • ${r.weight_stone}st ${r.weight_pounds}lb</div>
+      <div class="sub">${r.trainer_name} • ${r.jockey_name}</div>
+      <div class="muted-line">${r.weight_stone}st ${r.weight_pounds}lb</div>
     </a>`
   ).join("") || `<div class="card">No runners found for this race.</div>`;
 })();

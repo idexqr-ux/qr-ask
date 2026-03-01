@@ -173,8 +173,10 @@ h1 {
 }
 
 /* Cards become quiet collapsibles */
-.card {
-  background: var(--card);
+
+  .card {
+  background-color: #F3F5F4;   /* very soft grey-green */
+}
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 0;

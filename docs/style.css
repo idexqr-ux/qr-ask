@@ -175,7 +175,7 @@ h1 {
 /* Cards become quiet collapsibles */
 
   .card {
-  background-color: #F3F5F4;   /* very soft grey-green */
+  background-color: #F7F9F8;
 }
   border: 1px solid var(--border);
   border-radius: 16px;

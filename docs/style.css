@@ -72,6 +72,26 @@ h1 {
 }
 .ask-details { text-align: center; }
 
+.ask-prompts {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ask-prompts button {
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
 .ask-input button {
   min-height: 44px;
   background-color: #B8C6C1;

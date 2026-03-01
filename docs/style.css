@@ -222,12 +222,20 @@ h1 {
 
 /* Cards become quiet collapsibles */
 
-  .card {
-  background-color: #F7F9F8;
+ .card {
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 14px;
-  margin: 10px 0;
+}
+
+a.card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+a.card:active {
+  opacity: 0.92;
 }
 
 /* Make list cards easier to scan */

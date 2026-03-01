@@ -73,6 +73,7 @@ h1 {
 .ask-details { text-align: center; }
 
 .ask-input button {
+  min-height: 44px;
   background-color: #B8C6C1;
   color: #2F2F2F;
   border: none;

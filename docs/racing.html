@@ -21,11 +21,9 @@ function qs(name) {
 }
 
 function parseCSV(text) {
-  // Handle BOM and normal comma CSV
   const lines = text.split(/\r?\n/).filter(l => l.trim().length);
   if (!lines.length) return [];
 
-  // Split by comma with basic quote handling
   const splitLine = (line) => {
     const out = [];
     let cur = "";
@@ -56,14 +54,12 @@ function parseCSV(text) {
 async function loadCSV(url) {
   const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error(`CSV fetch failed: ${res.status}`);
-  const text = await res.text();
-  return parseCSV(text);
+  return parseCSV(await res.text());
 }
 
 (async () => {
   const raceNo = qs("race_no") || "1";
 
-  // Absolute URL to remove any path confusion
   const url = "https://idexqr-ux.github.io/ask-pilot-/gatecard.csv?x=" + Date.now();
   const data = await loadCSV(url);
 
@@ -81,38 +77,25 @@ async function loadCSV(url) {
 
   const meeting = (raceHeader?.meeting_name || runners[0]?.meeting_name || "Meeting").trim();
   const raceName = (raceHeader?.race_name || runners[0]?.race_name || "Race").trim();
-const rawTime = (raceHeader?.race_time || runners[0]?.race_time || "").trim();
 
-let displayTime = "";
+  const rawTime = (raceHeader?.race_time || runners[0]?.race_time || "").trim();
+  let displayTime = "";
+  if (rawTime) {
+    const [hours, minutes] = rawTime.split(":").map(Number);
+    const suffix = hours >= 12 ? "pm" : "am";
+    const hour12 = hours % 12 || 12;
+    displayTime = `${hour12}:${String(minutes).padStart(2,"0")}${suffix}`;
+  }
 
-if (rawTime) {
-  const [hours, minutes] = rawTime.split(":").map(Number);
-  const suffix = hours >= 12 ? "pm" : "am";
-  const hour12 = hours % 12 || 12;
-  displayTime = `${hour12}:${String(minutes).padStart(2,"0")}${suffix}`;
-}
+  document.getElementById("raceTitle").textContent =
+    `${meeting} — Race ${raceNo}${displayTime ? " (" + displayTime + ")" : ""}: ${raceName}`;
 
-document.getElementById("raceTitle").textContent =
-  `${meeting} — Race ${raceNo}${displayTime ? " (" + displayTime + ")" : ""}: ${raceName}`;
-  
-   document.getElementById("runners").innerHTML = runners.map(r =>
+  document.getElementById("runners").innerHTML = runners.map(r =>
     `<a class="card" href="./runner.html?race_no=${encodeURIComponent(r.race_no)}&horse_no=${encodeURIComponent(r.horse_no)}">
       <div class="title">${r.horse_no}. ${r.horse_name}</div>
       <div class="sub">${r.trainer_name}</div>
       <div class="sub">${r.jockey_name}</div>
       <div class="muted-line">${r.weight_stone}st ${r.weight_pounds}lb</div>
-    </a>`
-  ).join("") || `<div class="card">No runners found for this race.</div>`;
-      
-      .card .sub {
-  font-size: 1.03rem;
-  margin-top: 4px;
-}
-
-.card .sub { margin-top: 4px; }
-.card .sub + .sub { margin-top: 2px; }
-<div class="muted-line">${r.weight_stone}st ${r.weight_pounds}lb</div>
-  
     </a>`
   ).join("") || `<div class="card">No runners found for this race.</div>`;
 })();

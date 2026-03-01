@@ -114,14 +114,13 @@ h1 {
 .ask-input input {
   flex: 1;
   padding: 12px 14px;
-  font-size: 1.05rem;   /* slightly larger */
+  font-size: 1.08rem;     /* slightly larger */
   border-radius: 8px;
   border: 1px solid var(--border);
 }
 
 .ask-input input::placeholder {
-  font-style: italic;
-  font-size: 1.06rem;
+  font-size: 1.05rem;
   color: var(--muted);
   letter-spacing: 0.2px;
 }

@@ -1,5 +1,5 @@
 :root {
-  --bg: #ffffff;
+   --bg: #F3F5F4;  /* soft grey-green, calm on phones */
   --ink: #1f2428;
   --muted: #5b6770;
   --card: #f6f7f8;
@@ -230,6 +230,25 @@ h1 {
   margin: 10px 0;
 }
 
+/* Make list cards easier to scan */
+.card .title {
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+
+.card .sub {
+  font-size: 1.03rem;
+  line-height: 1.35;
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+/* Give the card a bit more breathing room */
+.card {
+  padding: 16px;
+}
 .card-details { padding: 0; }
 
 .card-summary {

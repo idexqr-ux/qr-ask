@@ -95,9 +95,6 @@ h1 {
 .ask-answer {
   margin-top: 14px;
 }
-.ask-input button:hover {
-  opacity: 0.9;
-}
 
 .ask-input button:hover {
   opacity: 0.9;

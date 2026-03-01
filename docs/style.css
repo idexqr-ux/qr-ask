@@ -228,6 +228,10 @@ h1 {
   border-radius: 16px;
 }
 
+.sub span + span::before {
+  content: " • ";
+  color: var(--muted);
+}
 a.card {
   text-decoration: none;
   color: inherit;

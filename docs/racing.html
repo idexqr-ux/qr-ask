@@ -127,16 +127,7 @@ function format12h(raw) {
   return `${h}:${String(mins).padStart(2, "0")}${suffix}`;
 }
 
-  if (!Number.isFinite(h) || !Number.isFinite(m) || m < 0 || m > 59 || h < 0 || h > 23) {
-    return ""; // fail quietly = no time shown
-  }
-
-  const suffix = h >= 12 ? "pm" : "am";
-  const hour12 = h % 12 || 12;
-  return `${hour12}:${String(m).padStart(2, "0")}${suffix}`;
-}
-
-(async function () {
+  (async function () {
 
   const raceNo = qs("race_no") || "1";
   const runnersEl = document.getElementById("runners");

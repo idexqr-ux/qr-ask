@@ -1,5 +1,5 @@
 // IdexQR® PWA – Offline Magic (safe + predictable)
-const VERSION = "v2"; // bump to v2, v3 when you want to force-refresh caches
+const VERSION = "v3"; // bump to v2, v3 when you want to force-refresh caches
 const CACHE_NAME = `idexqr-racecard-${VERSION}`;
 
 const APP_SHELL = [

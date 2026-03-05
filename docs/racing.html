@@ -1,5 +1,14 @@
 <script>
 document.getElementById("probe").textContent = "JS probe: running ✅";
+
+window.addEventListener("error", (e) => {
+  const p = document.getElementById("probe");
+  if (p) p.textContent = "JS error ❌ " + (e?.message || e);
+});
+window.addEventListener("unhandledrejection", (e) => {
+  const p = document.getElementById("probe");
+  if (p) p.textContent = "Promise error ❌ " + (e?.reason?.message || e?.reason || e);
+});
 </script>
 
 function qs(name) {

@@ -245,27 +245,6 @@ h1 {
   color: var(--muted);
 }
 
-
-/* ✅ Horse name inside row-top (dominant, left) */
-.row-top .title{
-  flex:1 1 auto;
-  min-width:0;
-  font-size:1.45rem;     /* phone readable */
-  line-height:1.18;
-  font-weight:700;
-  letter-spacing:0.2px;
-  margin:0;              /* stops extra bottom spacing */
-  color: var(--ink);     /* ensures it stays dark */
-  word-break:break-word;
-}
-
-/* ✅ Silks image (right) */
-.silks{
-  flex:0 0 auto;
-  width:110px;
-  height:auto;
-  display:block;
-}
 a.card {
   text-decoration: none;
   color: inherit;
@@ -314,12 +293,11 @@ a.card:active {
 /* --- Runner row-top layout (horse left, silks right) --- */
 .row-top{
   display:flex;
-  align-items:flex-start;
+  align-items:center;           /* keeps title + silks level */
   justify-content:space-between;
   gap:12px;
 }
 
-/* Use a dedicated class so it NEVER fights with .title elsewhere */
 .runner-title{
   flex:1 1 auto;
   min-width:0;
@@ -335,9 +313,15 @@ a.card:active {
   flex:0 0 auto;
   width:110px;
   height:auto;
+  max-height:64px;              /* keeps cards compact */
+  object-fit:contain;
   display:block;
 }
 
+@media (max-width: 380px){
+  .silks{ width:84px; max-height:56px; }
+  .runner-title{ font-size:1.32rem; }
+}
 /* Very small phones: keep silks readable, not tiny */
 @media (max-width: 380px){
   .silks{ width: 84px; height:auto; }

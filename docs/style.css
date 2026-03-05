@@ -244,19 +244,7 @@ h1 {
   content: " • ";
   color: var(--muted);
 }
-.row-top{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;   /* pushes image to the right */
-  gap: 12px;
-}
 
-.row-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-}
 
 /* ✅ Horse name inside row-top (dominant, left) */
 .row-top .title{
@@ -389,10 +377,6 @@ details summary { cursor: pointer; margin-top: 10px; font-weight: 600; }
 .footer {
   padding: 18px 0 28px;
   color: var(--muted);
-}
-/* Desktop tweaks */
-@media (max-width: 380px){
-  .silks{ width: 84px; height: auto; }
 }
 
 /* Keep this OUTSIDE the media query unless you truly want it only on tiny screens */

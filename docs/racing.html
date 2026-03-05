@@ -21,196 +21,127 @@
   </div>
 
   <script>
-  // On-screen probe + visible errors (so we never get “blank mystery” again)
-  const probeEl = document.getElementById("probe");
-  if (probeEl) probeEl.textContent = "JS probe: running ✅";
+  document.getElementById("probe").textContent = "JS probe: running ✅";
 
-  loadCSV(localUrl)
-  .then(data => {
-    const p = document.getElementById("probe");
-    if (p) p.textContent = "JS probe: running ✅ (data: local)";
-    return data;
-  })
-  .catch(() => loadCSV(remoteUrl).then(data => {
-    const p = document.getElementById("probe");
-    if (p) p.textContent = "JS probe: running ✅ (data: remote)";
-    return data;
-  }))
-  .then(data => {
-    // render...
-  })
-  .catch(err => { /* show error */ });
+function qs(name) {
+  return new URLSearchParams(location.search).get(name);
+}
 
-  function qs(name) {
-    return new URLSearchParams(location.search).get(name);
-  }
+function parseCSV(text) {
+  const lines = text.split(/\r?\n/).filter(l => l.trim().length);
+  if (!lines.length) return [];
 
-  function parseCSV(text) {
-  const rows = [];
-  let row = [];
-  let cell = "";
-  let inQuotes = false;
-
-  // Normalize line endings
-  text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
-
-  for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
-    const next = text[i + 1];
-
-    if (ch === '"') {
-      // Escaped quote inside quoted field: "" -> "
-      if (inQuotes && next === '"') {
-        cell += '"';
-        i++;
-      } else {
-        inQuotes = !inQuotes;
-      }
-      continue;
-    }
-
-    if (ch === "," && !inQuotes) {
-      row.push(cell.trim());
-      cell = "";
-      continue;
-    }
-
-    if (ch === "\n" && !inQuotes) {
-      row.push(cell.trim());
-      cell = "";
-      // ignore totally empty rows
-      if (row.some(v => v.length)) rows.push(row);
-      row = [];
-      continue;
-    }
-
-    cell += ch;
-  }
-
-  // last cell
-  if (cell.length || row.length) {
-    row.push(cell.trim());
-    if (row.some(v => v.length)) rows.push(row);
-  }
-
-  if (!rows.length) return [];
-
-  const headers = rows[0].map(h => h.trim());
-  return rows.slice(1).map(cols => {
+  const headers = lines[0].split(",");
+  return lines.slice(1).map(line => {
+    const cols = line.split(",");
     const obj = {};
-    headers.forEach((h, idx) => (obj[h] = (cols[idx] ?? "").trim()));
+    headers.forEach((h, i) => obj[h.trim()] = (cols[i] || "").trim());
     return obj;
   });
 }
 
-  async function loadCSV(url) {
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error("CSV fetch failed: " + res.status);
-    return parseCSV(await res.text());
-  }
+async function loadCSV(url) {
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error("CSV fetch failed: " + res.status);
+  return parseCSV(await res.text());
+}
 
-  function format12h(raw) {
-    if (!raw) return "";
-    const [h, m] = raw.split(":").map(Number);
-    if (Number.isNaN(h) || Number.isNaN(m)) return "";
-    const suffix = h >= 12 ? "pm" : "am";
-    const hour12 = h % 12 || 12;
-    return hour12 + ":" + String(m).padStart(2, "0") + suffix;
-  }
+function format12h(raw) {
+  if (!raw) return "";
+  const [h, m] = raw.split(":").map(Number);
+  const suffix = h >= 12 ? "pm" : "am";
+  const hour12 = h % 12 || 12;
+  return hour12 + ":" + String(m).padStart(2, "0") + suffix;
+}
 
-  (function main() {
-    const raceNo = qs("race_no") || "1";
-    const runnersEl = document.getElementById("runners");
-    const titleEl = document.getElementById("raceTitle");
+(async function () {
 
-    if (!runnersEl || !titleEl) throw new Error("Missing #runners or #raceTitle in HTML");
+  const raceNo = qs("race_no") || "1";
+  const runnersEl = document.getElementById("runners");
+  const titleEl = document.getElementById("raceTitle");
 
-    runnersEl.textContent = "Loading…";
+  runnersEl.textContent = "Loading…";
 
-    const localUrl  = "./gatecard.csv?x=" + Date.now();
-const remoteUrl = "https://idexqr-ux.github.io/ask-pilot-/gatecard.csv?x=" + Date.now();
+  const url = "./gatecard.csv?x=" + Date.now();
 
-loadCSV(localUrl)
-  .catch(() => loadCSV(remoteUrl))
-  .then(data => {
-    // ✅ your existing code that filters raceRows and renders runners goes here
-  })
-  .catch(err => {
+  try {
+
+    const data = await loadCSV(url);
+
+    const raceRows = data.filter(r => r.race_no === raceNo);
+
+    if (!raceRows.length) {
+      titleEl.textContent = "Race not found";
+      runnersEl.textContent = "";
+      return;
+    }
+
+    const raceHeader = raceRows.find(r => !r.horse_no);
+    const runners = raceRows.filter(r => r.horse_no);
+
+    const meeting = raceHeader?.meeting_name || "Meeting";
+    const raceName = raceHeader?.race_name || "Race";
+    const time = format12h(raceHeader?.race_time || "");
+
+    titleEl.textContent =
+      meeting + " — Race " + raceNo +
+      (time ? " (" + time + ")" : "") +
+      ": " + raceName;
+
+    runnersEl.innerHTML = "";
+
+    runners.forEach(r => {
+
+      const card = document.createElement("a");
+      card.className = "card";
+      card.href = "./runner.html?race_no=" + r.race_no + "&horse_no=" + r.horse_no;
+
+      const rowTop = document.createElement("div");
+      rowTop.className = "row-top";
+
+      const horseTitle = document.createElement("div");
+      horseTitle.className = "runner-title";
+      horseTitle.textContent = r.horse_no + ". " + r.horse_name;
+
+      rowTop.appendChild(horseTitle);
+
+      if (r.silks_img) {
+        const img = document.createElement("img");
+        img.className = "silks";
+        img.src = "./" + r.silks_img;
+        img.alt = "Racing colours";
+        rowTop.appendChild(img);
+      }
+
+      const t = document.createElement("div");
+      t.className = "sub";
+      t.innerHTML = "<strong>T:</strong> " + r.trainer_name;
+
+      const j = document.createElement("div");
+      j.className = "sub";
+      j.innerHTML = "<strong>J:</strong> " + r.jockey_name;
+
+      const w = document.createElement("div");
+      w.className = "muted-line";
+      w.textContent = r.weight_stone + "st " + r.weight_pounds + "lb";
+
+      card.appendChild(rowTop);
+      card.appendChild(t);
+      card.appendChild(j);
+      card.appendChild(w);
+
+      runnersEl.appendChild(card);
+
+    });
+
+  } catch (err) {
+
     titleEl.textContent = "Race (couldn’t load data)";
-    runnersEl.textContent = "Error: " + (err?.message || err);
-  });
+    runnersEl.textContent = "Error: " + err.message;
 
-        if (!raceRows.length) {
-          titleEl.textContent = "Race not found";
-          runnersEl.textContent = "";
-          return;
-        }
+  }
 
-        const raceHeader = raceRows.find(r => !r.horse_no);
-        const runners = raceRows.filter(r => r.horse_no);
-
-        const meeting = raceHeader?.meeting_name || runners[0]?.meeting_name || "Meeting";
-        const raceName = raceHeader?.race_name || runners[0]?.race_name || "Race";
-        const time = format12h(raceHeader?.race_time || runners[0]?.race_time || "");
-
-        titleEl.textContent =
-          meeting + " — Race " + raceNo +
-          (time ? " (" + time + ")" : "") +
-          ": " + raceName;
-
-        runnersEl.innerHTML = "";
-
-        runners.forEach(r => {
-          const card = document.createElement("a");
-          card.className = "card";
-          card.href = "./runner.html?race_no=" + encodeURIComponent(r.race_no) +
-                      "&horse_no=" + encodeURIComponent(r.horse_no);
-
-          const rowTop = document.createElement("div");
-          rowTop.className = "row-top";
-
-          // Horse name LEFT (dominant)
-          const horseTitle = document.createElement("div");
-          horseTitle.className = "runner-title";
-          horseTitle.textContent = (r.horse_no || "") + ". " + (r.horse_name || "");
-          rowTop.appendChild(horseTitle);
-
-          // Silks RIGHT
-          if (r.silks_img) {
-            const img = document.createElement("img");
-            img.className = "silks";
-            img.src = "./" + r.silks_img;
-            img.alt = r.jockey_colours ? ("Silks: " + r.jockey_colours) : "Racing colours";
-            img.loading = "lazy";
-            img.decoding = "async";
-            rowTop.appendChild(img);
-          }
-
-          const t = document.createElement("div");
-          t.className = "sub";
-          t.innerHTML = "<strong>T:</strong> " + (r.trainer_name || "");
-
-          const j = document.createElement("div");
-          j.className = "sub";
-          j.innerHTML = "<strong>J:</strong> " + (r.jockey_name || "");
-
-          const w = document.createElement("div");
-          w.className = "muted-line";
-          w.textContent = (r.weight_stone || "") + "st " + (r.weight_pounds || "") + "lb";
-
-          card.appendChild(rowTop);
-          card.appendChild(t);
-          card.appendChild(j);
-          card.appendChild(w);
-
-          runnersEl.appendChild(card);
-        });
-      })
-      .catch(err => {
-        titleEl.textContent = "Race (couldn’t load data)";
-        runnersEl.textContent = "Error: " + (err?.message || err);
-      });
-  })();
+})();
   </script>
 </body>
 </html>

@@ -110,5 +110,19 @@
       `;
     })();
   </script>
+    ...your page content...
+
+<script>
+let currentAudio = null;
+
+function playAudio(file) {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  currentAudio = new Audio(file);
+  currentAudio.play();
+}
+</script>
 </body>
 </html>

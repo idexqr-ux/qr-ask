@@ -12,8 +12,13 @@
 
     <h1 id="name">Runner</h1>
 
-    <div id="meta" class="card"></div>
+<p>
+  <button type="button" onclick="playAudio('audio/help.mp3')">
+    Listen — I’ll guide you through this
+  </button>
+</p>
 
+<div id="meta" class="card"></div>
     <div id="notes" class="card">
      <div class="ask-title">Ask</div> 
 
@@ -110,8 +115,7 @@
       `;
     })();
   </script>
-    ...your page content...
-
+   
 <script>
 let currentAudio = null;
 

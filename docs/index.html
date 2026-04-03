@@ -224,69 +224,64 @@
     </footer>
   </main>
 <script>
+let currentAudio = null;
+
+function playAudio(file) {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+  currentAudio = new Audio(file);
+  currentAudio.play();
+}
+</script>
+
+<script>
 let speaking = false;
 let currentUtterance = null;
 
 function normaliseForSpeech(text) {
   return text
-    // Dates & ranges
     .replace(/\bc\.\s*/gi, 'circa ')
- // Years spoken naturally (e.g. 1830 → eighteen thirty)
-.replace(/\b(1[5-9]\d{2})\b/g, (match) => {
-  const year = parseInt(match, 10);
-  const century = Math.floor(year / 100);   // 15, 16, 17, 18, 19
-  const lastTwo = year % 100;               // 0–99
+    .replace(/\b(1[5-9]\d{2})\b/g, (match) => {
+      const year = parseInt(match, 10);
+      const century = Math.floor(year / 100);
+      const lastTwo = year % 100;
 
-  const centuryWord = {
-    15: "fifteen",
-    16: "sixteen",
-    17: "seventeen",
-    18: "eighteen",
-    19: "nineteen"
-  }[century] || String(century);
+      const centuryWord = {
+        15: "fifteen",
+        16: "sixteen",
+        17: "seventeen",
+        18: "eighteen",
+        19: "nineteen"
+      }[century] || String(century);
 
-  if (lastTwo === 0) return `${centuryWord} hundred`;
-
-  // Turn 01–09 into "oh one" etc (nice for years like 1805)
-  if (lastTwo < 10) return `${centuryWord} oh ${lastTwo}`;
-
-  return `${centuryWord} ${lastTwo}`;
-})
-
- .replace(/\bYou are looking at\s+/gi, 'In front of you is ')
+      if (lastTwo === 0) return `${centuryWord} hundred`;
+      if (lastTwo < 10) return `${centuryWord} oh ${lastTwo}`;
+      return `${centuryWord} ${lastTwo}`;
+    })
+    .replace(/\bYou are looking at\s+/gi, 'In front of you is ')
     .replace(/\bIt represents\s+/gi, 'This object represents ')
-.replace(/\bThey show\s+/gi, 'These objects show ')
+    .replace(/\bThey show\s+/gi, 'These objects show ')
     .replace(/–/g, ' to ')
     .replace(/-/g, ' to ')
-
-    // Currency
     .replace(/£(\d+)/g, '£$1')
     .replace(/£/g, 'pounds ')
     .replace(/\$(\d+)/g, '$$1')
     .replace(/\$/g, 'dollars ')
-
-    // Measurements
     .replace(/\bcm\b/gi, ' centimetres')
     .replace(/\bmm\b/gi, ' millimetres')
     .replace(/\bm\b/gi, ' metres')
     .replace(/\bkg\b/gi, ' kilograms')
     .replace(/\bg\b/gi, ' grams')
-
-    // Time
     .replace(/\bhrs?\b/gi, ' hours')
     .replace(/\bmins?\b/gi, ' minutes')
-
-    // Common abbreviations
     .replace(/\be\.g\.\b/gi, 'for example')
     .replace(/\bi\.e\.\b/gi, 'that is')
     .replace(/\bet al\.\b/gi, 'and others')
     .replace(/\bvs\b/gi, 'versus')
-
-    // Initials (A. B. Smith → A B Smith)
     .replace(/\b([A-Z])\.\s*(?=[A-Z]\.)/g, '$1 ')
     .replace(/\b([A-Z])\.(?=\s)/g, '$1')
-
-    // Clean double spaces
     .replace(/\s{2,}/g, ' ')
     .trim();
 }
@@ -318,7 +313,6 @@ document.querySelectorAll('.listen-btn').forEach(btn => {
 
     let textToRead = '';
 
-    // Prefer 30-second version if present
     const shortVersion = Array.from(section.querySelectorAll('details')).find(d =>
       d.querySelector('summary') &&
       d.querySelector('summary').innerText.toLowerCase().includes('30')
@@ -329,10 +323,11 @@ document.querySelectorAll('.listen-btn').forEach(btn => {
   });
 });
 </script>
-    if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./service-worker.js");
-  }
-</script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./service-worker.js");
+}
+</script>
 </body>
 </html>

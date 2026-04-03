@@ -61,13 +61,55 @@ function qs(name) {
   return new URLSearchParams(location.search).get(name);
 }
 
+function speakDynamicAnswer(text) {
+  if (!text || !("speechSynthesis" in window)) return;
+
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-GB";
+  utterance.rate = 0.92;
+  utterance.pitch = 1;
+
+  window.speechSynthesis.speak(utterance);
+}
+
 // ===== Ask logic for runner.html =====
 window.askQuestion = function(question) {
   const el = document.getElementById("askAnswer");
   if (!el) return;
-else if (q.includes("form") || q.includes("form code") || q === "pf" || q === "p" || q === "f") {
-  answer = `
-Form code is a shorthand summary of how a horse finished in recent runs.
+
+  const q = String(question || "").trim().toLowerCase();
+
+  if (!q) {
+    el.textContent = "Type a question, or tap one of the prompts above.";
+    return;
+  }
+
+  let answer = "";
+
+  if (
+    q.includes("modern distance") ||
+    q.includes("mile 4 furlongs") ||
+    q.includes("1 mile 4 furlongs")
+  ) {
+    answer = "One mile and four furlongs is about 2.4 kilometres.";
+  }
+  else if (
+    q.includes("dam's sire") ||
+    q.includes("dams sire") ||
+    q.includes("why is the dam")
+  ) {
+    answer = "The dam's sire is listed because it helps show the horse's breeding on the mother's side. People use it as part of the pedigree picture when thinking about stamina, speed, and suitability for different conditions.";
+  }
+  else if (
+    q.includes("form") ||
+    q.includes("form code") ||
+    q === "pf" ||
+    q === "p" ||
+    q === "f"
+  ) {
+    answer = `Form code is a shorthand summary of how a horse finished in recent runs.
 
 Common examples:
 P = Pulled up (did not finish)
@@ -77,11 +119,12 @@ R = Refused
 B = Brought down
 RO = Ran out
 
-So “PF” means: Pulled up, then fell.
-  `.trim();
-}
-  const q = String(question || "").trim().toLowerCase();
-  if (!q) {
-    el.textContent = "Type a question, or tap one of the prompts above.";
-    return;
+So “PF” means: Pulled up, then fell.`;
   }
+  else {
+    answer = "I do not have a stored answer for that question yet, but I can help you add one.";
+  }
+
+  el.textContent = answer;
+  speakDynamicAnswer(answer);
+};

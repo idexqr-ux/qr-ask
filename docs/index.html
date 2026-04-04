@@ -371,15 +371,15 @@
   <audio id="leavingAudio" src="audio/leaving.mp3"></audio>
 
   <div class="listen-group">
-    <button class="quiet-button" onclick="playAudio('knowBeforeAudio')">Listen — know before you go</button>
-    <button class="quiet-button" onclick="playAudio('directionsAudio')">Listen — directions</button>
-    <button class="quiet-button" onclick="playAudio('parkingAudio')">Listen — parking</button>
-    <button class="quiet-button" onclick="playAudio('leavingAudio')">Listen — leaving</button>
-  </div>
+  <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">Listen — know before you go</button>
+  <button class="quiet-button" onclick="playEmbeddedAudio('directionsAudio')">Listen — directions</button>
+  <button class="quiet-button" onclick="playEmbeddedAudio('parkingAudio')">Listen — parking</button>
+  <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">Listen — leaving</button>
+</div>
 </section>
 
 <script>
-  function playAudio(id) {
+  function playEmbeddedAudio(id) {
     const audios = document.querySelectorAll('audio');
     audios.forEach(audio => {
       audio.pause();

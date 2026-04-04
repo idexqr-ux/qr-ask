@@ -105,9 +105,9 @@
       const data = await loadCSV(url);
 
       const r = data.find(x =>
-        String(x.race_no) === String(raceNo) &&
-        String(x.horse_no) === String(horseNo)
-      );
+  String(x.race_no || "").trim() === String(raceNo || "").trim() &&
+  String(x.horse_no || "").trim() === String(horseNo || "").trim()
+);
 
       if (!r) {
         document.getElementById("name").textContent = "Runner not found";

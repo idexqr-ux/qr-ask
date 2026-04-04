@@ -20,81 +20,94 @@
 
     <div id="meta" class="card"></div>
 
-    <div id="notes" class="card">
-     <div class="ask-title">Ask</div> 
+    <div id="runnerAudio" class="card" style="display:none;">
+      <p class="hint">Listen for more about this horse.</p>
 
-      <div class="ask-prompts">
-        <button type="button" onclick="askQuestion('What modern distance is 1 mile 4 furlongs?')">
-          What modern distance is 1 mile 4 furlongs?
+      <p>
+        <button id="silksBtn" type="button">
+          Listen — colours
         </button>
+      </p>
 
-        <button type="button" onclick="askQuestion('Why is the dam\'s sire listed?')">
-          Why is the dam's sire listed?
+      <p>
+        <button id="formBtn" type="button">
+          Listen — form
         </button>
-
-        <button type="button" onclick="askQuestion('What does the form code mean?')">
-          What does the form code mean?
-        </button>
-      </div>
-
-      <div class="ask-input">
-        <input id="askInput" type="text" placeholder="Type a question…" />
-        <button type="button" onclick="askQuestion(document.getElementById('askInput').value)">
-          Ask
-        </button>
-      </div>
-
-      <div id="askAnswer" class="ask-answer">
-        Choose a question above, or type your own.
-      </div>
+      </p>
     </div>
   </div>
 
   <script src="./app.js"></script>
   <script>
-    function qs(name){ return new URLSearchParams(location.search).get(name); }
+    function qs(name) {
+      return new URLSearchParams(location.search).get(name);
+    }
 
-    function parseCSV(text){
+    function parseCSV(text) {
       const lines = text.split(/\r?\n/).filter(l => l.trim().length);
       if (!lines.length) return [];
+
       const splitLine = (line) => {
-        const out=[]; let cur=""; let inQ=false;
-        for (let i=0;i<line.length;i++){
-          const c=line[i], n=line[i+1];
-          if (c === '"' && inQ && n === '"'){ cur+='"'; i++; continue; }
-          if (c === '"'){ inQ=!inQ; continue; }
-          if (c === ',' && !inQ){ out.push(cur); cur=""; continue; }
-          cur+=c;
+        const out = [];
+        let cur = "";
+        let inQ = false;
+
+        for (let i = 0; i < line.length; i++) {
+          const c = line[i], n = line[i + 1];
+          if (c === '"' && inQ && n === '"') {
+            cur += '"';
+            i++;
+            continue;
+          }
+          if (c === '"') {
+            inQ = !inQ;
+            continue;
+          }
+          if (c === ',' && !inQ) {
+            out.push(cur);
+            cur = "";
+            continue;
+          }
+          cur += c;
         }
+
         out.push(cur);
         return out.map(s => s.trim());
       };
+
       const headers = splitLine(lines[0]).map(h => String(h).replace(/^\uFEFF/, "").trim());
+
       return lines.slice(1).map(line => {
         const cols = splitLine(line);
         const obj = {};
-        headers.forEach((h, idx) => obj[h] = (cols[idx] ?? "").trim());
+        headers.forEach((h, idx) => {
+          obj[h] = (cols[idx] ?? "").trim();
+        });
         return obj;
       });
     }
 
-    async function loadCSV(url){
-      const res = await fetch(url, { cache:"no-store" });
+    async function loadCSV(url) {
+      const res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error(`CSV fetch failed: ${res.status}`);
       return parseCSV(await res.text());
     }
 
-    const safe = (s) => (s ?? "—").toString().replaceAll("<","&lt;").replaceAll(">","&gt;");
+    const safe = (s) => (s ?? "—").toString().replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
     (async () => {
       const raceNo = qs("race_no");
       const horseNo = qs("horse_no");
+
       document.getElementById("backLink").href = `./racing.html?race_no=${encodeURIComponent(raceNo || "1")}`;
 
       const url = "https://idexqr-ux.github.io/ask-pilot-/gatecard.csv?x=" + Date.now();
       const data = await loadCSV(url);
 
-      const r = data.find(x => String(x.race_no) === String(raceNo) && String(x.horse_no) === String(horseNo));
+      const r = data.find(x =>
+        String(x.race_no) === String(raceNo) &&
+        String(x.horse_no) === String(horseNo)
+      );
 
       if (!r) {
         document.getElementById("name").textContent = "Runner not found";
@@ -114,20 +127,31 @@
         <div><strong>Colours:</strong> ${safe(r.jockey_colours)}</div>
         <div><strong>Form (code):</strong> ${safe(r.form_code)}</div>
       `;
+
+      if (["1", "2", "3"].includes(String(horseNo))) {
+        const runnerAudio = document.getElementById("runnerAudio");
+        const silksBtn = document.getElementById("silksBtn");
+        const formBtn = document.getElementById("formBtn");
+
+        silksBtn.onclick = () => playAudio(`audio/horse${horseNo}-silks.mp3`);
+        formBtn.onclick = () => playAudio(`audio/horse${horseNo}-form.mp3`);
+
+        runnerAudio.style.display = "block";
+      }
     })();
   </script>
 
-<script>
-let currentAudio = null;
+  <script>
+    let currentAudio = null;
 
-function playAudio(file) {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-  }
-  currentAudio = new Audio(file);
-  currentAudio.play();
-}
-</script>
+    function playAudio(file) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+      currentAudio = new Audio(file);
+      currentAudio.play();
+    }
+  </script>
 </body>
 </html>

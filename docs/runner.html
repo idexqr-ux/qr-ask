@@ -110,10 +110,11 @@
 );
 
       if (!r) {
-        document.getElementById("name").textContent = "Runner not found";
-        document.getElementById("meta").textContent = "—";
-        return;
-      }
+  document.getElementById("name").textContent =
+  `${r.horse_no || ""}. ${r.horse_name || "Unnamed horse"}`;
+  document.getElementById("meta").textContent = "Details unavailable";
+  return;
+}
 
      document.getElementById("meta").innerHTML = `
   <div class="row-top">

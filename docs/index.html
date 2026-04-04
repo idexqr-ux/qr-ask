@@ -342,5 +342,55 @@
       navigator.serviceWorker.register("./service-worker.js");
     }
   </script>
+  <section class="ask-card">
+  <p class="kicker">Know before you go</p>
+  <h2>Spring Home and Living Show</h2>
+  <p>
+    National Exhibition Centre, Birmingham<br>
+    Saturday 12 April · Doors open 10:00
+  </p>
+
+  <p>
+    Yellow Car Park · Shuttle bus to main entrance
+  </p>
+
+  <p>
+    Hall 3 · Block B · Row 12<br>
+    Just to the right as you enter the hall
+  </p>
+
+  <p>
+    <a href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham" target="_blank" rel="noopener">
+      Open directions in Google Maps
+    </a>
+  </p>
+
+  <audio id="knowBeforeAudio" src="audio/know-before-you-go.mp3"></audio>
+  <audio id="directionsAudio" src="audio/directions.mp3"></audio>
+  <audio id="parkingAudio" src="audio/parking.mp3"></audio>
+  <audio id="leavingAudio" src="audio/leaving.mp3"></audio>
+
+  <div class="listen-group">
+    <button class="quiet-button" onclick="playAudio('knowBeforeAudio')">Listen — know before you go</button>
+    <button class="quiet-button" onclick="playAudio('directionsAudio')">Listen — directions</button>
+    <button class="quiet-button" onclick="playAudio('parkingAudio')">Listen — parking</button>
+    <button class="quiet-button" onclick="playAudio('leavingAudio')">Listen — leaving</button>
+  </div>
+</section>
+
+<script>
+  function playAudio(id) {
+    const audios = document.querySelectorAll('audio');
+    audios.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+
+    const selectedAudio = document.getElementById(id);
+    if (selectedAudio) {
+      selectedAudio.play();
+    }
+  }
+</script>
 </body>
 </html>

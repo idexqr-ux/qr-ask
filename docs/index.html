@@ -215,7 +215,7 @@
       </details>
     </section>
 
-    <!-- Bridge -->
+        <!-- Bridge -->
     <section id="bridge" class="card">
       <details class="card-details">
         <summary class="card-summary">What does this have to do with us now?</summary>
@@ -242,12 +242,49 @@
       </div>
     </section>
 
+    <!-- Know before you go -->
+    <section class="ask-card">
+      <p class="kicker">Know before you go</p>
+      <h2>Spring Home and Living Show</h2>
+      <p>
+        National Exhibition Centre, Birmingham<br>
+        Saturday 12 April · Doors open 10:00
+      </p>
+
+      <p>
+        Yellow Car Park · Shuttle bus to main entrance
+      </p>
+
+      <p>
+        Hall 3 · Block B · Row 12<br>
+        Just to the right as you enter the hall
+      </p>
+
+      <p>
+        <a href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham" target="_blank" rel="noopener">
+          Open directions in Google Maps
+        </a>
+      </p>
+
+      <audio id="knowBeforeAudio" src="audio/know-before-you-go.mp3"></audio>
+      <audio id="directionsAudio" src="audio/directions.mp3"></audio>
+      <audio id="parkingAudio" src="audio/parking.mp3"></audio>
+      <audio id="leavingAudio" src="audio/leaving.mp3"></audio>
+
+      <div class="listen-group">
+        <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">Listen — know before you go</button>
+        <button class="quiet-button" onclick="playEmbeddedAudio('directionsAudio')">Listen — directions</button>
+        <button class="quiet-button" onclick="playEmbeddedAudio('parkingAudio')">Listen — parking</button>
+        <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">Listen — leaving</button>
+      </div>
+    </section>
+
     <footer class="footer">
       <p><small>Ask Pilot — calm, spoken-first, visitor-choice.</small></p>
     </footer>
   </main>
 
-  <script>
+    <script>
     let currentAudio = null;
 
     function playAudio(file) {
@@ -392,18 +429,18 @@
   </section>
 
   <script>
-    function playEmbeddedAudio(id) {
-      const audios = document.querySelectorAll('audio');
-      audios.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-      });
+  function playEmbeddedAudio(id) {
+    const audios = document.querySelectorAll('audio');
+    audios.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
 
-      const selectedAudio = document.getElementById(id);
-      if (selectedAudio) {
-        selectedAudio.play();
-      }
+    const selectedAudio = document.getElementById(id);
+    if (selectedAudio) {
+      selectedAudio.play();
     }
-  </script>
+  }
+</script>
 </body>
 </html>

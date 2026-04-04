@@ -115,18 +115,18 @@
         return;
       }
 
-      document.getElementById("name").textContent = `${r.horse_no}. ${r.horse_name}`;
       document.getElementById("meta").innerHTML = `
-        <div><strong>Meeting:</strong> ${safe(r.meeting_name)}</div>
-        <div><strong>Race:</strong> ${safe(r.race_no)}</div>
-        <div><strong>Age:</strong> ${safe(r.age)}</div>
-        <div><strong>Owner:</strong> ${safe(r.owner)}</div>
-        <div><strong>Trainer:</strong> ${safe(r.trainer_name)}</div>
-        <div><strong>Jockey:</strong> ${safe(r.jockey_name)}</div>
-        <div><strong>Weight:</strong> ${safe(r.weight_stone)}st ${safe(r.weight_pounds)}lb</div>
-        <div><strong>Colours:</strong> ${safe(r.jockey_colours)}</div>
-        <div><strong>Form (code):</strong> ${safe(r.form_code)}</div>
-      `;
+  ${r.silks_img ? `<p><img class="silks" src="./${safe(r.silks_img)}" alt="Racing colours"></p>` : ""}
+  <div><strong>Meeting:</strong> ${safe(r.meeting_name)}</div>
+  <div><strong>Race:</strong> ${safe(r.race_no)}</div>
+  <div><strong>Age:</strong> ${safe(r.age)}</div>
+  <div><strong>Owner:</strong> ${safe(r.owner)}</div>
+  <div><strong>Trainer:</strong> ${safe(r.trainer_name)}</div>
+  <div><strong>Jockey:</strong> ${safe(r.jockey_name)}</div>
+  <div><strong>Weight:</strong> ${safe(r.weight_stone)}st ${safe(r.weight_pounds)}lb</div>
+  <div><strong>Colours:</strong> ${safe(r.jockey_colours)}</div>
+  <div><strong>Form (code):</strong> ${safe(r.form_code)}</div>
+`;
 
       if (["1", "2", "3"].includes(String(horseNo))) {
         const runnerAudio = document.getElementById("runnerAudio");

@@ -394,10 +394,7 @@
     }
   </script>
 
-  <section class="ask-card">
-    <p class="kicker">Know before you go</p>
-    <h2>Spring Home and Living Show</h2>
-    <p>
+      <p>
       National Exhibition Centre, Birmingham<br>
       Saturday 12 April · Doors open 10:00
     </p>
@@ -429,20 +426,15 @@
       <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">Listen — leaving</button>
     </div>
   </section>
+<section class="ask-card">
+  <p class="kicker">Know before you go</p>
+  <h2>Spring Home and Living Show</h2>
+  <p>Open the event guide for directions, parking, arrival, and leaving.</p>
 
-  <script>
-  function playEmbeddedAudio(id) {
-    const audios = document.querySelectorAll('audio');
-    audios.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
-
-    const selectedAudio = document.getElementById(id);
-    if (selectedAudio) {
-      selectedAudio.play();
-    }
-  }
-</script>
+  <div class="listen-group">
+    <a class="quiet-button" href="./spring-show.html">Open event guide</a>
+  </div>
+</section>
+ 
 </body>
 </html>

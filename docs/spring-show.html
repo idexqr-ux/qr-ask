@@ -1,1 +1,126 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spring Home and Living Show — Know Before You Go</title>
+  <meta name="description" content="A calm event guide for directions, parking, arrival, and leaving." />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
+<body>
+  <main class="wrap">
+
+    <a class="back" href="./index.html">← Back</a>
+
+    <p class="kicker">Know before you go</p>
+    <h1>Spring Home and Living Show</h1>
+    <p class="hint">A little help before you set off.</p>
+
+    <p>
+      <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">
+        Listen — know before you go
+      </button>
+    </p>
+
+    <hr class="divider">
+
+    <p class="browse-label">What would you like help with?</p>
+
+    <div class="chips">
+      <button onclick="show('overview')">Event overview</button>
+      <button onclick="show('directions')">Directions</button>
+      <button onclick="show('parking')">Parking</button>
+      <button onclick="show('leaving')">Leaving</button>
+    </div>
+
+    <section id="overview" class="card" hidden>
+      <p>
+        National Exhibition Centre, Birmingham.<br>
+        Saturday 12 April · Doors open 10:00.
+      </p>
+
+      <p>
+        Hall 3 · Block B · Row 12.<br>
+        Just to the right as you enter the hall.
+      </p>
+
+      <p>
+        <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">
+          🎧 Listen again
+        </button>
+      </p>
+    </section>
+
+    <section id="directions" class="card" hidden>
+      <p>
+        The event is at the National Exhibition Centre in Birmingham.
+      </p>
+
+      <p>
+        <a href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham" target="_blank" rel="noopener">
+          Open directions in Google Maps
+        </a>
+      </p>
+
+      <p>
+        <button class="quiet-button" onclick="playEmbeddedAudio('directionsAudio')">
+          🎧 Listen again
+        </button>
+      </p>
+    </section>
+
+    <section id="parking" class="card" hidden>
+      <p>
+        Use Yellow Car Park, then take the shuttle bus to the main entrance.
+      </p>
+
+      <p>
+        <button class="quiet-button" onclick="playEmbeddedAudio('parkingAudio')">
+          🎧 Listen again
+        </button>
+      </p>
+    </section>
+
+    <section id="leaving" class="card" hidden>
+      <p>
+        When you are ready to leave, return to the shuttle bus point for Yellow Car Park.
+      </p>
+
+      <p>
+        <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">
+          🎧 Listen again
+        </button>
+      </p>
+    </section>
+
+    <audio id="knowBeforeAudio" src="audio/know-before-you-go.mp3"></audio>
+    <audio id="directionsAudio" src="audio/directions.mp3"></audio>
+    <audio id="parkingAudio" src="audio/parking.mp3"></audio>
+    <audio id="leavingAudio" src="audio/leaving.mp3"></audio>
+
+  </main>
+
+  <script>
+    function show(id) {
+      ["overview", "directions", "parking", "leaving"].forEach(sectionId => {
+        document.getElementById(sectionId).hidden = true;
+      });
+      document.getElementById(id).hidden = false;
+    }
+
+    function playEmbeddedAudio(id) {
+      const audios = document.querySelectorAll('audio');
+      audios.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+
+      const selectedAudio = document.getElementById(id);
+      if (selectedAudio) {
+        selectedAudio.play();
+      }
+    }
+  </script>
+</body>
+</html>

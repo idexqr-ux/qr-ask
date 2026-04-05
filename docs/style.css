@@ -270,7 +270,7 @@ a.card:active {
   margin-bottom: 8px;
 }
 
-./* Tighten card spacing without affecting Ask UI elsewhere */
+/* Tighten card spacing without affecting Ask UI elsewhere */
 .card .sub{
   margin: 6px 0 0;   /* was 0 0 14px */
 }

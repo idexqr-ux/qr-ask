@@ -10,7 +10,7 @@
   <div class="wrap">
     <a id="backLink" class="back" href="./racing.html">← Back</a>
 
-    <h1 id="name">Runner</h1>
+    <h1 id="horse-name"></h1>
 
     <p>
       <button type="button" onclick="playAudio('audio/help.mp3')">
@@ -145,6 +145,14 @@
       }
     })();
   </script>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const horseName = params.get("horse");
+
+  if (horseName) {
+    document.getElementById("horse-name").textContent = decodeURIComponent(horseName);
+  }
+</script>
 
   <script>
     let currentAudio = null;

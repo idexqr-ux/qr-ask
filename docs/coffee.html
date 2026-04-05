@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coffee Machine — Ask</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="wrap">
+
+    <h1>Coffee Machine</h1>
+    <p class="kicker">Ask</p>
+
+    <!-- Listen -->
+    <section>
+      <button onclick="playAudio('audio/lets-make-a-coffee.mp3')">
+        🎧 Listen — Let’s take a look together
+      </button>
+    </section>
+
+    <!-- Ask options -->
+    <section>
+      <h2>What would you like help with?</h2>
+
+      <button onclick="show('coffee')">Make a coffee</button>
+      <button onclick="show('water')">Refill the water</button>
+      <button onclick="show('pods')">Empty used pods</button>
+    </section>
+
+    <!-- Content -->
+    <section id="coffee" class="content" hidden>
+      <p>
+        Press the power button on the top to turn the machine on.
+        When the green light comes on, it’s ready.
+      </p>
+      <p>
+        Lift the lever at the front and place a coffee pod inside, with the flat side facing down.
+        Lower the lever until it clicks into place.
+      </p>
+      <p>
+        Place your cup on the drip tray under the spout.
+        Then press espresso for a small coffee, or lungo for a longer one.
+      </p>
+      <p>
+        The machine will stop automatically when your coffee is ready.
+      </p>
+      <p><strong>You’re all set — enjoy your coffee.</strong></p>
+
+      <button onclick="playAudio('audio/lets-make-a-coffee.mp3')">🎧 Listen</button>
+    </section>
+
+    <section id="water" class="content" hidden>
+      <p>
+        Lift the water tank from the back of the machine.
+        Fill it with fresh cold water up to the MAX line.
+      </p>
+      <p>
+        Place it back onto the machine and press it down gently so it sits flat.
+        Check the green light is on before making a coffee.
+      </p>
+
+      <button onclick="playAudio('audio/refill-water.mp3')">🎧 Listen</button>
+    </section>
+
+    <section id="pods" class="content" hidden>
+      <p>
+        Switch the machine off and allow it to cool down.
+        Pull out the used pod container from the front.
+      </p>
+      <p>
+        Empty the pods into the bin.
+        Rinse if needed, then place it back into the machine.
+      </p>
+      <p>
+        Switch the machine back on and wait for the green light.
+      </p>
+
+      <button onclick="playAudio('audio/empty-pods.mp3')">🎧 Listen</button>
+    </section>
+
+  </main>
+
+  <script>
+    function show(id) {
+      document.querySelectorAll('.content').forEach(el => el.hidden = true);
+      document.getElementById(id).hidden = false;
+    }
+
+    function playAudio(src) {
+      new Audio(src).play();
+    }
+  </script>
+
+</body>
+</html>

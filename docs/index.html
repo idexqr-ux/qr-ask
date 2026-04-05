@@ -215,7 +215,7 @@
       </details>
     </section>
 
-        <!-- Bridge -->
+    <!-- Bridge -->
     <section id="bridge" class="card">
       <details class="card-details">
         <summary class="card-summary">What does this have to do with us now?</summary>
@@ -228,56 +228,37 @@
         <p class="back"><a href="#top">Back to top</a></p>
       </details>
     </section>
-    <p>
-  Coffee Machine  
-  <br>
-  <a href="coffee.html">Open Ask</a>
-</p>
+
+    <!-- Coffee Demo -->
+    <section class="ask-card">
+      <p class="kicker">Coffee Machine</p>
+      <h2>Simple everyday help</h2>
+      <p>Open the coffee guide for making a drink, refilling the water, and emptying used pods.</p>
+
+      <div class="listen-group">
+        <a class="quiet-button" href="./coffee.html">Open Ask</a>
+      </div>
+    </section>
+
     <!-- Race Card Demo -->
-   <section class="ask-card">
-  <p class="kicker">Race Card Demo</p>
-  <h2>Matchem Race Meeting</h2>
-  <p>Open the full race card, then choose a race and tap a horse for more detail.</p>
+    <section class="ask-card">
+      <p class="kicker">Race Card Demo</p>
+      <h2>Matchem Race Meeting</h2>
+      <p>Open the full race card, then choose a race and tap a horse for more detail.</p>
 
-  <div class="listen-group">
-    <a class="quiet-button" href="./racecard.html">Open full race card</a>
-  </div>
-</section>
+      <div class="listen-group">
+        <a class="quiet-button" href="./racecard.html">Open full race card</a>
+      </div>
+    </section>
 
-    <!-- Know before you go -->
+    <!-- Spring Show Demo -->
     <section class="ask-card">
       <p class="kicker">Know before you go</p>
       <h2>Spring Home and Living Show</h2>
-      <p>
-        National Exhibition Centre, Birmingham<br>
-        Saturday 12 April · Doors open 10:00
-      </p>
-
-      <p>
-        Yellow Car Park · Shuttle bus to main entrance
-      </p>
-
-      <p>
-        Hall 3 · Block B · Row 12<br>
-        Just to the right as you enter the hall
-      </p>
-
-      <p>
-        <a href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham" target="_blank" rel="noopener">
-          Open directions in Google Maps
-        </a>
-      </p>
-
-      <audio id="knowBeforeAudio" src="audio/know-before-you-go.mp3"></audio>
-      <audio id="directionsAudio" src="audio/directions.mp3"></audio>
-      <audio id="parkingAudio" src="audio/parking.mp3"></audio>
-      <audio id="leavingAudio" src="audio/leaving.mp3"></audio>
+      <p>Open the event guide for directions, parking, arrival, and leaving.</p>
 
       <div class="listen-group">
-        <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">Listen — know before you go</button>
-        <button class="quiet-button" onclick="playEmbeddedAudio('directionsAudio')">Listen — directions</button>
-        <button class="quiet-button" onclick="playEmbeddedAudio('parkingAudio')">Listen — parking</button>
-        <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">Listen — leaving</button>
+        <a class="quiet-button" href="./spring-show.html">Open event guide</a>
       </div>
     </section>
 
@@ -286,7 +267,7 @@
     </footer>
   </main>
 
-    <script>
+  <script>
     let currentAudio = null;
 
     function playAudio(file) {
@@ -393,48 +374,5 @@
       navigator.serviceWorker.register("./service-worker.js");
     }
   </script>
-
-      <p>
-      National Exhibition Centre, Birmingham<br>
-      Saturday 12 April · Doors open 10:00
-    </p>
-
-    <p>
-      Yellow Car Park · Shuttle bus to main entrance
-    </p>
-
-    <p>
-      Hall 3 · Block B · Row 12<br>
-      Just to the right as you enter the hall
-    </p>
-
-    <p>
-      <a href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham" target="_blank" rel="noopener">
-        Open directions in Google Maps
-      </a>
-    </p>
-
-    <audio id="knowBeforeAudio" src="audio/know-before-you-go.mp3"></audio>
-    <audio id="directionsAudio" src="audio/directions.mp3"></audio>
-    <audio id="parkingAudio" src="audio/parking.mp3"></audio>
-    <audio id="leavingAudio" src="audio/leaving.mp3"></audio>
-
-    <div class="listen-group">
-      <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">Listen — know before you go</button>
-      <button class="quiet-button" onclick="playEmbeddedAudio('directionsAudio')">Listen — directions</button>
-      <button class="quiet-button" onclick="playEmbeddedAudio('parkingAudio')">Listen — parking</button>
-      <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">Listen — leaving</button>
-    </div>
-  </section>
-<section class="ask-card">
-  <p class="kicker">Know before you go</p>
-  <h2>Spring Home and Living Show</h2>
-  <p>Open the event guide for directions, parking, arrival, and leaving.</p>
-
-  <div class="listen-group">
-    <a class="quiet-button" href="./spring-show.html">Open event guide</a>
-  </div>
-</section>
- 
 </body>
 </html>

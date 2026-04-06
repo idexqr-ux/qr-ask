@@ -16,9 +16,9 @@
     <p class="hint">You can listen or read — whichever you prefer.</p>
 
     <p>
-      <button class="quiet-button" onclick="playAudio('audio/lets-make-a-coffee.mp3')">
-        🎧 Listen — Let’s take a look together
-      </button>
+      <button class="listen-btn" onclick="startGuidance()">
+  Start guidance
+</button>
     </p>
 
     <hr class="divider">
@@ -102,24 +102,35 @@
   </main>
 
   <script>
-    let currentAudio = null;
+  let currentAudio = null;
+  let guidanceStarted = false;
 
-    function show(id) {
-      ["coffee", "water", "pods"].forEach(sectionId => {
-        document.getElementById(sectionId).hidden = true;
-      });
-      document.getElementById(id).hidden = false;
+  function playAudio(file) {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
     }
 
-    function playAudio(src) {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-      }
-      currentAudio = new Audio(src);
-      currentAudio.play();
-    }
-  </script>
+    currentAudio = new Audio(file);
+    currentAudio.preload = 'auto';
+    currentAudio.playsInline = true;
+
+    currentAudio.play().catch(err => {
+      console.error("Audio failed:", file, err);
+    });
+  }
+
+  function startGuidance() {
+    if (guidanceStarted) return;
+    guidanceStarted = true;
+    playAudio('audio/at-the-coffee-machine.mp3');
+  }
+
+  // Any first interaction starts guidance
+  document.addEventListener('touchstart', startGuidance, { once: true, passive: true });
+  document.addEventListener('pointerdown', startGuidance, { once: true });
+  document.addEventListener('click', startGuidance, { once: true });
+</script>
 
 </body>
 </html>

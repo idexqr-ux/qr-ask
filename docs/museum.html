@@ -174,9 +174,8 @@
         console.error("Audio failed to play:", file, err);
       });
     }
- <script>
+<script>
   let currentAudio = null;
-  let firstTapHandled = false;
 
   function playAudio(file) {
     if (currentAudio) {
@@ -188,16 +187,6 @@
       console.error("Audio failed to play:", file, err);
     });
   }
-
-  window.addEventListener('load', () => {
-    playAudio('audio/arrival.mp3');
-  });
-
-  document.addEventListener('click', () => {
-    if (firstTapHandled) return;
-    firstTapHandled = true;
-    playAudio('audio/first-tap-response.mp3');
-  }, { once: true });
 </script>
 
 <script>

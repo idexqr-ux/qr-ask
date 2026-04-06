@@ -19,7 +19,7 @@
     <p class="sub">Leather gloves and a sewing needle used in glove-making (c. 1800–1850)</p>
 
     <p>
-     <button class="listen-btn" onclick="playAudio('audio/arrival.mp3?v=3')">
+     <button class="listen-btn" onclick="playAudio('audio/arrival.mp3?v=4')">
   Let's take a look together
 </button>
     </p>
@@ -166,16 +166,25 @@
   let firstTapHandled = false;
 
   function playAudio(file) {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-    }
-    currentAudio = new Audio(file);
-    currentAudio.playsInline = true;
-    currentAudio.play().catch(err => {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+  }
+
+  currentAudio = new Audio(file);
+  currentAudio.preload = 'auto';
+  currentAudio.playsInline = true;
+  currentAudio.crossOrigin = 'anonymous';
+
+  const playPromise = currentAudio.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(err => {
       console.error("Audio failed to play:", file, err);
+      alert("Audio could not play: " + file);
     });
   }
+}
 
   function handleFirstInteraction() {
     if (firstTapHandled) return;

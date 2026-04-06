@@ -13,25 +13,20 @@
 <body>
   <a id="top"></a>
 
-  <header class="wrap">
-    <p class="kicker" aria-hidden="true">Ask Pilot</p>
+  <body>
+  <a id="top"></a>
+
+  <header class="wrap" aria-hidden="true">
+    <p class="kicker">Ask Pilot</p>
     <h1>Two Objects, One Pair of Hands</h1>
-    <p class="sub">Leather gloves and a sewing needle used in glove-making (circa 1830–1850)</p>
-   
-    <p>
-  <button class="listen-btn" onclick="startGuidance()">
-    Start guidance
-  </button>
-</p>
+    <p class="sub">Leather gloves and a sewing needle used in glove-making (circa 1830 to 1850)</p>
 
-<p class="hint">Tap anywhere and I’ll guide you.</p>
-
-    <details class="ask-details" aria-hidden="true">
+    <details class="ask-details">
       <p class="hint">Tap <strong>Ask</strong> to choose a question.</p>
 
-      <summary class="ask-summary" aria-hidden="true">Ask</summary>
+      <summary class="ask-summary">Ask</summary>
 
-      <div class="note" aria-hidden="true">
+      <div class="note">
         <p><strong>You can listen or read.</strong> Tap a question to jump down the page.</p>
       </div>
 
@@ -40,21 +35,34 @@
         <a class="chip" href="#needle">Needle</a>
       </nav>
 
-      <p class="muted-line" aria-hidden="true">Or scroll to explore the two objects below.</p>
+      <p class="muted-line">Or scroll to explore the two objects below.</p>
     </details>
 
-    <p class="hint" aria-hidden="true">Tap <strong>Ask</strong> to choose a question.</p>
+    <p class="hint">Tap <strong>Ask</strong> to choose a question.</p>
 
     <hr class="divider" />
-    <p class="browse-label" aria-hidden="true">Browse sections</p>
+    <p class="browse-label">Browse sections</p>
   </header>
 
   <main class="wrap">
+    <section aria-labelledby="page-title">
+      <h1 id="page-title" class="sr-only">Two Objects, One Pair of Hands</h1>
+      <p class="sr-only">
+        Leather gloves and a sewing needle used in glove-making, circa 1830 to 1850.
+      </p>
+    </section>
 
     <!-- Gloves -->
     <section id="gloves" class="card">
       <details class="card-details">
-        <summary class="card-summary">Ladies’ Fine Gloves (circa 1830–1850)</summary>
+        <summary class="card-summary">Ladies’ Fine Gloves (circa 1830 to 1850)</summary>
+
+        <button class="listen-btn" onclick="playAudio('audio/gloves.mp3')">
+          Listen — let’s take a look together
+        </button>
+
+        <h3>What am I looking at?</h3>
+        <p>In front of you is a pair of ladies’ leather gloves, made around 1830 to 1850. The leather is thin and supple, and the seams along the fingers are stitched by hand. They narrow gently at the wrist and were made to be worn close to the skin.</p>
 
         <button class="listen-btn" onclick="playAudio('audio/gloves.mp3')">
           Listen — I’ll guide you

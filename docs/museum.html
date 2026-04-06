@@ -19,9 +19,9 @@
     <p class="sub">Leather gloves and a sewing needle used in glove-making (c. 1800–1850)</p>
 
     <p>
-     <button class="listen-btn" onclick="playAudio('audio/arrival.mp3?v=4')">
-  Let's take a look together
-</button>
+      <button class="listen-btn" onclick="startArrival()">
+        Let's take a look together
+      </button>
     </p>
 
     <details class="ask-details">
@@ -54,7 +54,7 @@
       <details class="card-details">
         <summary class="card-summary">Ladies’ Fine Gloves (c. 1830–1850)</summary>
 
-        <button class="listen-btn" onclick="playAudio('audio/gloves.mp3')">
+        <button class="listen-btn" onclick="playAudio('audio/gloves.mp3?v=5')">
           Listen — I’ll guide you
         </button>
 
@@ -75,7 +75,7 @@
 
         <details>
           <summary>30-second version</summary>
-          <button class="listen-btn" onclick="playAudio('audio/gloves-short.mp3')">
+          <button class="listen-btn" onclick="playAudio('audio/gloves-short.mp3?v=5')">
             Listen — short version
           </button>
 
@@ -91,7 +91,7 @@
       <details class="card-details">
         <summary class="card-summary">Object 2 — Steel sewing needle (c. 1800–1850)</summary>
 
-        <button class="listen-btn" onclick="playAudio('audio/needle.mp3')">
+        <button class="listen-btn" onclick="playAudio('audio/needle.mp3?v=5')">
           Listen — I’ll guide you
         </button>
 
@@ -112,7 +112,7 @@
 
         <details>
           <summary>30-second version</summary>
-          <button class="listen-btn" onclick="playAudio('audio/needle-short.mp3')">
+          <button class="listen-btn" onclick="playAudio('audio/needle-short.mp3?v=5')">
             Listen — short version
           </button>
 
@@ -162,101 +162,128 @@
   </main>
 
   <script>
-  let currentAudio = null;
-  let firstTapHandled = false;
+    let currentAudio = null;
+    let firstTapHandled = false;
+    let audioUnlocked = false;
 
-  function playAudio(file) {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-  }
+    function unlockAudio() {
+      if (audioUnlocked) return;
+      audioUnlocked = true;
 
-  currentAudio = new Audio(file);
-  currentAudio.preload = 'auto';
-  currentAudio.playsInline = true;
-  currentAudio.crossOrigin = 'anonymous';
+      const silentAudio = new Audio();
+      silentAudio.playsInline = true;
+      silentAudio.muted = true;
 
-  const playPromise = currentAudio.play();
+      const promise = silentAudio.play();
+      if (promise !== undefined) {
+        promise
+          .then(() => {
+            silentAudio.pause();
+          })
+          .catch(() => {
+            // Ignore - this is only a best-effort unlock for iPad/Safari
+          });
+      }
+    }
 
-  if (playPromise !== undefined) {
-    playPromise.catch(err => {
-      console.error("Audio failed to play:", file, err);
-      alert("Audio could not play: " + file);
+    function playAudio(file) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      currentAudio = new Audio(file);
+      currentAudio.preload = 'auto';
+      currentAudio.playsInline = true;
+
+      const playPromise = currentAudio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.error("Audio failed to play:", file, err);
+          alert("Audio could not play: " + file);
+        });
+      }
+    }
+
+    function startArrival() {
+      unlockAudio();
+      playAudio('audio/arrival.mp3?v=5');
+    }
+
+    function handleFirstInteraction() {
+      if (firstTapHandled) return;
+      firstTapHandled = true;
+      unlockAudio();
+      playAudio('audio/first-tap-response.mp3?v=5');
+    }
+
+    // Laptop may allow this, iPad may ignore it
+    window.addEventListener('load', () => {
+      playAudio('audio/arrival.mp3?v=5');
     });
-  }
-}
 
-  function handleFirstInteraction() {
-    if (firstTapHandled) return;
-    firstTapHandled = true;
-    playAudio('audio/first-tap-response.mp3?v=3');
-  }
+    // First real interaction for touch devices
+    document.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
+    document.addEventListener('pointerdown', handleFirstInteraction, { once: true });
+    document.addEventListener('click', handleFirstInteraction, { once: true });
 
-  // Laptop may allow this, iPad may ignore it
-  window.addEventListener('load', () => {
-    playAudio('audio/arrival.mp3?v=3');
-  });
+    function normaliseForSpeech(text) {
+      return text
+        .replace(/\bc\.\s*/gi, 'circa ')
+        .replace(/\b(1[5-9]\d{2})\b/g, (match) => {
+          const year = parseInt(match, 10);
+          const century = Math.floor(year / 100);
+          const lastTwo = year % 100;
 
-  // iPad-first approach
-  document.addEventListener('touchstart', handleFirstInteraction, { once: true, passive: true });
-  document.addEventListener('pointerdown', handleFirstInteraction, { once: true });
-  document.addEventListener('click', handleFirstInteraction, { once: true });
+          const centuryWord = {
+            15: "fifteen",
+            16: "sixteen",
+            17: "seventeen",
+            18: "eighteen",
+            19: "nineteen"
+          }[century] || String(century);
 
-  function normaliseForSpeech(text) {
-    return text
-      .replace(/\bc\.\s*/gi, 'circa ')
-      .replace(/\b(1[5-9]\d{2})\b/g, (match) => {
-        const year = parseInt(match, 10);
-        const century = Math.floor(year / 100);
-        const lastTwo = year % 100;
+          if (lastTwo === 0) return `${centuryWord} hundred`;
+          if (lastTwo < 10) return `${centuryWord} oh ${lastTwo}`;
+          return `${centuryWord} ${lastTwo}`;
+        })
+        .replace(/\bYou are looking at\s+/gi, 'In front of you is ')
+        .replace(/\bIt represents\s+/gi, 'This object represents ')
+        .replace(/\bThey show\s+/gi, 'These objects show ')
+        .replace(/–/g, ' to ')
+        .replace(/-/g, ' to ')
+        .replace(/\bcm\b/gi, ' centimetres')
+        .replace(/\bmm\b/gi, ' millimetres')
+        .replace(/\bm\b/gi, ' metres')
+        .replace(/\bkg\b/gi, ' kilograms')
+        .replace(/\bg\b/gi, ' grams')
+        .replace(/\bhrs?\b/gi, ' hours')
+        .replace(/\bmins?\b/gi, ' minutes')
+        .replace(/\be\.g\.\b/gi, 'for example')
+        .replace(/\bi\.e\.\b/gi, 'that is')
+        .replace(/\bet al\.\b/gi, 'and others')
+        .replace(/\bvs\b/gi, 'versus')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+    }
 
-        const centuryWord = {
-          15: "fifteen",
-          16: "sixteen",
-          17: "seventeen",
-          18: "eighteen",
-          19: "nineteen"
-        }[century] || String(century);
+    function speakText(text) {
+      const spokenText = normaliseForSpeech(text);
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(spokenText);
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      window.speechSynthesis.speak(utterance);
+    }
+  </script>
 
-        if (lastTwo === 0) return `${centuryWord} hundred`;
-        if (lastTwo < 10) return `${centuryWord} oh ${lastTwo}`;
-        return `${centuryWord} ${lastTwo}`;
-      })
-      .replace(/\bYou are looking at\s+/gi, 'In front of you is ')
-      .replace(/\bIt represents\s+/gi, 'This object represents ')
-      .replace(/\bThey show\s+/gi, 'These objects show ')
-      .replace(/–/g, ' to ')
-      .replace(/-/g, ' to ')
-      .replace(/\bcm\b/gi, ' centimetres')
-      .replace(/\bmm\b/gi, ' millimetres')
-      .replace(/\bm\b/gi, ' metres')
-      .replace(/\bkg\b/gi, ' kilograms')
-      .replace(/\bg\b/gi, ' grams')
-      .replace(/\bhrs?\b/gi, ' hours')
-      .replace(/\bmins?\b/gi, ' minutes')
-      .replace(/\be\.g\.\b/gi, 'for example')
-      .replace(/\bi\.e\.\b/gi, 'that is')
-      .replace(/\bet al\.\b/gi, 'and others')
-      .replace(/\bvs\b/gi, 'versus')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
-  }
-
-  function speakText(text) {
-    const spokenText = normaliseForSpeech(text);
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(spokenText);
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
-    window.speechSynthesis.speak(utterance);
-  }
-</script>
   <!--
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./service-worker.js");
-  }
-</script>
--->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./service-worker.js");
+    }
+  </script>
+  -->
 </body>
 </html>

@@ -9,15 +9,21 @@
 </head>
 
 <body>
-  <main class="wrap">
+  <a id="top"></a>
 
-    <a class="back" href="./museum.html">← Back</a>
-
+  <header class="wrap" aria-hidden="true">
     <p class="kicker">Know before you go</p>
     <h1>Spring Home and Living Show</h1>
-    <p class="hint">A little help before you set off.</p>
-    <p class="hint">You can listen or read — whichever you prefer.</p>
+    <p class="sub">Directions, parking, arrival, and leaving.</p>
+  </header>
 
+  <main class="wrap">
+    <section aria-labelledby="page-title">
+      <h1 id="page-title" class="sr-only">Spring Home and Living Show guide</h1>
+      <p class="sr-only">
+        You have scanned the Spring Home and Living Show QR code. This guide will help you with directions, parking, arrival, and leaving the event.
+      </p>
+    </section>
     <p>
       <button class="listen-btn" onclick="startGuidance()">
   Start guidance

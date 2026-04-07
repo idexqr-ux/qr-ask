@@ -28,37 +28,34 @@
     <p class="browse-label">What would you like help with?</p>
 
     <div class="chips">
-      <button onclick="show('overview')">Event overview</button>
-      <button onclick="show('directions')">Directions</button>
-      <button onclick="show('parking')">Parking</button>
-      <button onclick="show('leaving')">Leaving</button>
+      <button type="button" onclick="show('overview')">Event overview</button>
+      <button type="button" onclick="show('directions')">Directions</button>
+      <button type="button" onclick="show('parking')">Parking</button>
+      <button type="button" onclick="show('leaving')">Leaving</button>
     </div>
 
-    <section id="overview" class="card">
-      <p class="muted-line">Key details for your visit.</p>
-
+    <section id="overview" class="card" tabindex="-1">
       <p>
-        National Exhibition Centre, Birmingham.<br>
-        Saturday 12 April · Doors open 10:00.
+        The Spring Home and Living Show is at the National Exhibition Centre in Birmingham.
+        Doors open at 10 in the morning on Saturday 12 April.
       </p>
 
       <p>
-        Hall 3 · Block B · Row 12.<br>
-        Just to the right as you enter the hall.
+        You are looking for Hall 3, Block B, Row 12.
+        It is just to the right as you enter the hall.
       </p>
 
       <p>
-        <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">
+        <button class="quiet-button" type="button" onclick="playEmbeddedAudio('knowBeforeAudio')">
           Listen again
         </button>
       </p>
     </section>
 
-    <section id="directions" class="card" hidden>
-      <p class="muted-line">How to get to the venue.</p>
-
+    <section id="directions" class="card" hidden tabindex="-1">
       <p>
         The event is at the National Exhibition Centre in Birmingham.
+        You can use the link below to open the venue in Google Maps.
       </p>
 
       <p>
@@ -68,35 +65,33 @@
       </p>
 
       <p>
-        <button class="quiet-button" onclick="playEmbeddedAudio('directionsAudio')">
+        <button class="quiet-button" type="button" onclick="playEmbeddedAudio('directionsAudio')">
           Listen again
         </button>
       </p>
     </section>
 
-    <section id="parking" class="card" hidden>
-      <p class="muted-line">Where to park and how to reach the entrance.</p>
-
+    <section id="parking" class="card" hidden tabindex="-1">
       <p>
         Use Yellow Car Park, then take the shuttle bus to the main entrance.
+        This is the simplest route for arrival.
       </p>
 
       <p>
-        <button class="quiet-button" onclick="playEmbeddedAudio('parkingAudio')">
+        <button class="quiet-button" type="button" onclick="playEmbeddedAudio('parkingAudio')">
           Listen again
         </button>
       </p>
     </section>
 
-    <section id="leaving" class="card" hidden>
-      <p class="muted-line">What to do when you are ready to head home.</p>
-
+    <section id="leaving" class="card" hidden tabindex="-1">
       <p>
         When you are ready to leave, return to the shuttle bus point for Yellow Car Park.
+        The shuttle will take you back to your parking area.
       </p>
 
       <p>
-        <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">
+        <button class="quiet-button" type="button" onclick="playEmbeddedAudio('leavingAudio')">
           Listen again
         </button>
       </p>
@@ -146,7 +141,10 @@
       document.getElementById('directions').hidden = true;
       document.getElementById('parking').hidden = true;
       document.getElementById('leaving').hidden = true;
-      document.getElementById(id).hidden = false;
+
+      const section = document.getElementById(id);
+      section.hidden = false;
+      section.focus();
     }
   </script>
 </body>

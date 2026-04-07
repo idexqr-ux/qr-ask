@@ -24,13 +24,6 @@
         You have scanned the Spring Home and Living Show QR code. This guide will help you with directions, parking, arrival, and leaving the event.
       </p>
     </section>
-    <p>
-      <button class="listen-btn" onclick="startGuidance()">
-  Start guidance
-</button>
-    </p>
-
-    <hr class="divider">
 
     <p class="browse-label">What would you like help with?</p>
 
@@ -41,7 +34,7 @@
       <button onclick="show('leaving')">Leaving</button>
     </div>
 
-    <section id="overview" class="card" hidden>
+    <section id="overview" class="card">
       <p class="muted-line">Key details for your visit.</p>
 
       <p>
@@ -56,7 +49,7 @@
 
       <p>
         <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">
-          🎧 Listen again
+          Listen again
         </button>
       </p>
     </section>
@@ -76,7 +69,7 @@
 
       <p>
         <button class="quiet-button" onclick="playEmbeddedAudio('directionsAudio')">
-          🎧 Listen again
+          Listen again
         </button>
       </p>
     </section>
@@ -90,7 +83,7 @@
 
       <p>
         <button class="quiet-button" onclick="playEmbeddedAudio('parkingAudio')">
-          🎧 Listen again
+          Listen again
         </button>
       </p>
     </section>
@@ -104,7 +97,7 @@
 
       <p>
         <button class="quiet-button" onclick="playEmbeddedAudio('leavingAudio')">
-          🎧 Listen again
+          Listen again
         </button>
       </p>
     </section>
@@ -113,37 +106,48 @@
     <audio id="directionsAudio" src="audio/directions.mp3"></audio>
     <audio id="parkingAudio" src="audio/parking.mp3"></audio>
     <audio id="leavingAudio" src="audio/leaving.mp3"></audio>
-
   </main>
 
   <script>
-  let currentAudio = null;
-  let guidanceStarted = false;
+    let currentAudio = null;
 
-  function playAudio(file) {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
+    function stopCurrentAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
     }
 
-    currentAudio = new Audio(file);
-    currentAudio.preload = 'auto';
-    currentAudio.playsInline = true;
+    function playAudio(file) {
+      stopCurrentAudio();
+      currentAudio = new Audio(file);
+      currentAudio.preload = 'auto';
+      currentAudio.playsInline = true;
 
-    currentAudio.play().catch(err => {
-      console.error("Audio failed:", file, err);
-    });
-  }
+      currentAudio.play().catch(err => {
+        console.error("Audio failed:", file, err);
+      });
+    }
 
-  function startGuidance() {
-    if (guidanceStarted) return;
-    guidanceStarted = true;
-    playAudio('audio/know-before-you-go-v2.mp3');
-  }
+    function playEmbeddedAudio(id) {
+      stopCurrentAudio();
+      currentAudio = document.getElementById(id);
 
-  document.addEventListener('touchstart', startGuidance, { once: true, passive: true });
-  document.addEventListener('pointerdown', startGuidance, { once: true });
-  document.addEventListener('click', startGuidance, { once: true });
-</script>
+      if (!currentAudio) return;
+
+      currentAudio.currentTime = 0;
+      currentAudio.play().catch(err => {
+        console.error("Embedded audio failed:", id, err);
+      });
+    }
+
+    function show(id) {
+      document.getElementById('overview').hidden = true;
+      document.getElementById('directions').hidden = true;
+      document.getElementById('parking').hidden = true;
+      document.getElementById('leaving').hidden = true;
+      document.getElementById(id).hidden = false;
+    }
+  </script>
 </body>
 </html>

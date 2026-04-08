@@ -4,33 +4,74 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>IdexQR</title>
+
   <style>
     body {
       font-family: Georgia, serif;
       background: #F7F9F8;
       color: #2b2b2b;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       margin: 0;
       text-align: center;
     }
+
+    /* 🌿 Your button styling */
+    .idexqr-button {
+      max-width: 320px;
+      margin-top: 30px;
+    }
+
+    .idexqr-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .idexqr-content {
+      position: relative;
+      background: #B8C6C1;
+      border-radius: 18px;
+      padding: 28px 20px;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .idexqr-content:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    .idexqr-text {
+      font-size: 22px;
+      color: #2b2b2b;
+      position: relative;
+      z-index: 2;
+    }
+
+    .idexqr-qr {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      opacity: 0.08;
+      z-index: 1;
+    }
   </style>
 </head>
+
 <body>
-  <div>
-    <h1>IdexQR®</h1>
-    <p>Calm, connected experiences.</p>
-    <p><small>More coming soon.</small></p>
-  </div>
-  <body>
 
-  <header class="wrap">
-    <h1>IdexQR</h1>
-  </header>
+  <h1>IdexQR®</h1>
+  <p>Calm, connected experiences.</p>
+  <p><small>More coming soon.</small></p>
 
-  <!-- ADD BUTTON HERE -->
+  <!-- 🌿 Your Ask button -->
   <div class="idexqr-button">
     <a href="https://your-link-here.com" class="idexqr-link">
       <div class="idexqr-content">

@@ -13,7 +13,8 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  body {
+  font-family: Georgia, serif;
   background: var(--bg);
   color: var(--ink);
   line-height: 1.55;
@@ -452,7 +453,7 @@ details summary {
 }
 
 .idexqr-text {
-  font-family: 'Roboto', sans-serif;
+  font-family: Georgia, serif;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.3px;

@@ -37,18 +37,29 @@
       margin-top: 18px;
       background: #B8C6C1;
       border-radius: 18px;
-      padding: 18px 16px;
+      overflow: hidden;
+      text-align: left;
     }
 
-    .listen-title {
+    .listen-details {
+      padding: 16px;
+    }
+
+    .listen-summary {
+      cursor: pointer;
+      list-style: none;
       font-size: 20px;
       letter-spacing: 1px;
-      margin: 0 0 12px;
+      outline: none;
     }
 
-    audio {
-      width: 100%;
-      margin-top: 6px;
+    .listen-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .listen-text {
+      margin-top: 12px;
+      margin-bottom: 0;
     }
 
     .back-link {
@@ -71,34 +82,53 @@
     <p>A calm place to listen.</p>
 
     <div class="listen-card">
-      <div class="listen-title">At the coffee machine</div>
-      <audio controls>
-       <source src="audio/at-the-coffee-machine.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+      <details class="listen-details" ontoggle="if(this.open) playAudio('audio/at-the-coffee-machine.mp3')">
+        <summary class="listen-summary">At the coffee machine</summary>
+        <p class="listen-text">A gentle introduction to the coffee machine and the space around it.</p>
+      </details>
     </div>
+
     <div class="listen-card">
-  <div class="listen-title">Let’s make a coffee</div>
-  <audio controls>
-    <source src="audio/lets-make-a-coffee.mp3" type="audio/mpeg">
-  </audio>
-</div>
+      <details class="listen-details" ontoggle="if(this.open) playAudio('audio/lets-make-a-coffee.mp3')">
+        <summary class="listen-summary">Let’s make a coffee</summary>
+        <p class="listen-text">A simple guide to making a drink, one step at a time.</p>
+      </details>
+    </div>
 
-<div class="listen-card">
-  <div class="listen-title">Refill the water</div>
-  <audio controls>
-    <source src="audio/refill-water.mp3" type="audio/mpeg">
-  </audio>
-</div>
+    <div class="listen-card">
+      <details class="listen-details" ontoggle="if(this.open) playAudio('audio/refill-water.mp3')">
+        <summary class="listen-summary">Refill the water</summary>
+        <p class="listen-text">A short guide to topping up the machine when the water runs low.</p>
+      </details>
+    </div>
 
-<div class="listen-card">
-  <div class="listen-title">Empty the pods</div>
-  <audio controls>
-    <source src="audio/empty-pods.mp3" type="audio/mpeg">
-  </audio>
-</div>
+    <div class="listen-card">
+      <details class="listen-details" ontoggle="if(this.open) playAudio('audio/empty-pods.mp3')">
+        <summary class="listen-summary">Empty the pods</summary>
+        <p class="listen-text">A quick guide to clearing used pods and keeping the machine ready.</p>
+      </details>
+    </div>
 
     <a href="index.html" class="back-link">Back to IdexQR</a>
   </div>
+
+  <script>
+    let currentAudio = null;
+
+    function playAudio(file) {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+
+      currentAudio = new Audio(file);
+      currentAudio.preload = 'auto';
+      currentAudio.playsInline = true;
+
+      currentAudio.play().catch(err => {
+        console.error("Audio failed to play:", file, err);
+      });
+    }
+  </script>
 </body>
 </html>

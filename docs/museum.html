@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Two Objects, One Pair of Hands — Ask Pilot</title>
+  <title>Two artefacts, One Pair of Hands — Ask Pilot</title>
   <meta name="description" content="A calm, spoken-first Ask pilot for two museum artefacts: gloves and a sewing needle." />
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="manifest.json">
@@ -15,15 +15,15 @@
 
   <header class="wrap" aria-hidden="true">
     <p class="kicker">Ask</p>
-    <h1>Two Objects, One Pair of Hands</h1>
+    <h1>Two artefacts, One Pair of Hands</h1>
     <p class="sub">Leather gloves and a sewing needle used in glove-making (circa 1830 to 1850)</p>
 
     <details class="ask-details">
       <summary class="ask-summary">Ask</summary>
 
-      <p class="hint">Choose an object to explore.</p>
+      <p class="hint">Choose an artefact to explore.</p>
 
-      <nav id="questions" class="chips" aria-label="Objects to explore">
+      <nav id="questions" class="chips" aria-label="artefacts to explore">
         <a class="chip" href="#gloves">Gloves</a>
         <a class="chip" href="#needle">Needle</a>
       </nav>
@@ -109,7 +109,7 @@
   </p>
 
   <p>
-    This needle represents invisible labour — the process between raw material and finished object.
+    This needle represents invisible labour — the process between raw material and finished artefact.
   </p>
 
   <p><a href="#top">Back to top</a></p>
@@ -172,8 +172,8 @@
           return `${centuryWord} ${lastTwo}`;
         })
         .replace(/\bYou are looking at\s+/gi, 'In front of you is ')
-        .replace(/\bIt represents\s+/gi, 'This object represents ')
-        .replace(/\bThey show\s+/gi, 'These objects show ')
+        .replace(/\bIt represents\s+/gi, 'This artefact represents ')
+        .replace(/\bThey show\s+/gi, 'These artefacts show ')
         .replace(/–/g, ' to ')
         .replace(/-/g, ' to ')
         .replace(/\bcm\b/gi, ' centimetres')

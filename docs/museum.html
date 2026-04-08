@@ -14,18 +14,14 @@
   <a id="top"></a>
 
   <header class="wrap" aria-hidden="true">
-    <p class="kicker">Ask Pilot</p>
+    <p class="kicker">Ask</p>
     <h1>Two Objects, One Pair of Hands</h1>
     <p class="sub">Leather gloves and a sewing needle used in glove-making (circa 1830 to 1850)</p>
 
     <details class="ask-details">
       <summary class="ask-summary">Ask</summary>
 
-      <p class="hint">Tap <strong>Ask</strong> to choose a question.</p>
-
-      <div class="note">
-        <p><strong>You can listen or read.</strong> Tap a question to jump down the page.</p>
-      </div>
+      <p class="hint">Choose an object to explore.</p>
 
       <nav id="questions" class="chips" aria-label="Objects to explore">
         <a class="chip" href="#gloves">Gloves</a>
@@ -36,7 +32,7 @@
     </details>
 
     <hr class="divider" />
-    <p class="browse-label">Browse sections</p>
+   
   </header>
 
   <main class="wrap">
@@ -49,7 +45,7 @@
 
     <!-- Gloves -->
     <section id="gloves" class="card">
-      <details class="card-details">
+      <details class="card-details" ontoggle="if(this.open) playAudio('audio/gloves.mp3')">
         <summary class="card-summary">Ladies’ Fine Gloves (circa 1830 to 1850)</summary>
 
         <button class="listen-btn" onclick="playAudio('audio/gloves.mp3')">
@@ -80,25 +76,13 @@
           These gloves show the quiet skill behind everyday life — not only the hands that wore them, but the hands that made them.
         </p>
 
-        <details>
-          <summary>30-second version</summary>
-          <button class="listen-btn" onclick="playAudio('audio/gloves-short.mp3')">
-            Listen — short version
-          </button>
-
-          <p>
-            These gloves were made by hand from fine leather. Each finger was stitched carefully.
-            They were worn daily and valued for fit and durability.
-          </p>
-        </details>
-
         <p class="back"><a href="#top">Back to top</a></p>
       </details>
     </section>
 
     <!-- Needle -->
     <section id="needle" class="card">
-      <details class="card-details">
+      <details class="card-details" ontoggle="if(this.open) playAudio('audio/needle.mp3')">
         <summary class="card-summary">Steel Sewing Needle (circa 1830 to 1850)</summary>
 
         <button class="listen-btn" onclick="playAudio('audio/needle.mp3')">
@@ -127,18 +111,6 @@
         <p>
           This needle represents invisible labour — the process between raw material and finished object.
         </p>
-
-        <details>
-          <summary>30-second version</summary>
-          <button class="listen-btn" onclick="playAudio('audio/needle-short.mp3')">
-            Listen — short version
-          </button>
-
-          <p>
-            This needle was used repeatedly to stitch leather gloves by hand.
-            It represents skilled, patient work done quietly at home.
-          </p>
-        </details>
 
         <p class="back"><a href="#top">Back to top</a></p>
       </details>

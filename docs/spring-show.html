@@ -43,7 +43,7 @@
           target="_blank"
           rel="noopener"
         >
-          Open directions
+          Open directions in Google Maps
         </a>
       </p>
 
@@ -60,37 +60,36 @@
       </p>
     </section>
 
-    <p class="browse-label">Choose a part of the show journey</p>
+    <p class="browse-label">Need help on arrival?</p>
 
     <div class="chips">
       <button type="button" onclick="playEmbeddedAudio('parkingAudio')">Parking</button>
     </div>
 
-  <audio id="parkingAudio" src="audio/parking.mp3"></audio>
+    <audio id="parkingAudio" src="audio/parking.mp3"></audio>
   </main>
 
   <script>
-  let currentAudio = null;
+    let currentAudio = null;
 
-  function stopCurrentAudio() {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
+    function stopCurrentAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
     }
-  }
 
-  function playEmbeddedAudio(id) {
-    stopCurrentAudio();
-    currentAudio = document.getElementById(id);
+    function playEmbeddedAudio(id) {
+      stopCurrentAudio();
+      currentAudio = document.getElementById(id);
 
-    if (!currentAudio) return;
+      if (!currentAudio) return;
 
-    currentAudio.currentTime = 0;
-    currentAudio.play().catch(err => {
-      console.error("Embedded audio failed:", id, err);
-    });
-  }
-  
-</script>
+      currentAudio.currentTime = 0;
+      currentAudio.play().catch(err => {
+        console.error("Embedded audio failed:", id, err);
+      });
+    }
+  </script>
 </body>
 </html>

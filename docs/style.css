@@ -526,3 +526,7 @@ details summary {
   padding: 0.8rem 1.1rem;
   border-radius: 999px;
 }
+
+sup {
+  font-size: 0.7em;
+}

@@ -63,27 +63,9 @@
     <p class="browse-label">Choose a part of the show journey</p>
 
     <div class="chips">
-      <button type="button" onclick="show('directions')">Getting there</button>
       <button type="button" onclick="show('parking')">Parking</button>
       <button type="button" onclick="show('leaving')">Leaving</button>
     </div>
-
-    <section id="directions" class="card" hidden tabindex="-1">
-      <p>
-        The event is at the National Exhibition Centre in Birmingham.
-        You can use the link below to open the venue in Google Maps.
-      </p>
-
-      <p>
-        <a
-          href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham"
-          target="_blank"
-          rel="noopener"
-        >
-          Open directions in Google Maps
-        </a>
-      </p>
-    </section>
 
     <section id="parking" class="card" hidden tabindex="-1">
       <p>
@@ -109,36 +91,35 @@
   </main>
 
   <script>
-    let currentAudio = null;
+  let currentAudio = null;
 
-    function stopCurrentAudio() {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-      }
-    }
-
-    function playEmbeddedAudio(id) {
-      stopCurrentAudio();
-      currentAudio = document.getElementById(id);
-
-      if (!currentAudio) return;
-
+  function stopCurrentAudio() {
+    if (currentAudio) {
+      currentAudio.pause();
       currentAudio.currentTime = 0;
-      currentAudio.play().catch(err => {
-        console.error("Embedded audio failed:", id, err);
-      });
     }
+  }
 
-    function show(id) {
-      document.getElementById('directions').hidden = true;
-      document.getElementById('parking').hidden = true;
-      document.getElementById('leaving').hidden = true;
+  function playEmbeddedAudio(id) {
+    stopCurrentAudio();
+    currentAudio = document.getElementById(id);
 
-      const section = document.getElementById(id);
-      section.hidden = false;
-      section.focus();
-    }
-  </script>
+    if (!currentAudio) return;
+
+    currentAudio.currentTime = 0;
+    currentAudio.play().catch(err => {
+      console.error("Embedded audio failed:", id, err);
+    });
+  }
+
+  function show(id) {
+    document.getElementById('parking').hidden = true;
+    document.getElementById('leaving').hidden = true;
+
+    const section = document.getElementById(id);
+    section.hidden = false;
+    section.focus();
+  }
+</script>
 </body>
 </html>

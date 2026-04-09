@@ -13,42 +13,58 @@
 
   <header class="wrap" aria-hidden="true">
     <p class="kicker">Know before you go</p>
-   <h1>Spring Home and Living Show</h1>
-<p class="sub">You’re ready to go.</p>
-
-<p>
-  <a class="primary-button" href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham">
-    Open directions
-  </a>
-</p>
-
-<p>
-  <button class="quiet-button" onclick="playEmbeddedAudio('knowBeforeAudio')">
-    Tap and listen
-  </button>
-</p>
+    <h1>Spring Home and Living Show</h1>
+    <p class="sub">You’re ready to go.</p>
   </header>
 
   <main class="wrap">
     <section aria-labelledby="page-title">
       <h1 id="page-title" class="sr-only">Spring Home and Living Show guide</h1>
       <p class="sr-only">
-        You have scanned the Spring Home and Living Show QR code. This guide will help you with directions, parking, arrival, and leaving the event.
+        You have scanned the Spring Home and Living Show code. This guide can help with arrival,
+        directions, parking, and leaving the event.
       </p>
     </section>
 
-    <p class="browse-label">What would you like help with?</p>
+    <section class="card" tabindex="-1">
+      <p>
+        The Spring Home and Living Show is at the National Exhibition Centre in Birmingham.
+      </p>
+
+      <p>
+        You are looking for Hall 3, Block B, Row 12.
+        It is just to the right as you enter the hall.
+      </p>
+
+      <p>
+        <a
+          class="primary-button"
+          href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham"
+          target="_blank"
+          rel="noopener"
+        >
+          Open directions
+        </a>
+      </p>
+
+      <p>
+        <button class="quiet-button" type="button" onclick="playEmbeddedAudio('knowBeforeAudio')">
+          Tap and listen
+        </button>
+      </p>
+    </section>
+
+    <p class="browse-label">Choose a part of the show journey</p>
 
     <div class="chips">
-      <button type="button" onclick="show('overview')">Event overview</button>
-      <button type="button" onclick="show('directions')">Directions</button>
+      <button type="button" onclick="show('overview')">Today’s show</button>
+      <button type="button" onclick="show('directions')">Getting there</button>
       <button type="button" onclick="show('parking')">Parking</button>
       <button type="button" onclick="show('leaving')">Leaving</button>
     </div>
 
-    <section id="overview" class="card" tabindex="-1">
+    <section id="overview" class="card" hidden tabindex="-1">
       <p>
-        The Spring Home and Living Show is at the National Exhibition Centre in Birmingham.
         Doors open at 10 in the morning on Saturday 12 April.
       </p>
 
@@ -71,9 +87,13 @@
       </p>
 
       <p>
-        <a class="primary-button" href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham">
-  Open directions
-</a>
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=National+Exhibition+Centre+Birmingham"
+          target="_blank"
+          rel="noopener"
+        >
+          Open directions in Google Maps
+        </a>
       </p>
 
       <p>
@@ -123,17 +143,6 @@
         currentAudio.pause();
         currentAudio.currentTime = 0;
       }
-    }
-
-    function playAudio(file) {
-      stopCurrentAudio();
-      currentAudio = new Audio(file);
-      currentAudio.preload = 'auto';
-      currentAudio.playsInline = true;
-
-      currentAudio.play().catch(err => {
-        console.error("Audio failed:", file, err);
-      });
     }
 
     function playEmbeddedAudio(id) {

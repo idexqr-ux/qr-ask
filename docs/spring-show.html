@@ -63,31 +63,10 @@
     <p class="browse-label">Choose a part of the show journey</p>
 
     <div class="chips">
-      <button type="button" onclick="show('parking')">Parking</button>
-      <button type="button" onclick="show('leaving')">Leaving</button>
+      <button type="button" onclick="playEmbeddedAudio('parkingAudio')">Parking</button>
     </div>
 
-    <section id="parking" class="card" hidden tabindex="-1">
-      <p>
-        Use Yellow Car Park, then take the shuttle bus to the main entrance.
-        This is the simplest route for arrival.
-      </p>
-
-      <p>
-        <button class="quiet-button" type="button" onclick="playEmbeddedAudio('parkingAudio')">
-          Listen again
-        </button>
-      </p>
-    </section>
-
-    <section id="leaving" class="card" hidden tabindex="-1">
-      <p>
-        When you are ready to leave, return to the shuttle bus point for Yellow Car Park.
-        The shuttle will take you back to your parking area.
-      </p>
-    </section>
-
-    <audio id="parkingAudio" src="audio/parking.mp3"></audio>
+  <audio id="parkingAudio" src="audio/parking.mp3"></audio>
   </main>
 
   <script>
@@ -111,15 +90,7 @@
       console.error("Embedded audio failed:", id, err);
     });
   }
-
-  function show(id) {
-    document.getElementById('parking').hidden = true;
-    document.getElementById('leaving').hidden = true;
-
-    const section = document.getElementById(id);
-    section.hidden = false;
-    section.focus();
-  }
+  
 </script>
 </body>
 </html>

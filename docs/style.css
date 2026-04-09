@@ -469,12 +469,13 @@ details summary {
 }
 
 .idexqr-content {
-  width: 100%;
   position: relative;
   background: #B8C6C1;
   border-radius: 18px;
-  padding: 14px 20px;
+  padding: 28px 20px;
   text-align: center;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .idexqr-content {

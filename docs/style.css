@@ -528,5 +528,6 @@ details summary {
 }
 
 sup {
-  font-size: 0.7em;
+  font-size: 0.65em;
+  vertical-align: 0.25em;
 }

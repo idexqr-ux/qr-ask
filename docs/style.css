@@ -609,6 +609,14 @@ sup {
   text-decoration: none;
 }
 
+.powered-by {
+  margin-top: 33px;   /* 👈 increase this */
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  opacity: 0.7;
+}
 .powered-by a:hover {
   text-decoration: underline;
 }

@@ -604,19 +604,21 @@ sup {
   margin: 0 auto;
 }
 
-.powered-by a {
-  color: var(--muted);
-  text-decoration: none;
-}
-
 .powered-by {
-  margin-top: 33px;   /* 👈 increase this */
+  margin-top: 33px;
   margin-bottom: 10px;
   font-size: 0.85rem;
   color: var(--muted);
   text-align: center;
   opacity: 0.7;
 }
+
+.powered-by a,
+.powered-by a:visited {
+  color: var(--muted);
+  text-decoration: none;
+}
+
 .powered-by a:hover {
   text-decoration: underline;
 }

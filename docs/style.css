@@ -615,12 +615,14 @@ sup {
 
 .powered-by a,
 .powered-by a:link,
-.powered-by a:visited {
-  color: var(--muted);
-  text-decoration: none;
+.powered-by a:visited,
+.powered-by a:hover,
+.powered-by a:active {
+  color: var(--muted) !important;
+  text-decoration: none !important;
 }
 
 .powered-by a:hover,
 .powered-by a:focus {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }

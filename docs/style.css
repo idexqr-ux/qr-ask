@@ -326,9 +326,16 @@ a.card:active {
 .card-summary {
   list-style: none;
   cursor: pointer;
-  padding: 0;   /* let quiet-button control spacing */
-  background: none;
+  padding: 0;
+  background: transparent;
   border: none;
+  color: inherit;
+  font-weight: inherit;
+  text-align: center;
+}
+
+.card-summary::-webkit-details-marker {
+  display: none;
 }
 
 .card-summary::after {
@@ -336,12 +343,10 @@ a.card:active {
 }
 
 .card-details[open] .card-summary {
-  color: #ffffff;
-  background: #8f1f19;
-  border-bottom: none;
   margin-bottom: 10px;
+  border-bottom: none;
+  color: inherit;
 }
-
 .row-top {
   display: flex;
   align-items: center;
@@ -585,7 +590,6 @@ sup {
 
 .card-summary.quiet-button {
   display: block;
-  text-align: center;
-  margin: 0 auto;
   max-width: 320px;
+  margin: 0 auto;
 }

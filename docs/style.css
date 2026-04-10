@@ -569,3 +569,23 @@ sup {
   margin:0 auto 20px;
   border-radius:16px;
 }
+
+.quiet-button {
+  display: inline-block;
+  background: #FFFFFF;
+  border: 1px solid #B8C6C1;
+  border-radius: 999px;
+  padding: 0.8rem 1.1rem;
+  font: inherit;
+  font-size: 0.98rem;
+  color: #2b2b2b;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.card-summary.quiet-button {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 320px;
+}

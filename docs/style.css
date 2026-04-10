@@ -546,3 +546,19 @@ sup {
 .action-btn:focus{
   background:#8f1f19;
 }
+
+.museum-logo{
+  max-width:140px;
+  height:auto;
+  display:block;
+  margin:0 auto 16px;
+}
+
+.hero-image{
+  width:100%;
+  max-width:420px;
+  height:auto;
+  display:block;
+  margin:0 auto 20px;
+  border-radius:16px;
+}

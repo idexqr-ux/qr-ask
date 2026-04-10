@@ -616,8 +616,8 @@ sup {
 .powered-by a,
 .powered-by a:visited,
 .powered-by a:link {
-  color: var(--muted);
-  text-decoration: none;
+  color: var(--muted) !important;
+  text-decoration: none !important;
 }
 
 .powered-by a:hover {

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Spring Home and Living Show — Know Before You Go</title>
   <meta name="description" content="A calm event guide for directions, parking, arrival, and leaving." />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 
 <body>
@@ -18,85 +18,82 @@
   </header>
 
   <main class="wrap">
-
     <section aria-labelledby="page-title">
-    <h1 id="page-title" class="sr-only">Spring Home and Living Show guide</h1>
-    <p class="sr-only">
-      You have scanned the Spring Home and Living Show code. This guide can help with arrival,
-      directions, parking, and leaving the event.
+      <h1 id="page-title" class="sr-only">Spring Home and Living Show guide</h1>
+      <p class="sr-only">
+        You have scanned the Spring Home and Living Show code. This guide can help with arrival,
+        directions, parking, and leaving the event.
+      </p>
+    </section>
+
+    <p class="sub">National Exhibition Centre, Birmingham</p>
+
+    <p class="muted-line">
+      Saturday 12<sup>th</sup> April — doors open at 10am
     </p>
-  </section>
 
-  <p class="muted-line">Travel and arrival</p>
+    <p class="muted-line">
+      Hall 3, Block B, Row 12 — just to the right as you enter
+    </p>
 
-  <div class="listen-group">
-    <a href="YOUR-TRAIN-LINK" class="quiet-button">Train travel</a>
-    <a href="YOUR-MAPS-LINK" class="quiet-button" target="_blank" rel="noopener">
-      Open directions in Google Maps
-    </a>
-  </div>
+    <div class="listen-group">
+      <a href="YOUR-CALENDAR-LINK" class="quiet-button" target="_blank" rel="noopener">
+        Add to calendar
+      </a>
+    </div>
 
-  <div class="listen-group">
-    <button class="quiet-button" type="button" onclick="playEmbeddedAudio('parkingAudio')">
-  Parking — note
-</button>
+    <p class="muted-line">Travel and arrival</p>
 
-    <a href="YOUR-TICKET-LINK" class="quiet-button">
-      View ticket QR
-    </a>
-  </div>
+    <div class="listen-group">
+      <a href="YOUR-TRAIN-LINK" class="quiet-button" target="_blank" rel="noopener">
+        Train travel
+      </a>
+      <a href="YOUR-MAPS-LINK" class="quiet-button" target="_blank" rel="noopener">
+        Open directions in Google Maps
+      </a>
+    </div>
 
-    <section class="card" tabindex="-1">
-...
-</section>
+    <div class="listen-group">
+      <button class="quiet-button" type="button" onclick="playEmbeddedAudio('parkingAudio')">
+        Parking — note
+      </button>
+      <a href="YOUR-TICKET-LINK" class="quiet-button">
+        View ticket QR
+      </a>
+    </div>
 
-<div class="chips">
-...
-</div>
+    <audio id="parkingAudio" src="audio/parking.mp3" preload="auto"></audio>
 
-<a class="action-btn" href="YOUR-TICKET-LINK">
-  View ticket QR
-</a>
-
-<audio id="eventAudio" ...>
-<audio id="parkingAudio" ...>
-
-<p class="back-link">
-  <a href="index.html">Back to IdexQR</a>
-</p>
-      
-  <footer class="footer" style="text-align: center;">
-    <a href="index.html" class="back-link">Back to IdexQR</a>
-  </footer>
-
-</main>
+    <footer class="footer" style="text-align: center;">
+      <a href="index.html" class="back-link">Back to IdexQR</a>
+    </footer>
+  </main>
 
   <script>
+    let currentAudio = null;
 
-  let currentAudio = null;
+    function stopCurrentAudio() {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+    }
 
-  function stopCurrentAudio() {
-    if (currentAudio) {
-      currentAudio.pause();
+    function playEmbeddedAudio(id) {
+      stopCurrentAudio();
+      currentAudio = document.getElementById(id);
+
+      if (!currentAudio) return;
+
       currentAudio.currentTime = 0;
+
+      const playPromise = currentAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.error("Embedded audio failed:", id, err);
+        });
+      }
     }
-  }
-
-  function playEmbeddedAudio(id) {
-    stopCurrentAudio();
-    currentAudio = document.getElementById(id);
-
-    if (!currentAudio) return;
-
-    currentAudio.currentTime = 0;
-
-    const playPromise = currentAudio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(err => {
-        console.error("Embedded audio failed:", id, err);
-      });
-    }
-  }
-</script>
+  </script>
 </body>
 </html>

@@ -614,7 +614,8 @@ sup {
 }
 
 .powered-by a,
-.powered-by a:visited {
+.powered-by a:visited,
+.powered-by a:link {
   color: var(--muted);
   text-decoration: none;
 }

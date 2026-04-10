@@ -75,31 +75,31 @@
 <audio id="parkingAudio" src="audio/parking.mp3" preload="auto"></audio>
 <audio id="trainAudio" src="audio/train.mp3" preload="auto"></audio>
  
-</script>
-    let currentAudio = null;
+<script>
+  let currentAudio = null;
 
-    function stopCurrentAudio() {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-      }
-    }
-
-    function playEmbeddedAudio(id) {
-      stopCurrentAudio();
-      currentAudio = document.getElementById(id);
-
-      if (!currentAudio) return;
-
+  function stopCurrentAudio() {
+    if (currentAudio) {
+      currentAudio.pause();
       currentAudio.currentTime = 0;
-
-      const playPromise = currentAudio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(err => {
-          console.error("Embedded audio failed:", id, err);
-        });
-      }
     }
-  </script>
+  }
+
+  function playEmbeddedAudio(id) {
+    stopCurrentAudio();
+    currentAudio = document.getElementById(id);
+
+    if (!currentAudio) return;
+
+    currentAudio.currentTime = 0;
+
+    const playPromise = currentAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(err => {
+        console.error("Embedded audio failed:", id, err);
+      });
+    }
+  }
+</script>
 </body>
 </html>

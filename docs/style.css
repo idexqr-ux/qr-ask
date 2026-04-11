@@ -626,3 +626,51 @@ sup {
 .powered-by a:focus {
   text-decoration: underline !important;
 }
+
+.save-ticket {
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+.save-line {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+.save-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: #5f7a72;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.save-link:hover,
+.save-link:focus {
+  text-decoration-thickness: 2px;
+  outline: none;
+}
+
+.save-help {
+  margin: 0.85rem auto 0;
+  max-width: 32rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: #f3f5f4;
+  text-align: left;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #444;
+}
+
+.save-help p {
+  margin: 0 0 0.6rem;
+}
+
+.save-help p:last-child {
+  margin-bottom: 0;
+}

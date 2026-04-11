@@ -695,10 +695,6 @@ sup {
 }
 
 .object-image {
-  display: block;
   max-width: 520px;
-  width: 90%;
-  height: auto;
-  margin: 0 auto 1.25rem;
-  border-radius: 12px;
+  width: 92%;
 }

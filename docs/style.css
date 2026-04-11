@@ -671,6 +671,12 @@ sup {
   margin: 0 0 0.6rem;
 }
 
+.share-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin: 0 4px;
+}
 .save-help p:last-child {
   margin-bottom: 0;
 }

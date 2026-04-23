@@ -230,6 +230,9 @@
       <div class="question-list">
         <button class="quiet-button" data-answer="coffeeAnswer">
           How do I make a coffee?
+        <button class="quiet-button" data-answer="waterTankAnswer">
+        Where is the water tank?
+        </button>  
         </button>
         <button class="quiet-button" data-answer="waterAnswer">
           How do I refill the water?
@@ -313,6 +316,23 @@
           <button class="small-button" data-stop>Stop audio</button>
         </div>
       </article>
+      
+      <article id="waterTankAnswer" class="answer" hidden>
+  <h2>Where is the water tank?</h2>
+
+  <p>
+    The water tank is usually at the back or to one side of the machine.
+  </p>
+
+  <p>
+    You can gently slide it out, fill it with fresh water, and place it back so it sits securely.
+  </p>
+
+  <div class="controls">
+    <button class="small-button" data-audio="audioWaterTank">Play audio</button>
+    <button class="small-button" data-stop>Stop audio</button>
+  </div>
+</article>
 
       <a href="#" class="footer-link">Back to IdexQR</a>
     </section>
@@ -335,6 +355,9 @@
     <audio id="audioStopped" preload="none">
       <source src="audio/machine-stopped.mp3" type="audio/mpeg" />
     </audio>
+    <audio id="audioWaterTank">
+  <source src="audio/water-tank.mp3" type="audio/mpeg" />   Ella
+</audio>
   </main>
 
   <script>

@@ -230,11 +230,16 @@
       <div class="question-list">
         <button class="quiet-button" data-answer="coffeeAnswer">
          How do I make a coffee?
+        </button> 
         <button class="quiet-button" data-answer="machineOnAnswer">
         How do I know the machine is on?  
+        </button>   
+        <button class="quiet-button" data-answer="podsGoAnswer">
+        Which way up do the pods go?
+        </button>   
         <button class="quiet-button" data-answer="waterTankAnswer">
         Where is the water tank?
-        </button>  
+         
         </button>
         <button class="quiet-button" data-answer="waterAnswer">
         How do I refill the water?
@@ -352,6 +357,22 @@
   </div>
 </article>   
 
+       <article id="podsGoAnswer" class="answer" hidden>
+  <h2>Which way up do the pods go?</h2>
+  <p>
+    The pod usually sits with the flat side facing down and the rounded side facing up.
+  </p>
+  <p>
+    If it doesn’t feel like it fits easily, don’t force it — just turn it the other way and try again.
+  </p>
+  
+  <div class="controls">
+    <button class="small-button" data-audio="audioPodsGo">Play audio</button>
+    <button class="small-button" data-stop>Stop audio</button>
+  </div>
+</article>   
+
+
       <a href="#" class="footer-link">Back to IdexQR</a>
     </section>
 
@@ -379,6 +400,9 @@
     <audio id="audioWaterTank">
   <source src="audio/water-tank.mp3" type="audio/mpeg" />   Ella
 </audio>
+    <audio id="audioPodsGo" preload="none">
+      <source src="audio/pods-go.mp3" type="audio/mpeg" />   Ella
+    </audio>
   </main>
 
   <script>

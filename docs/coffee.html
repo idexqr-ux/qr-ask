@@ -42,67 +42,36 @@
     .wrap {
       width: min(720px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 48px;
+      padding: 40px 0 48px;
     }
 
     .hero {
       text-align: center;
-      padding: 18px 0 12px;
+      padding: 0 0 12px;
     }
 
-    .kicker {
-      margin: 0 0 10px;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .ask-title {
+      font-size: 3rem;
+      font-weight: normal;
+      color: #6f7c78;
+      margin: 0 0 4px;
     }
 
-   .section-title {
-  font-size: 1.4rem;
-  font-weight: normal;
-  color: #2b2b2b;   /* 👈 main text colour */
-  margin-top: 0;
-  margin-bottom: 10px;
-}
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: normal;
+      color: #2b2b2b;
+      margin: 0 0 18px;
+    }
 
- .ask-title {
-  font-size: 3rem;
-  font-weight: normal;
-  color: #6f7c78;   /* 👈 soft grey */
-  margin-bottom: 4px;
-}
+    .sub {
+      font-size: 1.05rem;
+      color: #6f7c78;
+      margin: 10px auto;
+      max-width: 48ch;
+      text-align: center;
+    }
 
-    h1 {
-  font-size: 2.8rem;
-  font-weight: normal;
-  margin-bottom: 10px;
-}
-
-    h2 {
-  font-size: 1.4rem;
-  font-weight: normal;
-  color: #6f7c78;
-  margin-top: 0;
-}
-
- .nav-link {
-  margin: 12px 0;   /* 👈 creates space between them */
-}   
-
-  .soft-line {
-  font-size: 1.05rem;
-  color: #6f7c78;
-  margin-top: 6px;
-}
-    
-  .sub {
-  font-size: 1.05rem;
-  color: #6f7c78;
-  margin: 6px auto;
-  max-width: 48ch;
-  text-align: center;   /* 👈 this is the key */
-}
     .panel {
       background: var(--card);
       border: 1px solid var(--line);
@@ -112,11 +81,6 @@
       margin-top: 22px;
     }
 
-    .intro {
-      margin-top: 0;
-      color: var(--muted);
-    }
-
     .question-list {
       display: grid;
       gap: 12px;
@@ -124,8 +88,8 @@
     }
 
     p {
-  margin: 10px 0;
-}
+      margin: 10px 0;
+    }
 
     .quiet-button {
       appearance: none;
@@ -171,6 +135,7 @@
       margin: 0 0 10px;
       font-size: 1.2rem;
       font-weight: normal;
+      color: var(--ink);
     }
 
     .answer p {
@@ -209,21 +174,29 @@
       background: #f8fbfa;
     }
 
-    .footer-link {
-  color: inherit;              /* 👈 keeps same colour as text */
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
+    .nav-link {
+      margin: 14px 0;
+      text-align: center;
+    }
 
-.footer-link:hover {
-  border-bottom: 1px solid #6f7c78;  /* soft underline on hover */
-}
+    .footer-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .footer-link:hover,
+    .footer-link:focus-visible {
+      border-bottom: 1px solid #6f7c78;
+      outline: none;
+    }
 
     .powered-by {
-  color: #6f7c78;
-  font-size: 0.9rem;
-  margin-top: 10px;
-}
+      color: #6f7c78;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      text-align: center;
+    }
 
     .sr-only {
       position: absolute;
@@ -251,84 +224,121 @@
 <body>
   <main class="wrap">
     <section class="hero" aria-labelledby="page-title">
-      
-    <h1 class="ask-title">Ask</h1>
+      <h1 id="page-title" class="ask-title">Ask</h1>
+      <h2 class="section-title">Coffee Machine</h2>
 
-<h2 class="section-title">Coffee Machine</h2>
+      <p class="sub">
+        Calm, simple help for the small things you need in the moment.
+      </p>
 
-<p class="sub">
-  Calm, simple help for the small things you need in the moment.
-</p>
-
-<p class="sub">
-  You don’t need to remember everything — you can just check here.
-</p>
+      <p class="sub">
+        You don’t need to remember everything — you can just check here.
+      </p>
     </section>
 
     <section class="panel" aria-labelledby="ask-heading">
-      <h2>Coffee machine questions</h2>
+      <h2 id="ask-heading">Coffee machine questions</h2>
 
-<p>
-  Choose a question below and I’ll guide you through it. Audio is included for each answer.
-</p>
+      <p>
+        Choose a question below and I’ll guide you through it. Audio is included for each answer.
+      </p>
 
       <div class="question-list">
         <button class="quiet-button" data-answer="coffeeAnswer">
-         How do I make a coffee?
-        </button> 
+          How do I make a coffee?
+        </button>
         <button class="quiet-button" data-answer="machineOnAnswer">
-        How do I know the machine is on?  
-        </button>   
+          How do I know the machine is on?
+        </button>
         <button class="quiet-button" data-answer="podsGoAnswer">
-        Which way up do the pods go?
-        </button>   
+          Which way up do the pods go?
+        </button>
         <button class="quiet-button" data-answer="waterTankAnswer">
-        Where is the water tank?
-         
+          Where is the water tank?
         </button>
         <button class="quiet-button" data-answer="waterAnswer">
-        How do I refill the water?
+          How do I refill the water?
         </button>
         <button class="quiet-button" data-answer="podsAnswer">
-         How do I empty the used pods?
+          How do I empty the used pods?
         </button>
         <button class="quiet-button" data-answer="stoppedAnswer">
-         What should I do if it stops or seems stuck?
+          What should I do if it stops or seems stuck?
         </button>
       </div>
 
       <article id="coffeeAnswer" class="answer" hidden>
         <h2>How do I make a coffee?</h2>
         <p>
-          Place your cup under the spout.
-          Lift the lever fully, insert your pod, and close the lever gently.
-          </p>
+          Place your cup under the spout. Lift the lever fully, insert your pod, and close the lever gently.
+        </p>
         <p>
-          Along the front of the machine, you’ll usually find a small row of buttons.
-          The coffee button is often one of the first you’ll come across — and is sometimes marked with a small cup symbol.
-          </p>
+          Along the front of the machine, you’ll usually find a small row of buttons. The coffee button is often one of the first you’ll come across — and is sometimes marked with a small cup symbol.
+        </p>
         <p>
-         Press the coffee button once, then wait while the machine runs.
-         Your drink should begin to pour within a few seconds.
+          Press the coffee button once, then wait while the machine runs. Your drink should begin to pour within a few seconds.
         </p>
         <p>
           If you would like a larger drink, use the lungo button — often a little further along the row, if your machine has one.
         </p>
-        <p 
-          class="helper">A gentle pause before lifting the cup helps avoid drips.
+        <p class="helper">
+          A gentle pause before lifting the cup helps avoid drips.
         </p>
         <div class="controls">
           <button class="small-button" data-audio="audioCoffee">Play audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
-        
+      </article>
+
+      <article id="machineOnAnswer" class="answer" hidden>
+        <h2>How do I know the machine is on?</h2>
+        <p>
+          Most machines will show a small light when they’re on.
+        </p>
+        <p>
+          You might see a steady light, or one that flashes while the machine is warming up.
+        </p>
+        <p>
+          Once the light becomes steady, it’s usually ready to use.
+        </p>
+        <div class="controls">
+          <button class="small-button" data-audio="audioMachineOn">Play audio</button>
+          <button class="small-button" data-stop>Stop audio</button>
+        </div>
+      </article>
+
+      <article id="podsGoAnswer" class="answer" hidden>
+        <h2>Which way up do the pods go?</h2>
+        <p>
+          The pod usually sits with the flat side facing down and the rounded side facing up.
+        </p>
+        <p>
+          If it doesn’t feel like it fits easily, don’t force it — just turn it the other way and try again.
+        </p>
+        <div class="controls">
+          <button class="small-button" data-audio="audioPodsGo">Play audio</button>
+          <button class="small-button" data-stop>Stop audio</button>
+        </div>
+      </article>
+
+      <article id="waterTankAnswer" class="answer" hidden>
+        <h2>Where is the water tank?</h2>
+        <p>
+          The water tank is usually at the back or to one side of the machine.
+        </p>
+        <p>
+          You can gently slide it out, fill it with fresh water, and place it back so it sits securely.
+        </p>
+        <div class="controls">
+          <button class="small-button" data-audio="audioWaterTank">Play audio</button>
+          <button class="small-button" data-stop>Stop audio</button>
+        </div>
       </article>
 
       <article id="waterAnswer" class="answer" hidden>
         <h2>How do I refill the water?</h2>
         <p>
-          Remove the water tank from the back or side of the machine, depending on the model. Fill it with fresh cold water,
-          then place it back firmly so it sits flat and connected properly.
+          Remove the water tank from the back or side of the machine, depending on the model. Fill it with fresh cold water, then place it back firmly so it sits flat and connected properly.
         </p>
         <p>
           If the machine does not respond straight away, check that the tank is pushed fully into place.
@@ -342,8 +352,7 @@
       <article id="podsAnswer" class="answer" hidden>
         <h2>How do I empty the used pods?</h2>
         <p>
-          Open the front or lift the lever so the used pod drops into the container. Then slide out the pod drawer or capsule tray,
-          empty it into the bin, and place it back securely.
+          Open the front or lift the lever so the used pod drops into the container. Then slide out the pod drawer or capsule tray, empty it into the bin, and place it back securely.
         </p>
         <p>
           If the drawer feels full or stiff, it usually means a pod is resting awkwardly inside. A gentle shake is often enough.
@@ -357,8 +366,7 @@
       <article id="stoppedAnswer" class="answer" hidden>
         <h2>What should I do if it stops or seems stuck?</h2>
         <p>
-          First, check the basics: is there water in the tank, is the pod drawer full, and is the lever fully closed?
-          If all looks fine, turn the machine off, wait a few seconds, and switch it on again.
+          First, check the basics: is there water in the tank, is the pod drawer full, and is the lever fully closed? If all looks fine, turn the machine off, wait a few seconds, and switch it on again.
         </p>
         <p>
           If it still does not respond, it may need a reset or descaling, depending on the machine.
@@ -368,55 +376,6 @@
           <button class="small-button" data-stop>Stop audio</button>
         </div>
       </article>
-      
-      <article id="waterTankAnswer" class="answer" hidden>
-  <h2>Where is the water tank?</h2>
-  <p>
-    The water tank is usually at the back or to one side of the machine.
-  </p>
-  <p>
-    You can gently slide it out, fill it with fresh water, and place it back so it sits securely.
-  </p>
-
-  <div class="controls">
-    <button class="small-button" data-audio="audioWaterTank">Play audio</button>
-    <button class="small-button" data-stop>Stop audio</button>
-  </div>       
-</article>
-      
-    <article id="machineOnAnswer" class="answer" hidden>
-  <h2>How do I know the machine is on?</h2>
-  <p>
-    Most machines will show a small light when they’re on.
-  </p>
-  <p>
-    You might see a steady light, or one that flashes while the machine is warming up.
-  </p>
-  <p>
-    Once the light becomes steady, it’s usually ready to use.
-  </p>
-
-  <div class="controls">
-    <button class="small-button" data-audio="audioMachineOn">Play audio</button>
-    <button class="small-button" data-stop>Stop audio</button>
-  </div>
-</article>   
-
-       <article id="podsGoAnswer" class="answer" hidden>
-  <h2>Which way up do the pods go?</h2>
-  <p>
-    The pod usually sits with the flat side facing down and the rounded side facing up.
-  </p>
-  <p>
-    If it doesn’t feel like it fits easily, don’t force it — just turn it the other way and try again.
-  </p>
-  
-  <div class="controls">
-    <button class="small-button" data-audio="audioPodsGo">Play audio</button>
-    <button class="small-button" data-stop>Stop audio</button>
-  </div>
-</article>   
-      
     </section>
 
     <section class="sr-only" aria-label="Screen reader introduction">
@@ -428,33 +387,38 @@
     <audio id="audioCoffee" preload="none">
       <source src="audio/make-a-coffee.mp3" type="audio/mpeg" />
     </audio>
-     <audio id="audioMachineOn" preload="none">
+
+    <audio id="audioMachineOn" preload="none">
       <source src="audio/machine-on.mp3" type="audio/mpeg" />
     </audio>
+
+    <audio id="audioPodsGo" preload="none">
+      <source src="audio/pods-go.mp3" type="audio/mpeg" />
+    </audio>
+
+    <audio id="audioWaterTank" preload="none">
+      <source src="audio/water-tank.mp3" type="audio/mpeg" />
+    </audio>
+
     <audio id="audioWater" preload="none">
       <source src="audio/refill-water.mp3" type="audio/mpeg" />
     </audio>
+
     <audio id="audioPods" preload="none">
       <source src="audio/empty-pods.mp3" type="audio/mpeg" />
     </audio>
+
     <audio id="audioStopped" preload="none">
       <source src="audio/machine-stopped.mp3" type="audio/mpeg" />
     </audio>
-    <audio id="audioWaterTank">
-  <source src="audio/water-tank.mp3" type="audio/mpeg" />   Ella
-</audio>
-    <audio id="audioPodsGo" preload="none">
-      <source src="audio/pods-go.mp3" type="audio/mpeg" />   Ella
-    </audio>
 
-  <p class="nav-link">
-  <a href="index.html" class="footer-link">Back to Ask</a>
-</p>
+    <p class="nav-link">
+      <a href="index.html" class="footer-link">Back to Ask</a>
+    </p>
 
-<p class="nav-link">
-  <a href="https://idexqr.com" class="footer-link">Back to IdexQR</a>
-</p>
-    
+    <p class="nav-link">
+      <a href="https://idexqr.com" class="footer-link">Back to IdexQR</a>
+    </p>
   </main>
 
   <script>
@@ -510,7 +474,7 @@
   </script>
 
   <footer style="text-align: center; margin-top: 30px;">
-  <p class="powered-by">Powered by IdexQR®</p>
-</footer>
+    <p class="powered-by">Powered by IdexQR®</p>
+  </footer>
 </body>
 </html>

@@ -156,24 +156,28 @@
       margin-top: 14px;
     }
 
-    .small-button {
-      appearance: none;
-      border: 1px solid var(--line);
-      background: white;
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 10px 14px;
-      font: inherit;
-      cursor: pointer;
-    }
+    .controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0 16px;
+}
 
-    .small-button:hover,
-    .small-button:focus-visible {
-      outline: none;
-      border-color: var(--brand-deep);
-      background: #f8fbfa;
-    }
+.small-button {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 10px 15px;
+  font: inherit;
+  cursor: pointer;
+}
 
+.small-button:first-child {
+  border-color: var(--brand-deep);
+  background: #edf4f1;
+}
     .nav-link {
       margin: 14px 0;
       text-align: center;
@@ -270,7 +274,7 @@
       <article id="coffeeAnswer" class="answer" hidden>
         <h2>How do I make a coffee?</h2>
         <div class="controls">
-          <button class="small-button" data-audio="audioCoffee">Play audio</button>
+          <button class="small-button" data-audio="audioCoffee">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
         <p>
@@ -294,7 +298,7 @@
       <article id="machineOnAnswer" class="answer" hidden>
         <h2>How do I know the machine is on?</h2>
         <div class="controls">
-          <button class="small-button" data-audio="audioMachineOn">Play audio</button>
+          <button class="small-button" data-audio="audioMachineOn">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
         <p>
@@ -312,7 +316,7 @@
       <article id="podsGoAnswer" class="answer" hidden>
         <h2>Which way up do the pods go?</h2>
         <div class="controls">
-          <button class="small-button" data-audio="audioPodsGo">Play audio</button>
+          <button class="small-button" data-audio="audioPodsGo">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
         <p>
@@ -322,7 +326,7 @@
           If it doesn’t feel like it fits easily, don’t force it — just turn it the other way and try again.
         </p>
         <div class="controls">
-          <button class="small-button" data-audio="audioPodsGo">Play audio</button>
+          <button class="small-button" data-audio="audioPodsGo">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
       </article>
@@ -330,7 +334,7 @@
       <article id="waterTankAnswer" class="answer" hidden>
         <h2>Where is the water tank?</h2>
         <div class="controls">
-          <button class="small-button" data-audio="audioWaterTank">Play audio</button>
+          <button class="small-button" data-audio="audioWaterTank">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
         <p>
@@ -344,7 +348,7 @@
       <article id="waterAnswer" class="answer" hidden>
         <h2>How do I refill the water?</h2>
         <div class="controls">
-          <button class="small-button" data-audio="audioWater">Play audio</button>
+          <button class="small-button" data-audio="audioWater">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
         <p>
@@ -358,7 +362,7 @@
       <article id="podsAnswer" class="answer" hidden>
         <h2>How do I empty the used pods?</h2>
         <div class="controls">
-          <button class="small-button" data-audio="audioPods">Play audio</button>
+          <button class="small-button" data-audio="audioPods">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
         <p>
@@ -372,7 +376,7 @@
       <article id="stoppedAnswer" class="answer" hidden>
         <h2>What should I do if it stops or seems stuck?</h2>
         <div class="controls">
-          <button class="small-button" data-audio="audioStopped">Play audio</button>
+          <button class="small-button" data-audio="audioStopped">Start audio</button>
           <button class="small-button" data-stop>Stop audio</button>
         </div>
         <p>

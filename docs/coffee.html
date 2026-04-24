@@ -246,13 +246,22 @@
       <h1 id="page-title" class="ask-title">Ask</h1>
       <h2 class="section-title">Coffee Machine</h2>
 
-      <p class="sub">
-        Calm, simple help for the small things you need in the moment.
-      </p>
+     <p class="sub">
+  Calm, simple help for the small things you need in the moment.
+</p>
 
-      <p class="sub">
-        <em>You don’t need to remember everything —<br>you can just check here.</em>
-      </p>
+<p class="sub">
+  <em>You don’t need to remember everything —<br>you can just check here.</em>
+</p>
+
+<div style="margin-top: 16px;">
+  <button id="startVoice" class="small-button">
+    Ask by voice
+  </button>
+  <p id="voiceStatus" class="sub" style="display:none;">
+  Listening…
+</p>
+</div>
     </section>
 
     <section class="panel" aria-labelledby="ask-heading">
@@ -493,6 +502,71 @@
     const stopButtons = document.querySelectorAll('[data-stop]');
     let currentAudio = null;
 
+const startVoice = document.getElementById('startVoice');
+const voiceStatus = document.getElementById('voiceStatus');
+
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+  const recognition = new SpeechRecognition();
+  recognition.lang = 'en-GB';
+  recognition.interimResults = false;
+
+  startVoice.addEventListener('click', () => {
+    voiceStatus.style.display = 'block';
+    voiceStatus.textContent = 'Listening…';
+    recognition.start();
+  });
+
+  recognition.onresult = (event) => {
+    const spoken = event.results[0][0].transcript.toLowerCase();
+
+    voiceStatus.textContent = 'Just a moment…';
+
+    stopCurrentAudio();
+
+    if (spoken.includes('coffee')) {
+  openAnswer('coffeeAnswer');
+  document.querySelector('[data-audio="audioCoffee"]').click();
+} else if (spoken.includes('tank')) {
+  openAnswer('waterTankAnswer');
+  document.querySelector('[data-audio="audioWaterTank"]').click();
+} else if (spoken.includes('water')) {
+  openAnswer('waterAnswer');
+  document.querySelector('[data-audio="audioWater"]').click();
+} else if (spoken.includes('pods')) {
+  openAnswer('podsAnswer');
+  document.querySelector('[data-audio="audioPods"]').click();
+} else if (spoken.includes('stuck') || spoken.includes('stop') || spoken.includes('stopped')) {
+  openAnswer('stoppedAnswer');
+  document.querySelector('[data-audio="audioStopped"]').click();
+} else if (spoken.includes('machine')) {
+  openAnswer('machineOnAnswer');
+  document.querySelector('[data-audio="audioMachineOn"]').click();
+} else {
+  voiceStatus.textContent = 'I didn’t quite catch that — try asking about coffee, water, pods, or the machine.';
+  return;
+}
+
+    setTimeout(() => {
+      voiceStatus.style.display = 'none';
+    }, 1500);
+  };
+
+  recognition.onerror = () => {
+    voiceStatus.textContent = 'Sorry, something went wrong. Please try again.';
+  };
+
+  recognition.onend = () => {
+    setTimeout(() => {
+      voiceStatus.style.display = 'none';
+    }, 1500);
+  };
+} else {
+  startVoice.style.display = 'none';
+}
+    
     function stopCurrentAudio() {
       if (currentAudio) {
         currentAudio.pause();

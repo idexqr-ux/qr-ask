@@ -5,6 +5,7 @@
   --card: #F1F4F3;
   --border: #d7dde3;
   --chip: #ffffff;
+  --sapphire-accent: #2F5DA8;
 }
 
 * { box-sizing: border-box; }
@@ -14,7 +15,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: Georgia, serif;
-  background: #F7F9F8;
+  background: #F3F0E8;
   color: #2b2b2b;
   display: flex;
   flex-direction: column;
@@ -462,6 +463,25 @@ details summary {
 .quiet-button:focus {
   background: #B8C6C1;          /* gently deeper on interaction */
   border-color: #AEBDB7;
+}
+
+.stop-inline {
+  display: inline-block;
+  background: #EAF1ED;
+  border: 1px solid #C9D5D0;
+  border-radius: 999px;
+  padding: 0.8rem 1.1rem;
+  font: inherit;
+  font-size: 0.98rem;
+  color: var(--sapphire-accent);
+  cursor: pointer;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.stop-inline:hover,
+.stop-inline:focus {
+  background: #DDE9E3;
 }
 
 .sr-only {

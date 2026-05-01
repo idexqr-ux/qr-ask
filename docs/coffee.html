@@ -294,7 +294,7 @@
 </button>
 
 <button class="quiet-button" onclick="playSection('audioPodGo', 'podGoAnswer')">
-  Which way up does the pod go?
+  Which way round does the pod go?
 </button>
 
 <button class="quiet-button" onclick="playSection('audioWaterTank', 'waterTankAnswer')">
@@ -551,7 +551,7 @@
   ) {
     playSection('audioCoffee', 'coffeeAnswer');
 
-    } else if (
+  } else if (
     spokenText.includes('turn on') ||
     spokenText.includes('machine on') ||
     spokenText.includes('light') ||
@@ -568,7 +568,7 @@
     spokenText.includes('go in')
   ) {
     playSection('audioPodGo', 'podGoAnswer');
-}
+
   } else if (
     spokenText.includes('water tank') ||
     spokenText.includes('tank') ||
@@ -607,8 +607,7 @@
     voiceStatus.textContent =
       'I heard you, but I could not match that to one of the questions yet.';
   }
-    };
-
+};
     recognition.onerror = () => {
       voiceStatus.textContent = 'I could not hear that clearly. Please try again.';
     };
@@ -624,4 +623,4 @@
 </script>
 </body>
 </html>
-<!-- Ask voice update v42 -->
+<!-- Ask voice update v43 -->

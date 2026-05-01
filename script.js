@@ -1,10 +1,11 @@
-<audio id="makeCoffeeAudio" src="audio/coffee-make.mp3" preload="none"></audio>
-<audio id="machineOnAudio" src="audio/coffee-power.mp3" preload="none"></audio>
-<audio id="podGoAudio" src="audio/coffee-pod.mp3" preload="none"></audio>
-<audio id="waterTankAudio" src="audio/coffee-tank.mp3" preload="none"></audio>
-<audio id="refillWaterAudio" src="audio/coffee-refill.mp3" preload="none"></audio>
-<audio id="emptyPodsAudio" src="audio/coffee-empty.mp3" preload="none"></audio>
-<audio id="machineStoppedAudio" src="audio/coffee-stopped.mp3" preload="none"></audio>
+<audio id="coffeeMakeAudio" src="audio/coffee-make.mp3" preload="none"></audio>
+<audio id="coffeePowerAudio" src="audio/coffee-power.mp3" preload="none"></audio>
+<audio id="coffeePodAudio" src="audio/coffee-pod.mp3" preload="none"></audio>
+<audio id="coffeeTankAudio" src="audio/coffee-tank.mp3" preload="none"></audio>
+<audio id="coffeeRefillAudio" src="audio/coffee-refill.mp3" preload="none"></audio>
+<audio id="coffeeEmptyAudio" src="audio/coffee-empty.mp3" preload="none"></audio>
+<audio id="coffeeStoppedAudio" src="audio/coffee-stopped.mp3" preload="none"></audio>
+
 
     const answers = {
       coffeeAnswer: {

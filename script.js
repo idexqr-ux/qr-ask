@@ -145,4 +145,3 @@ function showAnswer(answerId) {
         status.textContent = "Voice did not start clearly. Please tap a question below.";
       };
     }
-  </script>

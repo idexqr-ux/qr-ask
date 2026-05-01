@@ -490,32 +490,27 @@
   }
 
   function playSection(audioId, answerId) {
-    stopCurrentAudio();
+  stopCurrentAudio();
 
-    document.querySelectorAll('.answer').forEach(answer => {
-      answer.hidden = true;
-    });
+  document.querySelectorAll('.answer').forEach(answer => {
+    answer.hidden = true;
+  });
 
-    clearActiveButtons();
+  clearActiveButtons();
 
-    const selectedAudio = document.getElementById(audioId);
-    const selectedAnswer = document.getElementById(answerId);
+  const selectedAudio = document.getElementById(audioId);
+  const selectedAnswer = document.getElementById(answerId);
 
-    if (selectedAnswer) {
-      selectedAnswer.hidden = false;
-    }
-
-    if (window.event && window.event.currentTarget) {
-  window.event.currentTarget.classList.add('active');
-}
-
-       if (selectedAudio) {
-      currentAudio = selectedAudio;
-      currentAudio.currentTime = 0;
-      currentAudio.play().catch(() => {});
-    }
+  if (selectedAnswer) {
+    selectedAnswer.hidden = false;
   }
 
+  if (selectedAudio) {
+    currentAudio = selectedAudio;
+    currentAudio.currentTime = 0;
+    currentAudio.play().catch(() => {});
+  }
+}
   const startVoiceButton = document.getElementById('startVoice');
   const voiceStatus = document.getElementById('voiceStatus');
 
@@ -544,13 +539,14 @@
 
   console.log(spokenText);
 voiceStatus.textContent = `You said: ${spokenText}`;
-  if (
-    spokenText.includes('make') ||
-    spokenText.includes('coffee') ||
-    spokenText.includes('drink')
-  ) {
-    playSection('audioCoffee', 'coffeeAnswer');
-
+ if (
+  spokenText.includes('make') ||
+  spokenText.includes('coffee') ||
+  spokenText.includes('drink')
+) {
+  alert('Coffee matched');
+  playSection('audioCoffee', 'coffeeAnswer');
+}
   } else if (
     spokenText.includes('turn on') ||
     spokenText.includes('machine on') ||

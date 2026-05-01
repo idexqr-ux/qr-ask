@@ -3,223 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Ask — Coffee Machine</title>
-  <meta
-    name="description"
-    content="A calm, simple Ask demo for a coffee machine in the IdexQR style."
-  />
+  <meta name="description" content="A calm Ask demo for coffee machine support using IdexQR." />
 
   <style>
     :root {
-  --bg: #F7F9F8;
-  --card: #F1F4F3;
-  --line: #D7DDE3;
-  --soft: #F3F5F4;
-  --ink: #1c2623;
-  --muted: #66726e;
-  --brand: #C9D5D0;
-  --brand-deep: #8EA39C;
-  --shadow: 0 8px 24px rgba(31, 42, 39, 0.05);
-  --radius: 22px;
-}
+      --bg: #f7f9f8;
+      --card: #f1f4f3;
+      --card-soft: #ffffff;
+      --line: #d7dde3;
+      --ink: #1c2623;
+      --muted: #66726e;
+      --celadon: #c9d5d0;
+      --celadon-soft: #e5ece9;
+      --sapphire: #174a7c;
+      --sapphire-dark: #10385f;
+      --shadow: 0 18px 45px rgba(28, 38, 35, 0.08);
+    }
 
     * {
       box-sizing: border-box;
     }
 
-    html,
     body {
       margin: 0;
-      padding: 0;
-      background: var(--bg);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, #ffffff 0%, var(--bg) 45%, #edf3f1 100%);
       color: var(--ink);
-      font-family: Georgia, serif;
-      line-height: 1.65;
-    }
-
-    body {
-      min-height: 100vh;
-    }
-
-    .wrap {
-      width: min(720px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 40px 0 48px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 0 0 12px;
-    }
-
-    .ask-title {
-      font-size: 3rem;
-      font-weight: normal;
-      color: #6f7c78;
-      margin: 0 0 4px;
-    }
-
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: normal;
-      color: #2b2b2b;
-      margin: 0 0 18px;
-    }
-
-    .sub {
-      font-size: 1.05rem;
-      color: #6f7c78;
-      margin: 10px auto;
-      max-width: 52ch;
-      text-align: center;
-      line-height: 1.7;
-    }
-
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      margin-top: 22px;
-    }
-
-    .question-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    p {
-      margin: 10px 0;
-    }
-
-    .quiet-button {
-      appearance: none;
-      width: 100%;
-      border: 1px solid var(--line);
-      background: var(--bg);
-      color: var(--ink);
-      border-radius: 16px;
-      padding: 15px 16px;
-      font: inherit;
-      font-size: 1rem;
-      text-align: left;
-      cursor: pointer;
-      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-    }
-
-    .quiet-button:hover,
-    .quiet-button:focus-visible {
-      outline: none;
-      transform: translateY(-1px);
-      border-color: var(--brand-deep);
-      background: #EAF1ED;
-    }
-
-    .quiet-button.active {
-      background: #DDE9E3;
-      border-color: var(--brand-deep);
-    }
-
-   .answer {
-  margin-top: 18px;
-  padding: 18px;
-  border-radius: 18px;
-  background: #F7F9F8;
-  border: 1px solid var(--line);
-}
-
-    .answer[hidden] {
-      display: none;
-    }
-
-    .answer h2 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-      font-weight: normal;
-      color: var(--ink);
-      line-height: 1.35;
-    }
-
-    .answer p {
-      margin: 0 0 14px;
-      color: var(--ink);
-      line-height: 1.7;
-    }
-
-    .helper {
-      margin-top: 10px;
-      font-size: 0.96rem;
-      color: var(--muted);
       line-height: 1.6;
-    }
-
-   .controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 18px;
-}
-
- #startVoice {
-  font-family: Georgia, serif; 
-  background: #C9D5D0;
-  border: 1px solid #B8C6C1;
-  border-radius: 999px;
-
-  padding: 12px 22px;
-  min-width: 150px;
-
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #2b2b2b;
-}
-
-  .small-button.stop-audio-button {
-  display: block;
-  margin: 18px auto 0;
-  border-radius: 999px;
-
-  padding: 10px 20px;
-  min-width: 130px;
-
-  color: #0f52ba;
-  border: 1px solid rgba(15, 82, 186, 0.45);
-  background: rgba(15, 82, 186, 0.08);
-
-  text-align: center;
-}
-
-.small-button.stop-audio-button:hover,
-.small-button.stop-audio-button:focus-visible {
-  color: #0f52ba;
-  border-color: rgba(15, 82, 186, 0.65);
-  background: rgba(15, 82, 186, 0.12);
-}
-
-    .nav-link {
-      margin: 14px 0;
-      text-align: center;
-    }
-
-    .footer-link {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
-
-    .footer-link:hover,
-    .footer-link:focus-visible {
-      border-bottom: 1px solid #6f7c78;
-      outline: none;
-    }
-
-    .powered-by {
-      color: #6f7c78;
-      font-size: 0.9rem;
-      margin-top: 30px;
-      text-align: center;
     }
 
     .sr-only {
@@ -234,389 +47,475 @@
       border: 0;
     }
 
-    @media (max-width: 560px) {
-      .panel {
-        padding: 18px;
+    .page {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 34px 18px 44px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin: 0 0 22px;
+      font-weight: normal;
+    }
+
+    .brand sup {
+      font-size: 0.55em;
+      top: -0.45em;
+      position: relative;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 9vw, 4.2rem);
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      margin: 12px auto 0;
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .intro-card,
+    .question-card {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .intro-card {
+      padding: 24px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .intro-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .voice-button,
+    .question-button,
+    .stop-button {
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: Georgia, "Times New Roman", serif;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .voice-button {
+      background: var(--celadon);
+      color: var(--ink);
+      padding: 13px 24px;
+      font-size: 1.02rem;
+      box-shadow: 0 8px 18px rgba(28, 38, 35, 0.08);
+    }
+
+    .voice-button:hover,
+    .question-button:hover,
+    .stop-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .voice-status {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      min-height: 1.5em;
+    }
+
+    .questions {
+      display: grid;
+      gap: 16px;
+    }
+
+    .question-card {
+      padding: 18px;
+    }
+
+    .question-button {
+      width: 100%;
+      background: var(--celadon-soft);
+      color: var(--ink);
+      padding: 15px 18px;
+      font-size: 1.05rem;
+      text-align: center;
+      border: 1px solid var(--celadon);
+    }
+
+    .answer {
+      display: none;
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--ink);
+    }
+
+    .answer.show {
+      display: block;
+    }
+
+    .answer p {
+      margin: 0 0 16px;
+    }
+
+    .stop-wrap {
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .stop-button {
+      background: var(--sapphire);
+      color: #ffffff;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      min-width: 132px;
+    }
+
+    .stop-button:hover {
+      background: var(--sapphire-dark);
+    }
+
+    footer {
+      margin-top: 34px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 26px 14px 36px;
       }
 
-      .quiet-button {
+      .intro-card,
+      .question-card {
+        border-radius: 24px;
+      }
+
+      .question-card {
         padding: 14px;
+      }
+
+      .answer {
+        padding: 16px;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <section class="sr-only">
-      <h1>Ask — coffee machine help</h1>
-      <p>
-      Tap the Ask by voice button to speak your question, or choose one of the questions below to hear a guided answer.
-      </p>
-    </section>
-
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title" class="ask-title">Ask</h1>
-      <h2 class="section-title">Coffee Machine</h2>
-
-     <p class="sub">
-  Calm, simple help for the small things you need in the moment.
-</p>
-
-<p class="sub">
-  <em>You don’t need to remember everything —<br>you can just check here.</em>
-</p>
-
-<div style="margin-top: 16px;">
-  <button id="startVoice" class="small-button">
-    Ask by voice
-  </button>
-  <p id="voiceStatus" class="sub" style="display:none;">
-  Listening…
-</p>
-</div>
-    </section>
-
-    <section class="panel" aria-labelledby="ask-heading">
-      <h2 id="ask-heading">Coffee machine questions</h2>
-
-      <p>
-        Choose a question below and I’ll guide you through it. Audio is included for each answer.
-      </p>
-
-      <div class="question-list">
-        <button class="quiet-button" onclick="playSection('audioCoffee', 'coffeeAnswer')">
-  How do I make a coffee?
-</button>
-
-<button class="quiet-button" onclick="playSection('audioMachineOn', 'machineOnAnswer')">
-  How do I know the machine is on?
-</button>
-
-<button class="quiet-button" onclick="playSection('audioPodGo', 'podGoAnswer')">
-  Which way round does the pod go?
-</button>
-
-<button class="quiet-button" onclick="playSection('audioWaterTank', 'waterTankAnswer')">
-  Where is the water tank?
-</button>
-
-<button class="quiet-button" onclick="playSection('audioWater', 'waterAnswer')">
-  How do I refill the water?
-</button>
-
-<button class="quiet-button" onclick="playSection('audioPods', 'podsAnswer')">
-  How do I empty the used pods?
-</button>
-
-<button class="quiet-button" onclick="playSection('audioStopped', 'stoppedAnswer')">
-  What should I do if it stops or seems stuck?
-</button>
-      </div>
-
-      <article id="coffeeAnswer" class="answer" hidden aria-live="polite">
-        <p>
-          Place your cup under the spout. Lift the lever fully, insert your pod, and close the lever gently.
-        </p>
-        <p>
-          Along the front of the machine, you’ll usually find a small row of buttons. The coffee button is often one of the first you’ll come across — and is sometimes marked with a small cup symbol.
-        </p>
-        <p>
-          Press the coffee button once, then wait while the machine runs. Your drink should begin to pour within a few seconds.
-        </p>
-        <p>
-          If you would like a larger drink, use the lungo button — often a little further along the row, if your machine has one.
-        </p>
-        <p class="helper">
-          A gentle pause before lifting the cup helps avoid drips.
-        </p>
-        <div class="controls">
-        <button class="small-button stop-audio-button" type="button" onclick="stopCurrentAudio()">
-  Stop audio
-</button>
-        </div>
-      </article>
-
-      <article id="machineOnAnswer" class="answer" hidden aria-live="polite">        
-        <p>
-          Most machines will show a small light when they’re on.
-        </p>
-        <p>
-          You might see a steady light, or one that flashes while the machine is warming up.
-        </p>
-        <p>
-          Once the light becomes steady, it’s usually ready to use.
-        </p>
-          <div class="controls">
-           <button class="small-button stop-audio-button" type="button" onclick="stopCurrentAudio()">
-  Stop audio
-</button>
-        </div>
-      </article>
-
-      <article id="podGoAnswer" class="answer" hidden aria-live="polite">
-        <p>
-          The pod usually sits with the flat side facing down and the rounded side facing up.
-        </p>
-        <p>
-          If it doesn’t feel like it fits easily, don’t force it — just turn it the other way and try again.
-        </p>
-        <div class="controls">
-           <button class="small-button stop-audio-button" type="button" onclick="stopCurrentAudio()">
-  Stop audio
-</button>
-        </div>
-      </article>
-
-      <article id="waterTankAnswer" class="answer" hidden aria-live="polite">
-         <p>
-          The water tank is usually at the back or to one side of the machine.
-        </p>
-        <p>
-          You can gently slide it out, fill it with fresh water, and place it back so it sits securely.
-        </p>
-          <div class="controls">
-           <button class="small-button stop-audio-button" type="button" onclick="stopCurrentAudio()">
-  Stop audio
-</button>
-        </div>
-      </article>
-
-      <article id="waterAnswer" class="answer" hidden aria-live="polite">
-         <p>
-          Remove the water tank from the back or side of the machine, depending on the model. Fill it with fresh cold water, then place it back firmly so it sits flat and connected properly.
-        </p>
-        <p>
-          If the machine does not respond straight away, check that the tank is pushed fully into place.
-        </p>
-          <div class="controls">
-          <button class="small-button stop-audio-button" type="button" onclick="stopCurrentAudio()">
-  Stop audio
-</button>
-        </div>
-      </article>
-
-      <article id="podsAnswer" class="answer" hidden aria-live="polite">
-        <p>
-          Open the front or lift the lever so the used pod drops into the container. Then slide out the pod drawer or capsule tray, empty it into the bin, and place it back securely.
-        </p>
-        <p>
-          If the drawer feels full or stiff, it usually means a pod is resting awkwardly inside. A gentle shake is often enough.
-        </p>
-        <div class="controls">
-           <button class="small-button stop-audio-button" type="button" onclick="stopCurrentAudio()">
-  Stop audio
-</button>
-        </div>
-      </article>
-
-      <article id="stoppedAnswer" class="answer" hidden aria-live="polite">
-        <p>
-          First, check the basics: is there water in the tank, is the pod drawer full, and is the lever fully closed? If all looks fine, turn the machine off, wait a few seconds, and switch it on again.
-        </p>
-        <p>
-          If it still does not respond, it may need a reset or descaling, depending on the machine.
-        </p>
-          <div class="controls">
-           <button class="small-button stop-audio-button" type="button" onclick="stopCurrentAudio()">
-  Stop audio
-</button>
-         </div>
-      </article>
-      
-    </section>
-
-    <audio id="audioCoffee" preload="none">
-      <source src="audio/make-a-coffee.mp3" type="audio/mpeg" />
-    </audio>
-
-    <audio id="audioMachineOn" preload="none">
-      <source src="audio/machine-on.mp3" type="audio/mpeg" />
-    </audio>
-
-    <audio id="audioPodGo" preload="none">
-  <source src="audio/pod-go.mp3" type="audio/mpeg" />
-</audio>
-
-    <audio id="audioWaterTank" preload="none">
-      <source src="audio/water-tank.mp3" type="audio/mpeg" />
-    </audio>
-
-    <audio id="audioWater" preload="none">
-      <source src="audio/refill-water.mp3" type="audio/mpeg" />
-    </audio>
-
-    <audio id="audioPods" preload="none">
-      <source src="audio/empty-pods.mp3" type="audio/mpeg" />
-    </audio>
-
-    <audio id="audioStopped" preload="none">
-      <source src="audio/machine-stopped.mp3" type="audio/mpeg" />
-    </audio>
-
-    <p class="nav-link">
-      <a href="index.html" class="footer-link">Back to Ask</a>
+  <div class="page">
+    <p class="sr-only">
+      You have opened the IdexQR Ask coffee machine demo. You can choose a question by tapping a button,
+      or try the Ask by voice button if your browser supports voice recognition. Each question opens a clear answer
+      and plays the matching audio where available.
     </p>
 
-    <p class="nav-link">
-      <a href="https://idexqr.com" class="footer-link">Back to IdexQR</a>
-    </p>
+    <header>
+      <p class="brand">IdexQR<sup>®</sup></p>
+      <h1>Ask<br />Coffee Machine</h1>
+      <p class="subtitle">
+        Calm, simple help for the small things you need in the moment.
+      </p>
+    </header>
+
+    <section class="intro-card" aria-labelledby="voiceTitle">
+      <h2 id="voiceTitle" class="sr-only">Ask by voice</h2>
+      <p>
+        Tap a question below for reliable help, or try asking by voice.
+      </p>
+
+      <button class="voice-button" type="button" onclick="startVoiceAsk()">
+        Ask by voice
+      </button>
+
+      <p id="voiceStatus" class="voice-status" aria-live="polite"></p>
+    </section>
+
+    <main class="questions" aria-label="Coffee machine questions">
+
+      <section class="question-card">
+        <button class="question-button" type="button" onclick="showAnswer('coffeeAnswer')">
+          How do I make a coffee?
+        </button>
+
+        <div id="coffeeAnswer" class="answer">
+          <p>
+            Place your cup under the spout. Add a pod if the machine uses one, check there is water in the tank,
+            then press the coffee button. Wait until the flow has stopped before removing your cup.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <button class="question-button" type="button" onclick="showAnswer('machineOnAnswer')">
+          How do I know the machine is on?
+        </button>
+
+        <div id="machineOnAnswer" class="answer">
+          <p>
+            Look for a small light on the front of the machine. It may flash while the machine warms up.
+            When the light stays steady, the machine is usually ready to use.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <button class="question-button" type="button" onclick="showAnswer('podGoAnswer')">
+          Which way up do the pods go?
+        </button>
+
+        <div id="podGoAnswer" class="answer">
+          <p>
+            Open the pod holder and place the pod into the space provided. The flatter side usually faces upwards,
+            with the shaped side sitting neatly into the holder. Close the lid gently before pressing the button.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <button class="question-button" type="button" onclick="showAnswer('waterTankAnswer')">
+          Where is the water tank?
+        </button>
+
+        <div id="waterTankAnswer" class="answer">
+          <p>
+            The water tank is usually at the back or side of the machine. Look for a clear container that lifts away
+            from the machine. Hold it firmly and lift it gently.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <button class="question-button" type="button" onclick="showAnswer('waterAnswer')">
+          How do I refill the water?
+        </button>
+
+        <div id="waterAnswer" class="answer">
+          <p>
+            Remove the water tank, fill it with fresh cold water, and place it back into position.
+            Make sure it sits securely before you try to make another coffee.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <button class="question-button" type="button" onclick="showAnswer('podsAnswer')">
+          How do I empty used pods?
+        </button>
+
+        <div id="podsAnswer" class="answer">
+          <p>
+            Open the used pod container or drawer. Empty the pods into the correct bin, then slide the container
+            back into place. Check it is fully closed before using the machine again.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="question-card">
+        <button class="question-button" type="button" onclick="showAnswer('stoppedAnswer')">
+          What should I do if it stops or seems stuck?
+        </button>
+
+        <div id="stoppedAnswer" class="answer">
+          <p>
+            First, stop pressing buttons. Check the water tank, the pod holder, and the used pod container.
+            If something looks out of place, reset it gently. If the machine still does not work, ask for help
+            rather than forcing it.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
 
     <footer>
-      <p class="powered-by">Powered by IdexQR®</p>
+      <p>Powered by IdexQR</p>
+      <p><a href="https://idexqr.com">Back to IdexQR</a></p>
     </footer>
-  </main>
+  </div>
+
+  <audio id="makeCoffeeAudio" src="audio/make-a-coffee.mp3" preload="none"></audio>
+  <audio id="machineOnAudio" src="audio/machine-on.mp3" preload="none"></audio>
+  <audio id="podGoAudio" src="audio/pod-go.mp3" preload="none"></audio>
+  <audio id="waterTankAudio" src="audio/water-tank.mp3" preload="none"></audio>
+  <audio id="refillWaterAudio" src="audio/refill-water.mp3" preload="none"></audio>
+  <audio id="emptyPodsAudio" src="audio/empty-pods.mp3" preload="none"></audio>
+  <audio id="machineStoppedAudio" src="audio/machine-stopped.mp3" preload="none"></audio>
 
   <script>
-  let currentAudio = null;
-
-  function stopCurrentAudio() {
-    if (currentAudio) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-      currentAudio = null;
-    }
-
-    document.querySelectorAll('audio').forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
-  }
-
-  function clearActiveButtons() {
-    document.querySelectorAll('.quiet-button').forEach(button => {
-      button.classList.remove('active');
-    });
-  }
-
-  function playSection(audioId, answerId) {
-  stopCurrentAudio();
-
-  document.querySelectorAll('.answer').forEach(answer => {
-    answer.hidden = true;
-  });
-
-  clearActiveButtons();
-
-  const selectedAudio = document.getElementById(audioId);
-  const selectedAnswer = document.getElementById(answerId);
-
-  if (selectedAnswer) {
-    selectedAnswer.hidden = false;
-  }
-
-  if (selectedAudio) {
-    currentAudio = selectedAudio;
-    currentAudio.currentTime = 0;
-    currentAudio.play().catch(() => {});
-  }
-}
-  const startVoiceButton = document.getElementById('startVoice');
-  const voiceStatus = document.getElementById('voiceStatus');
-
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  if (!SpeechRecognition) {
-    if (voiceStatus) {
-      voiceStatus.style.display = 'block';
-      voiceStatus.textContent = 'Voice input is not supported in this browser.';
-    }
-  } else {
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-GB';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    startVoiceButton.addEventListener('click', () => {
-      voiceStatus.style.display = 'block';
-      voiceStatus.textContent = 'I’m listening…';
-      recognition.start();
-    });
-
-    recognition.onresult = (event) => {
-  const spokenText = event.results[0][0].transcript.toLowerCase();
-
-  console.log(spokenText);
-voiceStatus.textContent = `You said: ${spokenText}`;
- if (
-  spokenText.includes('make') ||
-  spokenText.includes('coffee') ||
-  spokenText.includes('drink')
-) {
-  alert('Coffee matched');
-  playSection('audioCoffee', 'coffeeAnswer');
-}
-  } else if (
-    spokenText.includes('turn on') ||
-    spokenText.includes('machine on') ||
-    spokenText.includes('light') ||
-    spokenText.includes('ready')
-  ) {
-    playSection('audioMachineOn', 'machineOnAnswer');
-
-  } else if (
-    spokenText.includes('pod') ||
-    spokenText.includes('capsule') ||
-    spokenText.includes('which way round') ||
-    spokenText.includes('which way does the pod go') ||
-    spokenText.includes('flat side') ||
-    spokenText.includes('go in')
-  ) {
-    playSection('audioPodGo', 'podGoAnswer');
-
-  } else if (
-    spokenText.includes('water tank') ||
-    spokenText.includes('tank') ||
-    spokenText.includes('where is the water')
-  ) {
-    playSection('audioWaterTank', 'waterTankAnswer');
-
-  } else if (
-    spokenText.includes('refill') ||
-    spokenText.includes('fill') ||
-    spokenText.includes('top up') ||
-    spokenText.includes('add water')
-  ) {
-    playSection('audioWater', 'waterAnswer');
-
-  } else if (
-    spokenText.includes('empty') ||
-    spokenText.includes('used') ||
-    spokenText.includes('bin') ||
-    spokenText.includes('drawer') ||
-    spokenText.includes('capsule tray')
-  ) {
-    playSection('audioPods', 'podsAnswer');
-
-  } else if (
-    spokenText.includes('stuck') ||
-    spokenText.includes('stopped') ||
-    spokenText.includes('not working') ||
-    spokenText.includes('won’t work') ||
-    spokenText.includes("won't work") ||
-    spokenText.includes('blocked')
-  ) {
-    playSection('audioStopped', 'stoppedAnswer');
-
-  } else {
-    voiceStatus.textContent =
-      'I heard you, but I could not match that to one of the questions yet.';
-  }
-};
-    recognition.onerror = () => {
-      voiceStatus.textContent = 'I could not hear that clearly. Please try again.';
+    const answers = {
+      coffeeAnswer: {
+        audio: "makeCoffeeAudio",
+        keywords: ["make coffee", "make a coffee", "coffee", "cup", "drink", "brew"]
+      },
+      machineOnAnswer: {
+        audio: "machineOnAudio",
+        keywords: ["machine on", "turned on", "on", "light", "ready", "warming"]
+      },
+      podGoAnswer: {
+        audio: "podGoAudio",
+        keywords: ["pod", "pods", "which way", "way up", "capsule", "go"]
+      },
+      waterTankAnswer: {
+        audio: "waterTankAudio",
+        keywords: ["water tank", "tank", "where is the water", "water container"]
+      },
+      waterAnswer: {
+        audio: "refillWaterAudio",
+        keywords: ["refill", "fill water", "add water", "more water", "water"]
+      },
+      podsAnswer: {
+        audio: "emptyPodsAudio",
+        keywords: ["empty pods", "used pods", "bin", "drawer", "empty"]
+      },
+      stoppedAnswer: {
+        audio: "machineStoppedAudio",
+        keywords: ["stopped", "stuck", "not working", "broken", "jammed", "stops"]
+      }
     };
 
-    recognition.onend = () => {
-      setTimeout(() => {
-        if (voiceStatus.textContent === 'I’m listening…') {
-          voiceStatus.textContent = 'Listening stopped.';
+    function stopAudio() {
+      Object.values(answers).forEach(item => {
+        const audio = document.getElementById(item.audio);
+        if (audio) {
+          audio.pause();
+          audio.currentTime = 0;
         }
-      }, 800);
-    };
-  }
-</script>
+      });
+    }
+
+    function hideAllAnswers() {
+      document.querySelectorAll(".answer").forEach(answer => {
+        answer.classList.remove("show");
+      });
+    }
+
+    function playAudio(audioId) {
+      const audio = document.getElementById(audioId);
+      if (!audio) return;
+
+      audio.currentTime = 0;
+
+      const playPromise = audio.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          const status = document.getElementById("voiceStatus");
+          status.textContent = "Audio is ready. Tap the question again if your browser needs another tap.";
+        });
+      }
+    }
+
+    function showAnswer(answerId) {
+      const answer = document.getElementById(answerId);
+      const item = answers[answerId];
+
+      if (!answer || !item) return;
+
+      stopAudio();
+      hideAllAnswers();
+
+      answer.classList.add("show");
+      answer.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      playAudio(item.audio);
+    }
+
+    function findBestAnswer(spokenText) {
+      const text = spokenText.toLowerCase();
+
+      for (const [answerId, item] of Object.entries(answers)) {
+        if (item.keywords.some(keyword => text.includes(keyword))) {
+          return answerId;
+        }
+      }
+
+      return null;
+    }
+
+    function startVoiceAsk() {
+      const status = document.getElementById("voiceStatus");
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        status.textContent = "Voice recognition is not available in this browser. Please tap a question below.";
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-GB";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      status.textContent = "Listening. Ask your coffee machine question.";
+
+      recognition.start();
+
+      recognition.onresult = function(event) {
+        const spokenText = event.results[0][0].transcript;
+        const answerId = findBestAnswer(spokenText);
+
+        if (answerId) {
+          status.textContent = "I heard: “" + spokenText + "”. Opening the closest answer.";
+          showAnswer(answerId);
+        } else {
+          status.textContent = "I heard: “" + spokenText + "”. Please tap the closest question below.";
+        }
+      };
+
+      recognition.onerror = function() {
+        status.textContent = "Voice did not start clearly. Please tap a question below.";
+      };
+
+      recognition.onend = function() {
+        if (!status.textContent) {
+          status.textContent = "Voice recognition has stopped. You can tap a question below.";
+        }
+      };
+    }
+  </script>
 </body>
 </html>
-<!-- Ask voice update v44 -->

@@ -354,7 +354,7 @@
         </div>
       </article>
 
-      <article id="podsGoAnswer" class="answer" hidden aria-live="polite">
+      <article id="podGoAnswer" class="answer" hidden aria-live="polite">
         <p>
           The pod usually sits with the flat side facing down and the rounded side facing up.
         </p>
@@ -434,9 +434,9 @@
       <source src="audio/machine-on.mp3" type="audio/mpeg" />
     </audio>
 
-    <audio id="audioPodsGo" preload="none">
-      <source src="audio/pods-go.mp3" type="audio/mpeg" />
-    </audio>
+    <audio id="audioPodDirection" preload="none">
+  <source src="audio/pod-go.mp3" type="audio/mpeg" />
+</audio>
 
     <audio id="audioWaterTank" preload="none">
       <source src="audio/water-tank.mp3" type="audio/mpeg" />
@@ -567,7 +567,7 @@
   spokenText.includes('flat side') ||
   spokenText.includes('go in')
 ) {
-  playSection('audioPodsGo', 'podsGoAnswer');
+  playSection('audioPodsGo', 'podGoAnswer');
 }
   } else if (
     spokenText.includes('water tank') ||

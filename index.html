@@ -6,5 +6,147 @@
 
   <title>Ask — Coffee Machine</title>
   <meta name="description" content="A calm Ask demo for coffee machine support using IdexQR." />
+ 
+</head>
 
-  <style>
+<body>
+  <div class="page">
+    <p class="sr-only">
+      You have opened the IdexQR Ask coffee machine demo. You can choose a question by tapping a button,
+      or try the Ask by voice button if your browser supports voice recognition. Each question opens a clear answer
+      and plays the matching audio where available.
+    </p>
+
+    <header>
+      <h1>
+        <span class="ask-title">Ask</span>
+        <span class="coffee-title">Coffee Machine</span>
+      </h1>
+
+      <p class="subtitle">
+        Calm, simple help for the small things you need in the moment.
+      </p>
+    </header>
+
+    <section class="intro-card" aria-labelledby="voiceTitle">
+      <h2 id="voiceTitle" class="sr-only">Ask by voice</h2>
+
+      <p>Tap a question below for reliable help, or try asking by voice.</p>
+
+      <button class="voice-button" type="button" onclick="startVoiceAsk()">
+        Ask by voice
+      </button>
+
+      <p id="voiceStatus" class="voice-status" aria-live="polite"></p>
+    </section>
+
+    <main aria-label="Coffee machine questions">
+      <section class="question-card">
+
+        <button class="question-button" type="button" onclick="showAnswer('coffeeAnswer')">
+          Make a coffee
+        </button>
+        <div id="coffeeAnswer" class="answer">
+          <p>
+  Place your cup under the spout. Lift the lever fully. Insert your pod and close the lever gently.
+  Along the front of the machine, you’ll usually find a small row of buttons. The coffee button is often
+  one of the first you’ll come across and is sometimes marked with a small cup symbol. Press the coffee
+  button once, then wait while the machine runs. Your drink should begin to pour within a few seconds.
+  If you would like a larger drink, use the lungo button, often a little further along the row if your
+  machine has one. A gentle pause before lifting your cup helps avoid drips.
+</p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+
+        <button class="question-button" type="button" onclick="showAnswer('machineOnAnswer')">
+          Check the machine is on
+        </button>
+        <div id="machineOnAnswer" class="answer">
+          <p>
+            Most machines will show a small light when they’re on. You might see a steady light or one that flashes while
+            the machine is warming up. Once the light becomes steady, it’s usually ready to use.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+
+        <button class="question-button" type="button" onclick="showAnswer('podGoAnswer')">
+          Insert the pod correctly
+        </button>
+        <div id="podGoAnswer" class="answer">
+          <p>
+            The pod usually sits with the flat side facing down and the rounded side facing up. If it doesn’t feel like
+            it fits easily, don’t force it. Just turn it the other way and try again.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+
+        <button class="question-button" type="button" onclick="showAnswer('waterTankAnswer')">
+          Find the water tank
+        </button>
+        <div id="waterTankAnswer" class="answer">
+          <p>
+            The water tank is usually at the back or to one side of the machine. You can gently slide it out, fill it
+            with fresh water, and place it back so it sits securely.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+
+        <button class="question-button" type="button" onclick="showAnswer('waterAnswer')">
+          Refill the water tank
+        </button>
+        <div id="waterAnswer" class="answer">
+          <p>
+  Lift the water tank from the back of the machine. It’s clear plastic with a handle at the top.
+  Fill it with fresh cold water up to the max line. Then place it back onto the machine and press it
+  down gently so it sits flat. Check the green light is on before making a coffee.
+</p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+
+        <button class="question-button" type="button" onclick="showAnswer('podsAnswer')">
+          Empty the used pods
+        </button>
+        <div id="podsAnswer" class="answer">
+          <p>
+      Switch the machine off and allow it to cool down. Pull out the used pod container from the front.
+      It slides out like a small drawer. Tip the used pods into the bin. You can rinse the container
+      under the tap if needed, then shake off any excess water. Slide it back into place until it sits flush.
+      Switch the machine back on and wait for the green light before using it again.
+     </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+
+        <button class="question-button" type="button" onclick="showAnswer('stoppedAnswer')">
+          If the machine stops
+        </button>
+        <div id="stoppedAnswer" class="answer">
+          <p>
+            First, check the basics. Is there water in the tank? Is the pod drawer full, and is the lever fully closed?
+            If all looks fine, turn the machine off, wait a few seconds, and switch it on again. If it still does not
+            respond, it may need a reset or descaling, depending on the machine.
+          </p>
+          <div class="stop-wrap">
+            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <footer>
+      <p><a href="https://idexqr.com">Back to IdexQR</a></p>
+      <p>Powered by IdexQR<sup>®</sup></p>
+    </footer>
+  </div>

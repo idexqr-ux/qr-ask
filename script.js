@@ -6,7 +6,6 @@
 <audio id="emptyPodsAudio" src="audio/coffee-empty.mp3" preload="none"></audio>
 <audio id="machineStoppedAudio" src="audio/coffee-stopped.mp3" preload="none"></audio>
 
-  <script>
     const answers = {
       coffeeAnswer: {
         audio: "makeCoffeeAudio",

@@ -1,44 +1,28 @@
-alert("script loaded");
-<audio id="coffeeMakeAudio" src="audio/coffee-make.mp3" preload="none"></audio>
-<audio id="coffeePowerAudio" src="audio/coffee-power.mp3" preload="none"></audio>
-<audio id="coffeePodAudio" src="audio/coffee-pod.mp3" preload="none"></audio>
-<audio id="coffeeTankAudio" src="audio/coffee-tank.mp3" preload="none"></audio>
-<audio id="coffeeRefillAudio" src="audio/coffee-refill.mp3" preload="none"></audio>
-<audio id="coffeeEmptyAudio" src="audio/coffee-empty.mp3" preload="none"></audio>
-<audio id="coffeeStoppedAudio" src="audio/coffee-stopped.mp3" preload="none"></audio>
-
 const answers = {
-  const answers = {
   coffeeMakeAnswer: {
     audio: "coffeeMakeAudio",
     keywords: ["make coffee", "make a coffee", "coffee", "cup", "drink", "brew", "espresso", "lungo"]
   },
-
   coffeePowerAnswer: {
     audio: "coffeePowerAudio",
     keywords: ["machine on", "turned on", "power", "light", "ready", "warming"]
   },
-
   coffeePodAnswer: {
     audio: "coffeePodAudio",
     keywords: ["pod", "pods", "which way", "way round", "way up", "capsule"]
   },
-
   coffeeTankAnswer: {
     audio: "coffeeTankAudio",
     keywords: ["water tank", "tank", "where is the water", "water container"]
   },
-
   coffeeRefillAnswer: {
     audio: "coffeeRefillAudio",
     keywords: ["refill", "fill water", "add water", "more water"]
   },
-
   coffeeEmptyAnswer: {
     audio: "coffeeEmptyAudio",
     keywords: ["empty pods", "used pods", "bin", "drawer", "capsule tray", "empty"]
   },
-
   coffeeStoppedAnswer: {
     audio: "coffeeStoppedAudio",
     keywords: ["stopped", "stuck", "not working", "broken", "jammed", "reset", "descaling"]
@@ -95,7 +79,6 @@ function showAnswer(answerId) {
   hideAllAnswers();
 
   answer.classList.add("show");
-
   playAudio(item.audio);
 
   setTimeout(() => {
@@ -153,4 +136,3 @@ function startVoiceAsk() {
     status.textContent = "Voice did not start clearly. Please tap a question below.";
   };
 }
-   

@@ -509,15 +509,13 @@
       event.currentTarget.classList.add('active');
     }
 
-    if (selectedAudio) {
+       if (selectedAudio) {
       currentAudio = selectedAudio;
       currentAudio.currentTime = 0;
       currentAudio.play().catch(() => {});
     }
   }
-</script>
 
-  <script>
   const startVoiceButton = document.getElementById('startVoice');
   const voiceStatus = document.getElementById('voiceStatus');
 

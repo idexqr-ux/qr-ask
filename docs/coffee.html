@@ -275,33 +275,33 @@
       </p>
 
       <div class="question-list">
-        <button class="quiet-button" data-answer="coffeeAnswer" aria-controls="coffeeAnswer">
-          How do I make a coffee?
-        </button>
+        <button class="quiet-button" onclick="playSection('audioCoffee', 'coffeeAnswer')">
+  How do I make a coffee?
+</button>
 
-        <button class="quiet-button" data-answer="machineOnAnswer" aria-controls="machineOnAnswer">
-          How do I know the machine is on?
-        </button>
+<button class="quiet-button" onclick="playSection('audioMachineOn', 'machineOnAnswer')">
+  How do I know the machine is on?
+</button>
 
-        <button class="quiet-button" data-answer="podsGoAnswer" aria-controls="podsGoAnswer">
-          Which way up do the pods go?
-        </button>
+<button class="quiet-button" onclick="playSection('audioPodsGo', 'podsGoAnswer')">
+  Which way up do the pods go?
+</button>
 
-        <button class="quiet-button" data-answer="waterTankAnswer" aria-controls="waterTankAnswer">
-          Where is the water tank?
-        </button>
+<button class="quiet-button" onclick="playSection('audioWaterTank', 'waterTankAnswer')">
+  Where is the water tank?
+</button>
 
-        <button class="quiet-button" data-answer="waterAnswer" aria-controls="waterAnswer">
-          How do I refill the water?
-        </button>
+<button class="quiet-button" onclick="playSection('audioWater', 'waterAnswer')">
+  How do I refill the water?
+</button>
 
-        <button class="quiet-button" data-answer="podsAnswer" aria-controls="podsAnswer">
-          How do I empty the used pods?
-        </button>
+<button class="quiet-button" onclick="playSection('audioPods', 'podsAnswer')">
+  How do I empty the used pods?
+</button>
 
-        <button class="quiet-button" data-answer="stoppedAnswer" aria-controls="stoppedAnswer">
-          What should I do if it stops or seems stuck?
-        </button>
+<button class="quiet-button" onclick="playSection('audioStopped', 'stoppedAnswer')">
+  What should I do if it stops or seems stuck?
+</button>
       </div>
 
       <article id="coffeeAnswer" class="answer" hidden aria-live="polite">
@@ -496,22 +496,35 @@
     });
   }
 
-  function playSection(audioId, textId) {
+  function clearActiveButtons() {
+    document.querySelectorAll('.quiet-button').forEach(button => {
+      button.classList.remove('active');
+    });
+  }
+
+  function playSection(audioId, answerId) {
     stopCurrentAudio();
 
-    document.querySelectorAll('.discover-text').forEach(text => {
-      text.hidden = true;
+    document.querySelectorAll('.answer').forEach(answer => {
+      answer.hidden = true;
     });
 
-    const selectedAudio = document.getElementById(audioId);
-    const selectedText = document.getElementById(textId);
+    clearActiveButtons();
 
-    if (selectedText) {
-      selectedText.hidden = false;
+    const selectedAudio = document.getElementById(audioId);
+    const selectedAnswer = document.getElementById(answerId);
+
+    if (selectedAnswer) {
+      selectedAnswer.hidden = false;
+    }
+
+    if (event && event.currentTarget) {
+      event.currentTarget.classList.add('active');
     }
 
     if (selectedAudio) {
       currentAudio = selectedAudio;
+      currentAudio.currentTime = 0;
       currentAudio.play().catch(() => {});
     }
   }

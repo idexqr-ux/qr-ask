@@ -6,55 +6,60 @@
 <audio id="coffeeEmptyAudio" src="audio/coffee-empty.mp3" preload="none"></audio>
 <audio id="coffeeStoppedAudio" src="audio/coffee-stopped.mp3" preload="none"></audio>
 
+const answers = {
+  coffeeAnswer: {
+    audio: "coffeeMakeAudio",
+    keywords: ["make coffee", "make a coffee", "coffee", "cup", "drink", "brew", "espresso", "lungo"]
+  },
 
-    const answers = {
-      coffeeAnswer: {
-        audio: "makeCoffeeAudio",
-        keywords: ["take a look", "make coffee", "make a coffee", "coffee", "cup", "drink", "brew", "espresso", "lungo"]
-      },
-      machineOnAnswer: {
-        audio: "machineOnAudio",
-        keywords: ["machine on", "turned on", "on", "light", "ready", "warming"]
-      },
-      podGoAnswer: {
-        audio: "podGoAudio",
-        keywords: ["pod", "pods", "which way", "way round", "way up", "capsule"]
-      },
-      waterTankAnswer: {
-        audio: "waterTankAudio",
-        keywords: ["water tank", "tank", "where is the water", "water container"]
-      },
-      waterAnswer: {
-        audio: "refillWaterAudio",
-        keywords: ["refill", "fill water", "add water", "more water"]
-      },
-      podsAnswer: {
-        audio: "emptyPodsAudio",
-        keywords: ["empty pods", "used pods", "bin", "drawer", "capsule tray", "empty"]
-      },
-      stoppedAnswer: {
-        audio: "machineStoppedAudio",
-        keywords: ["stopped", "stuck", "not working", "broken", "jammed", "stops", "reset", "descaling"]
-      }
-    };
+  machineOnAnswer: {
+    audio: "coffeePowerAudio",
+    keywords: ["machine on", "turned on", "power", "light", "ready", "warming"]
+  },
 
-    function stopAudio() {
-      Object.values(answers).forEach(item => {
-        const audio = document.getElementById(item.audio);
-        if (audio) {
-          audio.pause();
-          audio.currentTime = 0;
-        }
-      });
+  podGoAnswer: {
+    audio: "coffeePodAudio",
+    keywords: ["pod", "pods", "which way", "way round", "way up", "capsule"]
+  },
+
+  waterTankAnswer: {
+    audio: "coffeeTankAudio",
+    keywords: ["water tank", "tank", "where is the water", "water container"]
+  },
+
+  waterAnswer: {
+    audio: "coffeeRefillAudio",
+    keywords: ["refill", "fill water", "add water", "more water"]
+  },
+
+  podsAnswer: {
+    audio: "coffeeEmptyAudio",
+    keywords: ["empty pods", "used pods", "bin", "drawer", "capsule tray", "empty"]
+  },
+
+  stoppedAnswer: {
+    audio: "coffeeStoppedAudio",
+    keywords: ["stopped", "stuck", "not working", "broken", "jammed", "reset", "descaling"]
+  }
+};
+
+function stopAudio() {
+  Object.values(answers).forEach(item => {
+    const audio = document.getElementById(item.audio);
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
     }
+  });
+}
 
-    function hideAllAnswers() {
-      document.querySelectorAll(".answer").forEach(answer => {
-        answer.classList.remove("show");
-      });
-    }
+function hideAllAnswers() {
+  document.querySelectorAll(".answer").forEach(answer => {
+    answer.classList.remove("show");
+  });
+}
 
-   function playAudio(audioId) {
+function playAudio(audioId) {
   const audio = document.getElementById(audioId);
   const status = document.getElementById("voiceStatus");
 
@@ -98,50 +103,52 @@ function showAnswer(answerId) {
     });
   }, 100);
 }
-    function findBestAnswer(spokenText) {
-      const text = spokenText.toLowerCase();
 
-      for (const [answerId, item] of Object.entries(answers)) {
-        if (item.keywords.some(keyword => text.includes(keyword))) {
-          return answerId;
-        }
-      }
+function findBestAnswer(spokenText) {
+  const text = spokenText.toLowerCase();
 
-      return null;
+  for (const [answerId, item] of Object.entries(answers)) {
+    if (item.keywords.some(keyword => text.includes(keyword))) {
+      return answerId;
     }
+  }
 
-    function startVoiceAsk() {
-      const status = document.getElementById("voiceStatus");
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  return null;
+}
 
-      if (!SpeechRecognition) {
-        status.textContent = "Voice recognition is not available in this browser. Please tap a question below.";
-        return;
-      }
+function startVoiceAsk() {
+  const status = document.getElementById("voiceStatus");
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-      const recognition = new SpeechRecognition();
+  if (!SpeechRecognition) {
+    status.textContent = "Voice recognition is not available in this browser. Please tap a question below.";
+    return;
+  }
 
-      recognition.lang = "en-GB";
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
+  const recognition = new SpeechRecognition();
 
-      status.textContent = "Listening. Ask your coffee machine question.";
+  recognition.lang = "en-GB";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
 
-      recognition.start();
+  status.textContent = "Listening. Ask your coffee machine question.";
 
-      recognition.onresult = function(event) {
-        const spokenText = event.results[0][0].transcript;
-        const answerId = findBestAnswer(spokenText);
+  recognition.start();
 
-        if (answerId) {
-          status.textContent = "I heard: “" + spokenText + "”. Opening the closest answer.";
-          showAnswer(answerId);
-        } else {
-          status.textContent = "I heard: “" + spokenText + "”. Please tap the closest question below.";
-        }
-      };
+  recognition.onresult = function(event) {
+    const spokenText = event.results[0][0].transcript;
+    const answerId = findBestAnswer(spokenText);
 
-      recognition.onerror = function() {
-        status.textContent = "Voice did not start clearly. Please tap a question below.";
-      };
+    if (answerId) {
+      status.textContent = `I heard: "${spokenText}". Opening the closest answer.`;
+      showAnswer(answerId);
+    } else {
+      status.textContent = `I heard: "${spokenText}". Please tap the closest question below.`;
     }
+  };
+
+  recognition.onerror = function() {
+    status.textContent = "Voice did not start clearly. Please tap a question below.";
+  };
+}
+   

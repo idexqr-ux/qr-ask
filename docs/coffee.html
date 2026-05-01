@@ -294,7 +294,7 @@
 </button>
 
 <button class="quiet-button" onclick="playSection('audioPodsGo', 'podsGoAnswer')">
-  Which way up do the pods go?
+  Which way up does the pod go?
 </button>
 
 <button class="quiet-button" onclick="playSection('audioWaterTank', 'waterTankAnswer')">
@@ -559,16 +559,16 @@
   ) {
     playSection('audioMachineOn', 'machineOnAnswer');
 
-  } else if (
-    spokenText.includes('pod') ||
-    spokenText.includes('pods') ||
-    spokenText.includes('capsule') ||
-    spokenText.includes('which way') ||
-    spokenText.includes('flat side') ||
-    spokenText.includes('go in')
-  ) {
-    playSection('audioPodsGo', 'podsGoAnswer');
-
+  if (
+  spokenText.includes('pod') ||
+  spokenText.includes('capsule') ||
+  spokenText.includes('which way round') ||
+  spokenText.includes('which way does the pod go') ||
+  spokenText.includes('flat side') ||
+  spokenText.includes('go in')
+) {
+  playSection('audioPodsGo', 'podsGoAnswer');
+}
   } else if (
     spokenText.includes('water tank') ||
     spokenText.includes('tank') ||

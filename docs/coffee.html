@@ -522,11 +522,11 @@
   if (startVoiceButton && voiceStatus) {
     startVoiceButton.addEventListener('click', () => {
       voiceStatus.style.display = 'block';
-      voiceStatus.textContent = 'Listening…';
+      voiceStatus.textContent = 'In a live Ask experience, voice input would begin here.';
 
       setTimeout(() => {
-        voiceStatus.textContent = 'Voice ask is shown here as a demo interaction.';
-      }, 1500);
+        voiceStatus.textContent = 'For this demo, choose one of the questions below.';
+      }, 4000);
     });
   }
 </script>

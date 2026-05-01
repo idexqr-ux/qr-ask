@@ -1,10 +1,10 @@
-<audio id="makeCoffeeAudio" src="audio/make-a-coffee.mp3" preload="none"></audio>
-  <audio id="machineOnAudio" src="audio/machine-on.mp3" preload="none"></audio>
-  <audio id="podGoAudio" src="audio/pod-go.mp3" preload="none"></audio>
-  <audio id="waterTankAudio" src="audio/water-tank.mp3" preload="none"></audio>
-  <audio id="refillWaterAudio" src="audio/refill-water.mp3" preload="none"></audio>
-  <audio id="emptyPodsAudio" src="audio/empty-pods.mp3" preload="none"></audio>
-  <audio id="machineStoppedAudio" src="audio/machine-stopped.mp3" preload="none"></audio>
+<audio id="makeCoffeeAudio" src="audio/coffee-make.mp3" preload="none"></audio>
+<audio id="machineOnAudio" src="audio/coffee-power.mp3" preload="none"></audio>
+<audio id="podGoAudio" src="audio/coffee-pod.mp3" preload="none"></audio>
+<audio id="waterTankAudio" src="audio/coffee-tank.mp3" preload="none"></audio>
+<audio id="refillWaterAudio" src="audio/coffee-refill.mp3" preload="none"></audio>
+<audio id="emptyPodsAudio" src="audio/coffee-empty.mp3" preload="none"></audio>
+<audio id="machineStoppedAudio" src="audio/coffee-stopped.mp3" preload="none"></audio>
 
   <script>
     const answers = {

@@ -542,8 +542,8 @@
     recognition.onresult = (event) => {
   const spokenText = event.results[0][0].transcript.toLowerCase();
 
-  voiceStatus.textContent = `You said: ${spokenText}`;
-
+  console.log(spokenText);
+voiceStatus.textContent = `You said: ${spokenText}`;
   if (
     spokenText.includes('make') ||
     spokenText.includes('coffee') ||

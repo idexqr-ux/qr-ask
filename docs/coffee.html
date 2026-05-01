@@ -424,41 +424,50 @@
       });
     }
 
-    function playAudio(audioId) {
-      const audio = document.getElementById(audioId);
-      const status = document.getElementById("voiceStatus");
+   function playAudio(audioId) {
+  const audio = document.getElementById(audioId);
+  const status = document.getElementById("voiceStatus");
 
-      if (!audio) return;
+  if (!audio) {
+    if (status) status.textContent = "Audio file could not be found.";
+    return;
+  }
 
-      audio.currentTime = 0;
+  audio.pause();
+  audio.currentTime = 0;
+  audio.load();
 
-      const playPromise = audio.play();
+  const playPromise = audio.play();
 
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          status.textContent = "Audio is ready. Tap the question again if your browser needs another tap.";
-        });
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      if (status) {
+        status.textContent = "Audio did not start. Please tap the question again.";
       }
-    }
+    });
+  }
+}
 
-    function showAnswer(answerId) {
-      const answer = document.getElementById(answerId);
-      const item = answers[answerId];
+function showAnswer(answerId) {
+  const answer = document.getElementById(answerId);
+  const item = answers[answerId];
 
-      if (!answer || !item) return;
+  if (!answer || !item) return;
 
-      stopAudio();
-      hideAllAnswers();
+  stopAudio();
+  hideAllAnswers();
 
-      answer.classList.add("show");
-      playAudio(item.audio);
+  answer.classList.add("show");
 
-      answer.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }
+  playAudio(item.audio);
 
+  setTimeout(() => {
+    answer.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }, 100);
+}
     function findBestAnswer(spokenText) {
       const text = spokenText.toLowerCase();
 

@@ -505,9 +505,9 @@
       selectedAnswer.hidden = false;
     }
 
-    if (event && event.currentTarget) {
-      event.currentTarget.classList.add('active');
-    }
+    if (window.event && window.event.currentTarget) {
+  window.event.currentTarget.classList.add('active');
+}
 
        if (selectedAudio) {
       currentAudio = selectedAudio;
@@ -607,7 +607,20 @@
     voiceStatus.textContent =
       'I heard you, but I could not match that to one of the questions yet.';
   }
-};
+    };
+
+    recognition.onerror = () => {
+      voiceStatus.textContent = 'I could not hear that clearly. Please try again.';
+    };
+
+    recognition.onend = () => {
+      setTimeout(() => {
+        if (voiceStatus.textContent === 'I’m listening…') {
+          voiceStatus.textContent = 'Listening stopped.';
+        }
+      }, 800);
+    };
+  }
 </script>
 </body>
 </html>

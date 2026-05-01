@@ -519,16 +519,95 @@
   const startVoiceButton = document.getElementById('startVoice');
   const voiceStatus = document.getElementById('voiceStatus');
 
-  if (startVoiceButton && voiceStatus) {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    if (voiceStatus) {
+      voiceStatus.style.display = 'block';
+      voiceStatus.textContent = 'Voice input is not supported in this browser.';
+    }
+  } else {
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-GB';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
     startVoiceButton.addEventListener('click', () => {
       voiceStatus.style.display = 'block';
-      voiceStatus.textContent = 'In a live Ask experience, voice input would begin here.';
-
-      setTimeout(() => {
-        voiceStatus.textContent = 'For this demo, choose one of the questions below.';
-      }, 4000);
+      voiceStatus.textContent = 'I’m listening…';
+      recognition.start();
     });
+
+    recognition.onresult = (event) => {
+  const spokenText = event.results[0][0].transcript.toLowerCase();
+
+  voiceStatus.textContent = `You said: ${spokenText}`;
+
+  if (
+    spokenText.includes('make') ||
+    spokenText.includes('coffee') ||
+    spokenText.includes('drink')
+  ) {
+    playSection('audioCoffee', 'coffeeAnswer');
+
+  } else if (
+    spokenText.includes('turn on') ||
+    spokenText.includes('machine on') ||
+    spokenText.includes('light') ||
+    spokenText.includes('ready')
+  ) {
+    playSection('audioMachineOn', 'machineOnAnswer');
+
+  } else if (
+    spokenText.includes('pod') ||
+    spokenText.includes('pods') ||
+    spokenText.includes('capsule') ||
+    spokenText.includes('which way') ||
+    spokenText.includes('flat side') ||
+    spokenText.includes('go in')
+  ) {
+    playSection('audioPodsGo', 'podsGoAnswer');
+
+  } else if (
+    spokenText.includes('water tank') ||
+    spokenText.includes('tank') ||
+    spokenText.includes('where is the water')
+  ) {
+    playSection('audioWaterTank', 'waterTankAnswer');
+
+  } else if (
+    spokenText.includes('refill') ||
+    spokenText.includes('fill') ||
+    spokenText.includes('top up') ||
+    spokenText.includes('add water')
+  ) {
+    playSection('audioWater', 'waterAnswer');
+
+  } else if (
+    spokenText.includes('empty') ||
+    spokenText.includes('used') ||
+    spokenText.includes('bin') ||
+    spokenText.includes('drawer') ||
+    spokenText.includes('capsule tray')
+  ) {
+    playSection('audioPods', 'podsAnswer');
+
+  } else if (
+    spokenText.includes('stuck') ||
+    spokenText.includes('stopped') ||
+    spokenText.includes('not working') ||
+    spokenText.includes('won’t work') ||
+    spokenText.includes("won't work") ||
+    spokenText.includes('blocked')
+  ) {
+    playSection('audioStopped', 'stoppedAnswer');
+
+  } else {
+    voiceStatus.textContent =
+      'I heard you, but I could not match that to one of the questions yet.';
   }
+};
 </script>
 </body>
 </html>

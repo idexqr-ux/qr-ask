@@ -267,118 +267,35 @@
     <main class="questions" aria-label="Coffee machine questions">
 
       <section class="question-card">
-        <button class="question-button" type="button" onclick="showAnswer('coffeeAnswer')">
-          How do I make a coffee?
-        </button>
+        <section class="question-card">
+  <button class="question-button" type="button" onclick="showAnswer('coffeeAnswer')">
+    How do I make a coffee?
+  </button>
 
-        <div id="coffeeAnswer" class="answer">
-          <p>
-            Place your cup under the spout. Add a pod if the machine uses one, check there is water in the tank,
-            then press the coffee button. Wait until the flow has stopped before removing your cup.
-          </p>
-          <div class="stop-wrap">
-            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
-          </div>
-        </div>
-      </section>
+  <button class="question-button" type="button" onclick="showAnswer('machineOnAnswer')">
+    How do I know the machine is on?
+  </button>
 
-      <section class="question-card">
-        <button class="question-button" type="button" onclick="showAnswer('machineOnAnswer')">
-          How do I know the machine is on?
-        </button>
+  <button class="question-button" type="button" onclick="showAnswer('podGoAnswer')">
+    Which way round does the pod go?
+  </button>
 
-        <div id="machineOnAnswer" class="answer">
-          <p>
-            Look for a small light on the front of the machine. It may flash while the machine warms up.
-            When the light stays steady, the machine is usually ready to use.
-          </p>
-          <div class="stop-wrap">
-            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
-          </div>
-        </div>
-      </section>
+  <button class="question-button" type="button" onclick="showAnswer('waterTankAnswer')">
+    Where is the water tank?
+  </button>
 
-      <section class="question-card">
-        <button class="question-button" type="button" onclick="showAnswer('podGoAnswer')">
-          Which way up do the pods go?
-        </button>
+  <button class="question-button" type="button" onclick="showAnswer('waterAnswer')">
+    How do I refill the water?
+  </button>
 
-        <div id="podGoAnswer" class="answer">
-          <p>
-            Open the pod holder and place the pod into the space provided. The flatter side usually faces upwards,
-            with the shaped side sitting neatly into the holder. Close the lid gently before pressing the button.
-          </p>
-          <div class="stop-wrap">
-            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
-          </div>
-        </div>
-      </section>
+  <button class="question-button" type="button" onclick="showAnswer('podsAnswer')">
+    How do I empty used pods?
+  </button>
 
-      <section class="question-card">
-        <button class="question-button" type="button" onclick="showAnswer('waterTankAnswer')">
-          Where is the water tank?
-        </button>
-
-        <div id="waterTankAnswer" class="answer">
-          <p>
-            The water tank is usually at the back or side of the machine. Look for a clear container that lifts away
-            from the machine. Hold it firmly and lift it gently.
-          </p>
-          <div class="stop-wrap">
-            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="question-card">
-        <button class="question-button" type="button" onclick="showAnswer('waterAnswer')">
-          How do I refill the water?
-        </button>
-
-        <div id="waterAnswer" class="answer">
-          <p>
-            Remove the water tank, fill it with fresh cold water, and place it back into position.
-            Make sure it sits securely before you try to make another coffee.
-          </p>
-          <div class="stop-wrap">
-            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="question-card">
-        <button class="question-button" type="button" onclick="showAnswer('podsAnswer')">
-          How do I empty used pods?
-        </button>
-
-        <div id="podsAnswer" class="answer">
-          <p>
-            Open the used pod container or drawer. Empty the pods into the correct bin, then slide the container
-            back into place. Check it is fully closed before using the machine again.
-          </p>
-          <div class="stop-wrap">
-            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="question-card">
-        <button class="question-button" type="button" onclick="showAnswer('stoppedAnswer')">
-          What should I do if it stops or seems stuck?
-        </button>
-
-        <div id="stoppedAnswer" class="answer">
-          <p>
-            First, stop pressing buttons. Check the water tank, the pod holder, and the used pod container.
-            If something looks out of place, reset it gently. If the machine still does not work, ask for help
-            rather than forcing it.
-          </p>
-          <div class="stop-wrap">
-            <button class="stop-button" type="button" onclick="stopAudio()">Stop audio</button>
-          </div>
-        </div>
-      </section>
-
+  <button class="question-button" type="button" onclick="showAnswer('stoppedAnswer')">
+    What should I do if it stops or seems stuck?
+  </button>
+</section>
     </main>
 
     <footer>

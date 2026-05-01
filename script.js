@@ -1,3 +1,4 @@
+alert("script loaded");
 <audio id="coffeeMakeAudio" src="audio/coffee-make.mp3" preload="none"></audio>
 <audio id="coffeePowerAudio" src="audio/coffee-power.mp3" preload="none"></audio>
 <audio id="coffeePodAudio" src="audio/coffee-pod.mp3" preload="none"></audio>

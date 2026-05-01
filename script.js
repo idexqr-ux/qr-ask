@@ -7,37 +7,38 @@
 <audio id="coffeeStoppedAudio" src="audio/coffee-stopped.mp3" preload="none"></audio>
 
 const answers = {
-  coffeeAnswer: {
+  const answers = {
+  coffeeMakeAnswer: {
     audio: "coffeeMakeAudio",
     keywords: ["make coffee", "make a coffee", "coffee", "cup", "drink", "brew", "espresso", "lungo"]
   },
 
-  machineOnAnswer: {
+  coffeePowerAnswer: {
     audio: "coffeePowerAudio",
     keywords: ["machine on", "turned on", "power", "light", "ready", "warming"]
   },
 
-  podGoAnswer: {
+  coffeePodAnswer: {
     audio: "coffeePodAudio",
     keywords: ["pod", "pods", "which way", "way round", "way up", "capsule"]
   },
 
-  waterTankAnswer: {
+  coffeeTankAnswer: {
     audio: "coffeeTankAudio",
     keywords: ["water tank", "tank", "where is the water", "water container"]
   },
 
-  waterAnswer: {
+  coffeeRefillAnswer: {
     audio: "coffeeRefillAudio",
     keywords: ["refill", "fill water", "add water", "more water"]
   },
 
-  podsAnswer: {
+  coffeeEmptyAnswer: {
     audio: "coffeeEmptyAudio",
     keywords: ["empty pods", "used pods", "bin", "drawer", "capsule tray", "empty"]
   },
 
-  stoppedAnswer: {
+  coffeeStoppedAnswer: {
     audio: "coffeeStoppedAudio",
     keywords: ["stopped", "stuck", "not working", "broken", "jammed", "reset", "descaling"]
   }

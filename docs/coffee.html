@@ -551,7 +551,7 @@
   ) {
     playSection('audioCoffee', 'coffeeAnswer');
 
-  } else if (
+    } else if (
     spokenText.includes('turn on') ||
     spokenText.includes('machine on') ||
     spokenText.includes('light') ||
@@ -559,15 +559,15 @@
   ) {
     playSection('audioMachineOn', 'machineOnAnswer');
 
-  if (
-  spokenText.includes('pod') ||
-  spokenText.includes('capsule') ||
-  spokenText.includes('which way round') ||
-  spokenText.includes('which way does the pod go') ||
-  spokenText.includes('flat side') ||
-  spokenText.includes('go in')
-) {
-  playSection('audioPodGo', 'podGoAnswer');
+  } else if (
+    spokenText.includes('pod') ||
+    spokenText.includes('capsule') ||
+    spokenText.includes('which way round') ||
+    spokenText.includes('which way does the pod go') ||
+    spokenText.includes('flat side') ||
+    spokenText.includes('go in')
+  ) {
+    playSection('audioPodGo', 'podGoAnswer');
 }
   } else if (
     spokenText.includes('water tank') ||

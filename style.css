@@ -123,13 +123,16 @@
     }
 
     .question-card {
-      background: transparent;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 18px;
-      display: grid;
-      gap: 12px;
-    }
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+
+  max-width: 600px;
+  margin: 0 auto;
+}
 
    .question-button {
   width: fit-content;
